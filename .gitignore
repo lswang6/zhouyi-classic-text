@@ -1,0 +1,12 @@
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+
+# Xcode / build output
+.DS_Store
+xcuserdata/
+Zhouyi/.derivedData/
+Zhouyi/build/
+# 工具依赖与大文件（可重新获取 / 已导入资源目录）
+node_modules/
+Zhouyi/opencc-*.tar.gz
+Zhouyi/tools/art/raw*/

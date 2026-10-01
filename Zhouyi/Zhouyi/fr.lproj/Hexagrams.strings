@@ -1,0 +1,274 @@
+/* Hexagrammes (ordre du roi Wen) et trigrammes (ordre du Ciel antérieur) — français */
+
+"tri.1.k" = "Qián";
+"tri.1.nat" = "Ciel";
+"tri.2.k" = "Duì";
+"tri.2.nat" = "Lac";
+"tri.3.k" = "Lí";
+"tri.3.nat" = "Feu";
+"tri.4.k" = "Zhèn";
+"tri.4.nat" = "Tonnerre";
+"tri.5.k" = "Xùn";
+"tri.5.nat" = "Vent";
+"tri.6.k" = "Kǎn";
+"tri.6.nat" = "Eau";
+"tri.7.k" = "Gèn";
+"tri.7.nat" = "Montagne";
+"tri.8.k" = "Kūn";
+"tri.8.nat" = "Terre";
+
+"hex.1.name" = "Qián";
+"hex.1.full" = "Le Créateur";
+"hex.1.bh" = "La voie du Ciel avance avec force, sans jamais s’arrêter. Prenez l’initiative et persévérez sans relâche, mais progressez pas à pas, sans orgueil ni précipitation.";
+
+"hex.2.name" = "Kūn";
+"hex.2.full" = "Le Réceptif";
+"hex.2.bh" = "La Terre porte tout avec douceur. Suivez le courant et soutenez les autres plutôt que de chercher à passer devant ; rester droit et serein vous apportera le bonheur.";
+
+"hex.3.name" = "Zhūn";
+"hex.3.full" = "La Difficulté initiale";
+"hex.3.bh" = "Tout naît dans la difficulté. Les débuts rencontrent beaucoup d’obstacles : affermissez vos bases, cherchez des appuis et ne forcez pas les choses.";
+
+"hex.4.name" = "Méng";
+"hex.4.full" = "La Folie juvénile";
+"hex.4.bh" = "L’ignorance attend d’être éclairée. Demandez conseil avec humilité et apprenez avec application ; ne reposez pas sans cesse la même question à l’oracle.";
+
+"hex.5.name" = "Xū";
+"hex.5.full" = "L’Attente";
+"hex.5.bh" = "Attendre le bon moment. Les conditions ne sont pas encore réunies : restez sincère et patient, et la voie s’ouvrira d’elle-même le moment venu.";
+
+"hex.6.name" = "Sòng";
+"hex.6.full" = "Le Conflit";
+"hex.6.bh" = "Le signe du litige. Cherchez tôt un accord et sachez vous arrêter à temps : s’obstiner jusqu’au bout vous nuirait. Un tiers impartial peut vous aider.";
+
+"hex.7.name" = "Shī";
+"hex.7.full" = "L’Armée";
+"hex.7.bh" = "Mobiliser les forces. Une grande entreprise exige une discipline stricte et des personnes bien choisies ; elle ne réussit que sous la conduite d’une personne sage et respectée.";
+
+"hex.8.name" = "Bǐ";
+"hex.8.full" = "La Solidarité";
+"hex.8.bh" = "Se rapprocher et s’unir. Nouez des liens sincères et suivez ce qui est bon ; rejoignez tôt les autres, car hésiter et attendre fait manquer l’occasion.";
+
+"hex.9.name" = "Xiǎo Chù";
+"hex.9.full" = "Le Pouvoir d’apprivoisement du petit";
+"hex.9.bh" = "Une petite réserve, des forces encore insuffisantes. L’affaire mûrit mais n’a pas encore pris forme : accumulez vos ressources et cultivez votre intériorité.";
+
+"hex.10.name" = "Lǚ";
+"hex.10.full" = "La Marche";
+"hex.10.bh" = "Comme marcher sur la queue du tigre : avancez avec prudence. La situation comporte des risques, mais en restant courtois et attentif, vous passerez sans encombre.";
+
+"hex.11.name" = "Tài";
+"hex.11.full" = "La Paix";
+"hex.11.bh" = "Le Ciel et la Terre s’unissent, tout circule librement. Les affaires vont bien : saisissez l’occasion, tout en restant vigilant au cœur de la prospérité.";
+
+"hex.12.name" = "Pǐ";
+"hex.12.full" = "La Stagnation";
+"hex.12.bh" = "Le Ciel et la Terre ne communiquent plus, tout est bloqué. Restez discret et modeste, tenez fermement à vos principes et attendez que la situation tourne.";
+
+"hex.13.name" = "Tóng Rén";
+"hex.13.full" = "La Communauté avec les hommes";
+"hex.13.bh" = "S’accorder avec les autres. Rassemblez largement ceux qui partagent vos vues et coopérez ouvertement, sans vous enfermer dans un petit cercle.";
+
+"hex.14.name" = "Dà Yǒu";
+"hex.14.full" = "Le Grand Avoir";
+"hex.14.bh" = "Une grande récolte, comme le soleil au zénith. Encouragez le bien, écartez le mal, restez modeste et préservez vos acquis pour que l’abondance dure.";
+
+"hex.15.name" = "Qiān";
+"hex.15.full" = "L’Humilité";
+"hex.15.bh" = "Modestie et effacement. Plus vous êtes humble et bienveillant, plus vous recevez d’aide ; les six traits sont favorables, signe d’une œuvre menée à bien jusqu’au bout.";
+
+"hex.16.name" = "Yù";
+"hex.16.full" = "L’Enthousiasme";
+"hex.16.bh" = "Joie et harmonie, tous répondent à l’appel. Préparez-vous à l’avance et agissez dans le sens du courant, mais ne vous laissez pas aller au confort.";
+
+"hex.17.name" = "Suí";
+"hex.17.full" = "La Suite";
+"hex.17.bh" = "Agir selon le moment et suivre ce qui est bon. Adaptez-vous aux circonstances avec souplesse, tout en restant fidèle à la voie juste.";
+
+"hex.18.name" = "Gǔ";
+"hex.18.full" = "Le Travail sur ce qui est corrompu";
+"hex.18.bh" = "Des abus accumulés à corriger. Les vieux problèmes demandent réforme et remise en ordre : préparez bien avant d’agir, faites le bilan après, et le danger se changera en sécurité.";
+
+"hex.19.name" = "Lín";
+"hex.19.full" = "L’Approche";
+"hex.19.bh" = "Veiller avec bienveillance sur ce qui est en bas ; les choses s’améliorent peu à peu. La situation est favorable : agissez avec énergie, mais prévenez le déclin qui suit l’apogée.";
+
+"hex.20.name" = "Guān";
+"hex.20.full" = "La Contemplation";
+"hex.20.bh" = "Observer et montrer l’exemple. Considérez l’ensemble avec calme, faites votre examen de conscience et touchez les autres par votre sincérité, sans vous presser d’agir.";
+
+"hex.21.name" = "Shì Kè";
+"hex.21.full" = "Mordre au travers";
+"hex.21.bh" = "Mordre pour briser l’obstacle. Quelque chose bloque en travers : tranchez avec résolution et distinguez clairement le vrai du faux ; l’obstacle levé, tout circulera.";
+
+"hex.22.name" = "Bì";
+"hex.22.full" = "La Grâce";
+"hex.22.bh" = "La beauté de l’ornement. Une parure mesurée est utile, mais ne sacrifiez pas l’essentiel à l’apparence : les petites choses réussissent, les grandes exigent du fond.";
+
+"hex.23.name" = "Bō";
+"hex.23.full" = "L’Éclatement";
+"hex.23.bh" = "Effritement et déclin. La situation est défavorable : défendez-vous plutôt que d’attaquer, préservez vos forces et attendez le retour du cycle.";
+
+"hex.24.name" = "Fù";
+"hex.24.full" = "Le Retour";
+"hex.24.bh" = "La lumière revient, un nouveau départ. Le creux est passé : revenez vite sur la bonne voie et reprenez des forces progressivement.";
+
+"hex.25.name" = "Wú Wàng";
+"hex.25.full" = "L’Innocence";
+"hex.25.bh" = "Authenticité et droiture. Suivez le cours naturel des choses sans compter sur la chance ; agir ou désirer de façon inconsidérée attire le malheur.";
+
+"hex.26.name" = "Dà Chù";
+"hex.26.full" = "Le Pouvoir d’apprivoisement du grand";
+"hex.26.bh" = "De grandes réserves. Accumulez savoir et force en profondeur ; le moment venu, vous pourrez sortir et accomplir de grandes choses.";
+
+"hex.27.name" = "Yí";
+"hex.27.full" = "Les Commissures des lèvres";
+"hex.27.bh" = "L’art de se nourrir. Veillez à votre alimentation, à votre mode de vie et à vos paroles ; obtenez ce dont vous avez besoin par vos propres efforts honnêtes.";
+
+"hex.28.name" = "Dà Guò";
+"hex.28.full" = "La Prépondérance du grand";
+"hex.28.bh" = "Une charge trop lourde fait ployer la poutre. Les temps exceptionnels demandent des mesures exceptionnelles : assumez seul vos responsabilités, sans crainte.";
+
+"hex.29.name" = "Kǎn";
+"hex.29.full" = "L’Insondable";
+"hex.29.bh" = "Des dangers qui se succèdent. Dans l’adversité, gardez foi et constance ; comme l’eau qui continue de couler, vous finirez par sortir du péril.";
+
+"hex.30.name" = "Lí";
+"hex.30.full" = "Ce qui s’attache";
+"hex.30.bh" = "La clarté qui s’attache. Appuyez-vous sur la voie juste et sur les sages, restez doux et modeste : c’est ainsi que la lumière dure.";
+
+"hex.31.name" = "Xián";
+"hex.31.full" = "L’Influence";
+"hex.31.bh" = "Se toucher mutuellement. Dans les relations et les sentiments, la sincérité appelle la sincérité ; accueillez les autres l’esprit ouvert et les liens seront harmonieux.";
+
+"hex.32.name" = "Héng";
+"hex.32.full" = "La Durée";
+"hex.32.bh" = "La voie de la constance. Tenez le cap que vous avez choisi et persévérez, sans changer à la légère.";
+
+"hex.33.name" = "Dùn";
+"hex.33.full" = "La Retraite";
+"hex.33.bh" = "Le temps du retrait. La situation vous est défavorable : reculez au bon moment pour vous préserver, et faites de ce recul un moyen d’avancer.";
+
+"hex.34.name" = "Dà Zhuàng";
+"hex.34.full" = "La Puissance du grand";
+"hex.34.bh" = "Une force éclatante. Quand vous êtes en pleine puissance, restez d’autant plus droit et courtois ; gardez-vous d’abuser de votre force pour agir à la légère.";
+
+"hex.35.name" = "Jìn";
+"hex.35.full" = "Le Progrès";
+"hex.35.bh" = "Le soleil se lève, on progresse et on s’élève. Montrez-vous actif et faites valoir vos talents et vos qualités : vous serez facilement reconnu.";
+
+"hex.36.name" = "Míng Yí";
+"hex.36.full" = "L’Obscurcissement de la lumière";
+"hex.36.bh" = "La lumière est blessée. Quand l’environnement s’assombrit, cachez vos talents : gardez votre clarté intérieure et montrez-vous docile à l’extérieur.";
+
+"hex.37.name" = "Jiā Rén";
+"hex.37.full" = "La Famille";
+"hex.37.bh" = "La voie de la famille. Que chacun tienne sa place et que paroles et actes soient fondés ; l’harmonie au foyer fait réussir le reste.";
+
+"hex.38.name" = "Kuí";
+"hex.38.full" = "L’Opposition";
+"hex.38.bh" = "Divergence et éloignement. Face aux désaccords, cherchez le terrain commun en respectant les différences : les petites choses aboutissent, les grandes demandent de dissiper lentement les malentendus.";
+
+"hex.39.name" = "Jiǎn";
+"hex.39.full" = "L’Obstacle";
+"hex.39.bh" = "Le chemin est difficile. Un obstacle se dresse devant vous : examinez-vous, cherchez l’aide de personnes influentes et suspendez un temps votre avancée.";
+
+"hex.40.name" = "Xiè";
+"hex.40.full" = "La Libération";
+"hex.40.bh" = "Les difficultés se dénouent. Agissez avec indulgence et sans tarder, dissipez les vieilles rancunes et rétablissez l’ordre.";
+
+"hex.41.name" = "Sǔn";
+"hex.41.full" = "La Diminution";
+"hex.41.bh" = "La voie de la diminution. Renoncez aux petits profits et aux désirs égoïstes, donnez de bon cœur : vous en retirerez finalement un gain.";
+
+"hex.42.name" = "Yì";
+"hex.42.full" = "L’Augmentation";
+"hex.42.bh" = "Le temps de l’accroissement. Propice pour entreprendre et aller de l’avant : imitez le bien, corrigez vos fautes, et les bénéfices viendront.";
+
+"hex.43.name" = "Guài";
+"hex.43.full" = "La Percée";
+"hex.43.bh" = "Le temps de la décision. Tranchez quand il le faut, mais exposez vos raisons ouvertement et convainquez par la vertu plutôt que par l’affrontement.";
+
+"hex.44.name" = "Gòu";
+"hex.44.full" = "Venir à la rencontre";
+"hex.44.bh" = "Une rencontre inattendue. Une rencontre ou une occasion imprévue se présente : discernez bien à qui vous avez affaire et étouffez le mal dans l’œuf.";
+
+"hex.45.name" = "Cuì";
+"hex.45.full" = "Le Rassemblement";
+"hex.45.bh" = "Rassemblement et réunion. Les gens et les ressources convergent : unissez les cœurs, tout en vous prémunissant contre les imprévus.";
+
+"hex.46.name" = "Shēng";
+"hex.46.full" = "La Poussée vers le haut";
+"hex.46.bh" = "S’élever pas à pas. Comme un arbre qui grandit, les petits progrès s’additionnent : suivez l’élan vers le haut et avancez avec audace.";
+
+"hex.47.name" = "Kùn";
+"hex.47.full" = "L’Accablement";
+"hex.47.bh" = "Une situation d’épuisement. Dans l’adversité, parlez peu et agissez beaucoup, restez fidèle à vos aspirations : l’impasse finira par s’ouvrir.";
+
+"hex.48.name" = "Jǐng";
+"hex.48.full" = "Le Puits";
+"hex.48.bh" = "Le puits nourrit sans s’épuiser. Des fondations solides et un effort continu : l’entretien et la persévérance comptent, abandonner près du but serait néfaste.";
+
+"hex.49.name" = "Gé";
+"hex.49.full" = "La Révolution";
+"hex.49.bh" = "Le temps du changement. Il faut que le moment soit mûr et que vous ayez gagné la confiance des autres ; en accord avec le Ciel et les hommes, la transformation réussit.";
+
+"hex.50.name" = "Dǐng";
+"hex.50.full" = "Le Chaudron";
+"hex.50.bh" = "Un nouvel ordre s’établit. Consolidez votre position et appelez des personnes de valeur : la nouvelle situation est désormais en place.";
+
+"hex.51.name" = "Zhèn";
+"hex.51.full" = "L’Éveilleur";
+"hex.51.bh" = "Le coup de tonnerre ébranle. Face à un bouleversement soudain, gardez votre sang-froid et examinez-vous avec vigilance : ensuite, tout rentrera dans le calme.";
+
+"hex.52.name" = "Gèn";
+"hex.52.full" = "L’Immobilisation";
+"hex.52.bh" = "S’arrêter et rester immobile. Sachez vous arrêter à temps, maîtrisez vos désirs, tenez votre rôle et n’outrepassez pas votre place.";
+
+"hex.53.name" = "Jiàn";
+"hex.53.full" = "Le Développement";
+"hex.53.bh" = "Progresser par étapes. Comme l’oie sauvage qui s’élève peu à peu, avancez méthodiquement, sans chercher le succès trop vite.";
+
+"hex.54.name" = "Guī Mèi";
+"hex.54.full" = "L’Épousée";
+"hex.54.bh" = "Une position mal définie. Tenez compte de votre rang et gardez la mesure ; avancer à la hâte serait défavorable, mieux vaut suivre l’usage et attendre son heure.";
+
+"hex.55.name" = "Fēng";
+"hex.55.full" = "L’Abondance";
+"hex.55.bh" = "Plénitude et grandeur. Vous êtes à votre apogée : profitez du moment présent, en sachant que le soleil décline passé midi.";
+
+"hex.56.name" = "Lǚ";
+"hex.56.full" = "Le Voyageur";
+"hex.56.bh" = "Loin de chez soi. En terrain inconnu, restez aimable et droit, agissez avec prudence : les petites choses réussissent.";
+
+"hex.57.name" = "Xùn";
+"hex.57.full" = "Le Doux";
+"hex.57.bh" = "Comme le vent qui pénètre tout, l’humilité s’infiltre. Communiquez avec douceur, répétez clairement votre propos et entrez en suivant le mouvement.";
+
+"hex.58.name" = "Duì";
+"hex.58.full" = "Le Serein";
+"hex.58.bh" = "Joie et harmonie. Traitez les autres avec sincérité et échangez pour progresser ensemble ; la joie qui naît de la droiture mène au succès.";
+
+"hex.59.name" = "Huàn";
+"hex.59.full" = "La Dissolution";
+"hex.59.bh" = "Dispersion et dissolution. Quand les cœurs se séparent, rassemblez-les autour d’un accord ; ce qui est noué peut profiter de l’occasion pour se dénouer.";
+
+"hex.60.name" = "Jié";
+"hex.60.full" = "La Limitation";
+"hex.60.bh" = "Mesure et modération. En toute chose, sachez vous arrêter à temps et vivre selon vos moyens ; mais une rigueur excessive ne peut pas durer non plus.";
+
+"hex.61.name" = "Zhōng Fú";
+"hex.61.full" = "La Vérité intérieure";
+"hex.61.bh" = "La sincérité intérieure. Touchez les autres par votre sincérité : là où elle agit, même les choses difficiles aboutissent.";
+
+"hex.62.name" = "Xiǎo Guò";
+"hex.62.full" = "La Prépondérance du petit";
+"hex.62.bh" = "Un léger excès. Consacrez-vous aux petites choses et restez humble ; ne visez pas trop haut.";
+
+"hex.63.name" = "Jì Jì";
+"hex.63.full" = "Après l’accomplissement";
+"hex.63.bh" = "L’affaire est accomplie. Après le succès, le relâchement guette : restez vigilant dans la sécurité et prévenez les problèmes avant qu’ils ne surviennent.";
+
+"hex.64.name" = "Wèi Jì";
+"hex.64.full" = "Avant l’accomplissement";
+"hex.64.bh" = "L’affaire n’est pas encore achevée. Vous êtes en chemin : terminez avec soin et vérifiez bien la direction, le moment de la réussite finira par venir.";

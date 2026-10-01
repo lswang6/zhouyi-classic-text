@@ -1,0 +1,179 @@
+/* 通用 / 标签栏 */
+"卜卦" = "Consult";
+"记录" = "History";
+
+/* 设置 */
+"跟随系统" = "System default";
+"语言" = "Language";
+"设置" = "Settings";
+"完成" = "Done";
+
+/* 首页 · 卜一卦 */
+"所问之事" = "Your question";
+"例如：这次换工作是否合适？" = "E.g. Is this job change right for me?";
+"类别" = "Category";
+"开始摇卦" = "Start casting";
+"起卦" = "Cast";
+"最近一卦" = "Latest reading";
+"卜一卦" = "Cast a hexagram";
+"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Calm your mind and ask about one matter at a time. Hold your question in mind, then begin casting.";
+"起卦方式" = "Casting method";
+"铜钱" = "Coins";
+"三钱六掷，逐爻成卦" = "Toss three coins six times, one line per toss";
+"数字" = "Numbers";
+"三个数定卦与动爻" = "Three numbers set the hexagram and changing line";
+"时间" = "Time";
+"以此刻年月日时起卦" = "Cast from the current year, month, day and hour";
+"三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。" = "Toss three coins six times, building the hexagram from the bottom up. The plain side counts 3, the inscribed side 2. A total of 6 is Old Yin, 7 Young Yang, 8 Young Yin and 9 Old Yang; 6 and 9 are changing lines.";
+"上卦数" = "Upper trigram number";
+"下卦数" = "Lower trigram number";
+"动爻数" = "Changing line number";
+"任意" = "Any";
+"凭直觉写下三个正整数。上、下卦取除以八的余数，动爻取除以六的余数。" = "Write down three positive whole numbers by intuition. The upper and lower trigrams use the remainder after dividing by 8; the changing line uses the remainder after dividing by 6.";
+"农历" = "Lunar date";
+"%@时" = "%@ hour";
+"年支 · 月 · 日 · 时支" = "Year branch · Month · Day · Hour branch";
+"上卦：年+月+日 = %d" = "Upper: year + month + day = %d";
+"÷8 余 %1$d → %2$@" = "÷8 remainder %1$d → %2$@ ";
+"下卦：再加时 = %d" = "Lower: plus hour = %d";
+"动爻：%d ÷ 6" = "Changing line: %d ÷ 6";
+"余 %1$d → %2$@爻" = "Remainder %1$d → line %2$@";
+"以农历年支、月、日与时支数起卦。闰月按本月数；23 点后为子时，按次日计。" = "Casts from the lunar year branch, month, day and hour branch. A leap month counts as its regular month; from 23:00 it is the Zi hour and counts as the next day.";
+"已保存到卜卦记录" = "Saved to history";
+
+/* 摇卦 */
+"心中默念所问之事" = "Hold your question in mind";
+"背 · 3" = "Plain · 3";
+"字 · 2" = "Inscribed · 2";
+"三钱之和 %1$d · %2$@" = "Coin total %1$d · %2$@";
+"（动爻）" = " (changing)";
+"查看解卦" = "View reading";
+"卦已成，已保存到卜卦记录" = "Hexagram complete and saved to history";
+"掷钱" = "Toss coins";
+"摇一摇" = "Shake";
+"点按掷钱，或直接摇动手机" = "Tap to toss, or just shake your phone";
+"摇卦" = "Casting";
+"取消" = "Cancel";
+"初爻" = "Line 1";
+"二爻" = "Line 2";
+"三爻" = "Line 3";
+"四爻" = "Line 4";
+"五爻" = "Line 5";
+"上爻" = "Line 6";
+
+/* 解卦 */
+"所问" = "Question";
+"本卦" = "Primary";
+"变卦" = "Resulting";
+"六爻安静，无变卦" = "No changing lines, so no resulting hexagram";
+"解卦" = "Reading";
+"已收藏" = "Added to favorites";
+"已取消收藏" = "Removed from favorites";
+"所问：%@" = "Question: %@";
+"断卦要点：%@" = "Key to the reading: %@";
+"第%1$d卦 · 上%2$@下%3$@" = "Hexagram %1$d · %2$@ over %3$@";
+"断卦要点" = "Key to the reading";
+"主" = "Main";
+"卦辞" = "Judgment";
+"爻辞" = "Line texts";
+"白话解读" = "Interpretation";
+"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "The primary hexagram shows the present situation; the resulting hexagram shows where it is heading. Readings are for reference only — weigh important decisions against your real circumstances.";
+"动爻 · 老阳" = "Changing · Old Yang";
+"动爻 · 老阴" = "Changing · Old Yin";
+"应验反馈" = "Outcome";
+"备注" = "Notes";
+"记下后来的结果，便于日后印证" = "Record what happened, so you can look back later";
+"删除此记录" = "Delete reading";
+"删除此记录？" = "Delete this reading?";
+"删除" = "Delete";
+"记录已删除" = "Reading deleted";
+
+/* 卜卦记录 */
+"卜卦记录" = "History";
+"共 %d 卦" = "Total: %d";
+"全部" = "All";
+"收藏" = "Favorites";
+"%@卦" = "%@";
+"没有找到相关记录" = "No matching readings";
+"换个关键词或筛选条件试试" = "Try a different keyword or filter";
+"备注：%@" = "Notes: %@";
+"搜索所问之事或卦名" = "Search questions or hexagrams";
+"清除" = "Clear";
+
+/* 记录 */
+"未填写所问之事" = "No question entered";
+"%1$@ → %2$@" = "%1$@ → %2$@";
+"事业" = "Career";
+"感情" = "Love";
+"财运" = "Money";
+"健康" = "Health";
+"学业" = "Study";
+"其他" = "Other";
+"待验" = "Pending";
+"应验" = "Came true";
+"未应验" = "Didn't happen";
+
+/* 卦理 · 断卦规则 · 农历 */
+"农历闰%1$d月%2$d日" = "Leap month %1$d, day %2$d";
+"农历%1$d月%2$d日" = "Month %1$d, day %2$d";
+"铜钱摇卦" = "Coin toss";
+"数字起卦" = "Number cast";
+"时间起卦" = "Time cast";
+"%1$@ · %2$@卦" = "%1$@ · %2$@";
+"%@卦 卦辞" = "%@ · Judgment";
+"六爻安静，以本卦卦辞为断。" = "No changing lines: read the Judgment of the primary hexagram.";
+"一爻动，以本卦动爻爻辞为断。" = "One changing line: read that line's text in the primary hexagram.";
+"二爻动，以本卦两动爻爻辞为断，以上爻为主。" = "Two changing lines: read both line texts in the primary hexagram; the upper one leads.";
+"三爻动，以本卦与变卦卦辞为断，本卦为主。" = "Three changing lines: read the Judgments of both hexagrams; the primary one leads.";
+"四爻动，以变卦两静爻爻辞为断，以下爻为主。" = "Four changing lines: read the two unchanging lines in the resulting hexagram; the lower one leads.";
+"五爻动，以变卦静爻爻辞为断。" = "Five changing lines: read the unchanging line in the resulting hexagram.";
+"六爻皆动，乾卦以用九为断。" = "All six lines change: for The Creative, read the “All Nines” text.";
+"用九" = "All Nines";
+"六爻皆动，坤卦以用六为断。" = "All six lines change: for The Receptive, read the “All Sixes” text.";
+"用六" = "All Sixes";
+"六爻皆动，以变卦卦辞为断。" = "All six lines change: read the Judgment of the resulting hexagram.";
+"闰" = "Leap ";
+"上%1$@ 下%2$@ · 动%3$@爻" = "%1$@ over %2$@ · changing line %3$@";
+"子" = "Zi";
+"丑" = "Chou";
+"寅" = "Yin";
+"卯" = "Mao";
+"辰" = "Chen";
+"巳" = "Si";
+"午" = "Wu";
+"未" = "Wei";
+"申" = "Shen";
+"酉" = "You";
+"戌" = "Xu";
+"亥" = "Hai";
+"初" = "1";
+"二" = "2";
+"三" = "3";
+"四" = "4";
+"五" = "5";
+"上" = "6";
+"老阴" = "Old Yin";
+"少阳" = "Young Yang";
+"少阴" = "Young Yin";
+"老阳" = "Old Yang";
+"正月" = "1st Month";
+"二月" = "2nd Month";
+"三月" = "3rd Month";
+"四月" = "4th Month";
+"五月" = "5th Month";
+"六月" = "6th Month";
+"七月" = "7th Month";
+"八月" = "8th Month";
+"九月" = "9th Month";
+"十月" = "10th Month";
+"冬月" = "11th Month";
+"腊月" = "12th Month";
+"分享" = "Share";
+"还没有卜卦记录" = "No readings yet";
+"同一时辰内（%@）起卦结果相同，一事不二占。" = "Within the same two-hour period (%@), casting gives the same hexagram. Ask about each matter only once.";
+
+/* 易学 */
+"易学" = "Learn";
+"今日一卦" = "Hexagram of the Day";
+"易学专栏" = "Articles";
+"六十四卦" = "The 64 Hexagrams";

@@ -1,0 +1,273 @@
+/* Spanish — hexagram names (pinyin), Wilhelm-Vogelmann titles, plain-language interpretation */
+"hex.1.name" = "Qián";
+"hex.1.full" = "Lo Creativo";
+"hex.1.bh" = "El cielo se mueve con fuerza incesante. Conviene tomar la iniciativa y esforzarse sin descanso, pero avanzando paso a paso, sin arrogancia ni impaciencia.";
+
+"hex.2.name" = "Kūn";
+"hex.2.full" = "Lo Receptivo";
+"hex.2.bh" = "La tierra es dócil y todo lo sostiene. Conviene seguir el curso de las cosas y apoyar a otros; no es momento de adelantarse. Mantenerse recto y sereno trae buena fortuna.";
+
+"hex.3.name" = "Zhūn";
+"hex.3.full" = "La Dificultad Inicial";
+"hex.3.bh" = "Todo nace con dificultad. Los comienzos encuentran mucha resistencia: conviene afianzar las bases y buscar apoyo, sin precipitarse.";
+
+"hex.4.name" = "Méng";
+"hex.4.full" = "La Necedad Juvenil";
+"hex.4.bh" = "La ignorancia espera ser iluminada. Hay que pedir consejo con humildad y aprender con dedicación; no conviene consultar una y otra vez sobre la misma cuestión.";
+
+"hex.5.name" = "Xū";
+"hex.5.full" = "La Espera";
+"hex.5.bh" = "Esperar el momento oportuno. Las condiciones aún no están maduras; con sinceridad y paciencia, todo fluirá cuando llegue su hora.";
+
+"hex.6.name" = "Sòng";
+"hex.6.full" = "El Conflicto";
+"hex.6.bh" = "Imagen de litigio. Conviene reconciliarse pronto y saber detenerse a tiempo; llevar la disputa hasta el final resulta perjudicial. Puede recurrirse a un tercero imparcial.";
+
+"hex.7.name" = "Shī";
+"hex.7.full" = "El Ejército";
+"hex.7.bh" = "Movilizar a muchos. Las grandes empresas exigen disciplina y acierto al elegir a las personas; solo triunfan bajo el mando de alguien respetado y virtuoso.";
+
+"hex.8.name" = "Bǐ";
+"hex.8.full" = "La Solidaridad";
+"hex.8.bh" = "Acercarse y unirse. Conviene establecer vínculos sinceros y elegir bien a quién seguir; hay que sumarse a tiempo, pues quien duda pierde la ocasión.";
+
+"hex.9.name" = "Xiǎo Xù";
+"hex.9.full" = "La Fuerza Domesticadora de lo Pequeño";
+"hex.9.bh" = "Pequeña acumulación, fuerzas aún insuficientes. El asunto se está gestando y todavía no toma forma: conviene acumular recursos y cultivar el interior.";
+
+"hex.10.name" = "Lǚ";
+"hex.10.full" = "El Porte";
+"hex.10.bh" = "Como pisar la cola del tigre: avanzar con cautela. La situación entraña riesgos, pero con cortesía y cuidado se puede pasar sin daño.";
+
+"hex.11.name" = "Tài";
+"hex.11.full" = "La Paz";
+"hex.11.bh" = "Cielo y tierra se comunican; arriba y abajo hay entendimiento. Todo marcha bien: conviene aprovechar la ocasión sin olvidar la prudencia en los buenos tiempos.";
+
+"hex.12.name" = "Pǐ";
+"hex.12.full" = "El Estancamiento";
+"hex.12.bh" = "Cielo y tierra no se comunican; todo está bloqueado. Conviene mantener un perfil bajo, ser fiel a los propios principios y esperar el cambio.";
+
+"hex.13.name" = "Tóng Rén";
+"hex.13.full" = "Comunidad con los Hombres";
+"hex.13.bh" = "Concordia con los demás. Conviene rodearse de personas afines y cooperar abiertamente, sin encerrarse en camarillas.";
+
+"hex.14.name" = "Dà Yǒu";
+"hex.14.full" = "La Posesión de lo Grande";
+"hex.14.bh" = "Gran cosecha, como el sol en su cenit. Conviene fomentar el bien y frenar el mal, y conservar lo logrado con modestia para que la abundancia perdure.";
+
+"hex.15.name" = "Qiān";
+"hex.15.full" = "La Modestia";
+"hex.15.bh" = "Humildad y moderación. Cuanto mayor es la modestia, más apoyo se recibe; las seis líneas son favorables: augura un buen principio y un buen final.";
+
+"hex.16.name" = "Yù";
+"hex.16.full" = "El Entusiasmo";
+"hex.16.bh" = "Alegría y armonía; los demás responden. Conviene planificar con antelación y actuar a favor de la corriente, sin abandonarse a la comodidad.";
+
+"hex.17.name" = "Suí";
+"hex.17.full" = "El Seguimiento";
+"hex.17.bh" = "Actuar según el momento y seguir lo bueno. Conviene adaptarse a las circunstancias con flexibilidad, sin apartarse del camino recto.";
+
+"hex.18.name" = "Gǔ";
+"hex.18.full" = "El Trabajo en lo Echado a Perder";
+"hex.18.bh" = "Vicios acumulados que deben corregirse. Los viejos problemas requieren orden y renovación; planificando antes y revisando después, el peligro se convierte en seguridad.";
+
+"hex.19.name" = "Lín";
+"hex.19.full" = "El Acercamiento";
+"hex.19.bh" = "Acercarse desde lo alto; las cosas mejoran poco a poco. La tendencia es favorable y conviene actuar, pero previendo que toda plenitud trae su declive.";
+
+"hex.20.name" = "Guān";
+"hex.20.full" = "La Contemplación";
+"hex.20.bh" = "Observar y dar ejemplo. Conviene contemplar el conjunto con calma, examinarse a uno mismo y ganarse a los demás con sinceridad, sin apresurarse a actuar.";
+
+"hex.21.name" = "Shì Hé";
+"hex.21.full" = "La Mordedura Tajante";
+"hex.21.bh" = "Morder para eliminar el obstáculo. Algo se interpone: hay que resolverlo con decisión y distinguir lo justo de lo injusto; eliminado el obstáculo, todo fluye.";
+
+"hex.22.name" = "Bì";
+"hex.22.full" = "La Gracia";
+"hex.22.bh" = "La belleza del adorno. Un adorno moderado es beneficioso, pero no hay que sacrificar lo esencial por lo accesorio; lo pequeño sale bien, lo grande exige sustancia.";
+
+"hex.23.name" = "Bō";
+"hex.23.full" = "La Desintegración";
+"hex.23.bh" = "Desgaste y declive. La situación es desfavorable: conviene defenderse en lugar de atacar, preservar fuerzas y esperar el retorno.";
+
+"hex.24.name" = "Fù";
+"hex.24.full" = "El Retorno";
+"hex.24.bh" = "Vuelve la luz: un nuevo comienzo. Lo peor ya pasó; conviene regresar a tiempo al camino recto y recuperarse paso a paso.";
+
+"hex.25.name" = "Wú Wàng";
+"hex.25.full" = "La Inocencia";
+"hex.25.bh" = "Autenticidad sin engaño. Seguir el curso natural sin confiar en la suerte trae buena fortuna; actuar o desear sin fundamento trae desgracias.";
+
+"hex.26.name" = "Dà Xù";
+"hex.26.full" = "La Fuerza Domesticadora de lo Grande";
+"hex.26.bh" = "Gran acumulación. Conviene acumular saber y fuerza; cuando el momento madure, se podrán emprender grandes obras fuera de casa.";
+
+"hex.27.name" = "Yí";
+"hex.27.full" = "Las Comisuras de la Boca";
+"hex.27.bh" = "El arte de nutrirse. Cuidar la alimentación, los hábitos y las palabras, y obtener lo necesario mediante el propio esfuerzo legítimo.";
+
+"hex.28.name" = "Dà Guò";
+"hex.28.full" = "La Preponderancia de lo Grande";
+"hex.28.bh" = "Carga excesiva: la viga maestra se curva. Los tiempos extraordinarios exigen medidas extraordinarias; hay que asumir la responsabilidad solo y sin miedo.";
+
+"hex.29.name" = "Kǎn";
+"hex.29.full" = "Lo Abismal, el Agua";
+"hex.29.bh" = "Peligro tras peligro. En la adversidad hay que mantener la fe y la constancia; como el agua que sigue fluyendo, al final se sale del peligro.";
+
+"hex.30.name" = "Lí";
+"hex.30.full" = "Lo Adherente, el Fuego";
+"hex.30.bh" = "Luz que se adhiere. Conviene apoyarse en lo recto y en personas sabias, y mantenerse dócil y humilde para que la claridad perdure.";
+
+"hex.31.name" = "Xián";
+"hex.31.full" = "El Influjo";
+"hex.31.bh" = "Influencia mutua. En las relaciones y los afectos, la sinceridad despierta respuesta; tratar a los demás con apertura hace que todo fluya.";
+
+"hex.32.name" = "Héng";
+"hex.32.full" = "La Duración";
+"hex.32.bh" = "El camino de la constancia. Conviene mantener el rumbo elegido y perseverar, sin cambiar a la ligera.";
+
+"hex.33.name" = "Dùn";
+"hex.33.full" = "La Retirada";
+"hex.33.bh" = "Tiempo de retirarse. Las circunstancias son adversas: retirarse a tiempo permite protegerse; retroceder para después avanzar.";
+
+"hex.34.name" = "Dà Zhuàng";
+"hex.34.full" = "El Poder de lo Grande";
+"hex.34.bh" = "Gran fuerza e ímpetu. Cuando sobra poder, más importa ser recto y respetuoso; hay que evitar abusar de la fuerza y actuar sin reflexión.";
+
+"hex.35.name" = "Jìn";
+"hex.35.full" = "El Progreso";
+"hex.35.bh" = "El sol se eleva: ascenso y progreso. Conviene mostrarse activo y dar a conocer el talento y la virtud; es fácil obtener reconocimiento.";
+
+"hex.36.name" = "Míng Yí";
+"hex.36.full" = "El Oscurecimiento de la Luz";
+"hex.36.bh" = "La luz está herida. En un entorno sombrío conviene ocultar el propio brillo: conservar la claridad por dentro y mostrarse dócil por fuera.";
+
+"hex.37.name" = "Jiā Rén";
+"hex.37.full" = "El Clan";
+"hex.37.bh" = "El camino de la familia. Cada uno debe ocupar su lugar y hablar y obrar con fundamento; si reina la armonía interna, todo marcha bien.";
+
+"hex.38.name" = "Kuí";
+"hex.38.full" = "El Antagonismo";
+"hex.38.bh" = "Divergencia y oposición. Ante los desacuerdos, buscar lo común respetando las diferencias; lo pequeño puede lograrse, lo grande requiere salvar las distancias poco a poco.";
+
+"hex.39.name" = "Jiǎn";
+"hex.39.full" = "El Impedimento";
+"hex.39.bh" = "Camino difícil. Hay obstáculos delante: conviene examinarse a uno mismo, buscar la ayuda de personas valiosas y detener el avance por un tiempo.";
+
+"hex.40.name" = "Xiè";
+"hex.40.full" = "La Liberación";
+"hex.40.bh" = "Las dificultades se disuelven. Conviene ser indulgente, actuar pronto, dejar atrás viejos rencores y restablecer el orden.";
+
+"hex.41.name" = "Sǔn";
+"hex.41.full" = "La Merma";
+"hex.41.bh" = "El camino de la merma. Renunciar a pequeñas ventajas y a intereses egoístas y dar con sinceridad; así, paradójicamente, se gana.";
+
+"hex.42.name" = "Yì";
+"hex.42.full" = "El Aumento";
+"hex.42.bh" = "Tiempo de aumento. Favorable para emprender y avanzar; aprender de lo bueno y corregir los errores: se pueden esperar beneficios.";
+
+"hex.43.name" = "Guài";
+"hex.43.full" = "El Desbordamiento";
+"hex.43.bh" = "Tiempo de decidir. Hay que resolver cuando es necesario, pero exponiendo razones abiertamente y convenciendo con la virtud, sin choques frontales.";
+
+"hex.44.name" = "Gòu";
+"hex.44.full" = "Ir al Encuentro";
+"hex.44.bh" = "Encuentro inesperado. Surge un encuentro u oportunidad imprevista, pero hay que saber quién llega y cortar el mal desde su origen.";
+
+"hex.45.name" = "Cuì";
+"hex.45.full" = "La Reunión";
+"hex.45.bh" = "Reunión y concentración. Personas y recursos confluyen: conviene unir voluntades y, al mismo tiempo, estar prevenido.";
+
+"hex.46.name" = "Shēng";
+"hex.46.full" = "La Subida";
+"hex.46.bh" = "Ascenso paso a paso. Como un árbol que crece, lo pequeño se hace grande; siguiendo la corriente hacia arriba, se puede avanzar con audacia.";
+
+"hex.47.name" = "Kùn";
+"hex.47.full" = "La Desazón";
+"hex.47.bh" = "Situación de agotamiento. En la adversidad, hablar poco y hacer mucho, y mantenerse fiel a los propios ideales: la salida acabará abriéndose.";
+
+"hex.48.name" = "Jǐng";
+"hex.48.full" = "El Pozo de Agua";
+"hex.48.bh" = "El pozo nutre sin agotarse. Con bases firmes y entrega constante, lo esencial es cuidar y perseverar; flaquear justo antes de terminar resulta desfavorable.";
+
+"hex.49.name" = "Gé";
+"hex.49.full" = "La Revolución";
+"hex.49.bh" = "Tiempo de cambio. La transformación requiere que el momento esté maduro y ganarse la confianza de los demás; en armonía con el cielo y con la gente, el cambio triunfa.";
+
+"hex.50.name" = "Dǐng";
+"hex.50.full" = "El Caldero";
+"hex.50.bh" = "Renovación y asentamiento. Conviene consolidar la posición y confiar en personas capaces; la nueva situación ya está establecida.";
+
+"hex.51.name" = "Zhèn";
+"hex.51.full" = "Lo Suscitativo, el Trueno";
+"hex.51.bh" = "El trueno sacude. Ante un imprevisto, mantener la calma, estar alerta y examinarse; después, todo queda en paz.";
+
+"hex.52.name" = "Gèn";
+"hex.52.full" = "El Aquietamiento, la Montaña";
+"hex.52.bh" = "Detenerse y quedarse quieto. Saber parar cuando corresponde, dominar los deseos, cumplir con lo que toca y no excederse en las propias funciones.";
+
+"hex.53.name" = "Jiàn";
+"hex.53.full" = "La Evolución";
+"hex.53.bh" = "Avance gradual. Como el ganso salvaje que vuela por etapas: avanzar paso a paso, sin prisas por lograr resultados.";
+
+"hex.54.name" = "Guī Mèi";
+"hex.54.full" = "La Muchacha que se Casa";
+"hex.54.bh" = "Posición aún no legitimada. Hay que cuidar el propio papel y la mesura; avanzar a la ligera es desfavorable: conviene atenerse a lo habitual y esperar.";
+
+"hex.55.name" = "Fēng";
+"hex.55.full" = "La Plenitud";
+"hex.55.bh" = "Abundancia y grandeza. Es el momento de apogeo: conviene aprovechar el presente, sabiendo que el sol, tras el mediodía, declina.";
+
+"hex.56.name" = "Lǚ";
+"hex.56.full" = "El Andariego";
+"hex.56.bh" = "De viaje, lejos de casa. En un entorno desconocido conviene ser afable y recto y actuar con cautela; lo pequeño puede salir bien.";
+
+"hex.57.name" = "Xùn";
+"hex.57.full" = "Lo Suave, el Viento";
+"hex.57.bh" = "Como el viento que penetra en todo: humildad que se infiltra. Conviene comunicar con suavidad, reiterar con claridad y entrar a favor de la corriente.";
+
+"hex.58.name" = "Duì";
+"hex.58.full" = "Lo Sereno, el Lago";
+"hex.58.bh" = "Alegría y armonía. Tratar a los demás con sinceridad y aprender unos de otros; la alegría que nace de lo recto conduce al éxito.";
+
+"hex.59.name" = "Huàn";
+"hex.59.full" = "La Disolución";
+"hex.59.bh" = "Dispersión y disolución. Cuando los ánimos se dispersan, conviene reunir consensos; lo que estaba enquistado puede aprovechar la ocasión para disolverse.";
+
+"hex.60.name" = "Jié";
+"hex.60.full" = "La Restricción";
+"hex.60.bh" = "Moderación con medida. Saber detenerse a tiempo y gastar según lo que se tiene; pero la rigidez excesiva tampoco puede sostenerse.";
+
+"hex.61.name" = "Zhōng Fú";
+"hex.61.full" = "La Verdad Interior";
+"hex.61.bh" = "Sinceridad interior. La autenticidad conmueve a los demás; donde llega la buena fe, hasta lo difícil puede lograrse.";
+
+"hex.62.name" = "Xiǎo Guò";
+"hex.62.full" = "La Preponderancia de lo Pequeño";
+"hex.62.bh" = "Pequeños excesos. Conviene ocuparse de asuntos menores y mantener un perfil bajo, sin ambiciones desmedidas.";
+
+"hex.63.name" = "Jì Jì";
+"hex.63.full" = "Después de la Consumación";
+"hex.63.bh" = "El asunto ya está logrado. Tras el éxito es fácil relajarse: conviene no bajar la guardia y prevenir los problemas antes de que surjan.";
+
+"hex.64.name" = "Wèi Jì";
+"hex.64.full" = "Antes de la Consumación";
+"hex.64.bh" = "El asunto aún no está concluido. Todavía en proceso: rematar con cuidado y elegir bien la dirección; llegará el momento de lograrlo.";
+
+"tri.1.k" = "Qián";
+"tri.1.nat" = "Cielo";
+"tri.2.k" = "Duì";
+"tri.2.nat" = "Lago";
+"tri.3.k" = "Lí";
+"tri.3.nat" = "Fuego";
+"tri.4.k" = "Zhèn";
+"tri.4.nat" = "Trueno";
+"tri.5.k" = "Xùn";
+"tri.5.nat" = "Viento";
+"tri.6.k" = "Kǎn";
+"tri.6.nat" = "Agua";
+"tri.7.k" = "Gèn";
+"tri.7.nat" = "Montaña";
+"tri.8.k" = "Kūn";
+"tri.8.nat" = "Tierra";

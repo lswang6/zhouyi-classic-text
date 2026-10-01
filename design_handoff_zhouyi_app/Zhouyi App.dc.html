@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/tokens/colors.css">
+<link rel="stylesheet" href="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/tokens/semantic-colors.css">
+<link rel="stylesheet" href="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/tokens/typography.css">
+<link rel="stylesheet" href="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/tokens/layout.css">
+<link rel="stylesheet" href="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/tokens/base.css">
+<link rel="stylesheet" href="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/styles.css">
+<script src="_ds/react-spectrum-design-system-20d7e960-bd48-4cf1-b361-8d1de970ce1a/_ds_bundle.js"></script>
+<script src="hexagrams.js"></script>
+<style>
+body{margin:0;background:rgb(233,233,233)}
+a{color:var(--spectrum-accent-content-color-default)}a:hover{color:var(--spectrum-blue-1000)}
+@keyframes zyShake{0%,100%{transform:translate(0,0) rotate(0)}15%{transform:translate(-10px,4px) rotate(-6deg)}30%{transform:translate(9px,-5px) rotate(5deg)}45%{transform:translate(-8px,-3px) rotate(-4deg)}60%{transform:translate(10px,5px) rotate(6deg)}75%{transform:translate(-6px,2px) rotate(-3deg)}90%{transform:translate(4px,-2px) rotate(2deg)}}
+@keyframes zyIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 16px;box-sizing:border-box;font-family:var(--spectrum-font-family-sans)">
+<div data-screen-label="Phone" style="width:390px;height:844px;flex:none;border-radius:56px;border:11px solid #0c0c0c;box-shadow:0 30px 60px rgba(0,0,0,.18);overflow:hidden;position:relative;display:flex;flex-direction:column;background:var(--spectrum-background-layer-1-color);color:var(--spectrum-gray-900);color-scheme:{{ scheme }}">
+
+<div style="height:54px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 36px;position:relative;font-size:16px;font-weight:700">
+<span>9:41</span>
+<div style="position:absolute;left:50%;top:11px;transform:translateX(-50%);width:122px;height:35px;border-radius:20px;background:#000"></div>
+<div style="display:flex;gap:6px;align-items:center">
+<div style="display:flex;gap:2px;align-items:flex-end"><div style="width:3px;height:5px;border-radius:1px;background:currentColor"></div><div style="width:3px;height:7px;border-radius:1px;background:currentColor"></div><div style="width:3px;height:9px;border-radius:1px;background:currentColor"></div><div style="width:3px;height:11px;border-radius:1px;background:currentColor"></div></div>
+<div style="width:24px;height:12px;border-radius:4px;border:1.5px solid currentColor;box-sizing:border-box;padding:1.5px;opacity:.9"><div style="width:70%;height:100%;border-radius:2px;background:currentColor"></div></div>
+</div>
+</div>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="01 卜一卦" style="flex:1;overflow-y:auto;padding:8px 20px 24px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:13px;font-weight:500;color:var(--spectrum-neutral-subdued-content-color-default)">{{ todayStr }}</span>
+<h1 style="margin:0;font-size:34px;line-height:1.15;font-weight:800">卜一卦</h1>
+<p style="margin:0;font-size:15px;line-height:1.5;color:var(--spectrum-neutral-subdued-content-color-default);text-wrap:pretty">静心凝神，一事一占。心中默念所问之事，再开始起卦。</p>
+</div>
+
+<div style="background:var(--spectrum-background-base-color);border-radius:16px;padding:16px;box-shadow:var(--spectrum-drop-shadow-emphasized);display:flex;flex-direction:column;gap:14px">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.TextField" label="所问之事" placeholder="例如：这次换工作是否合适？" value="{{ q }}" on-change="{{ setQ }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,62px"></x-import>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:12px;font-weight:500;color:var(--spectrum-neutral-subdued-content-color-default)">类别</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" size="S" is-selected="{{ c.sel }}" on-press="{{ c.pick }}" hint-size="52px,24px">{{ c.label }}</x-import>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:16px;font-weight:800">起卦方式</span>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+<sc-for list="{{ methods }}" as="m" hint-placeholder-count="3">
+<div onClick="{{ m.pick }}" style="cursor:pointer;border-radius:10px;padding:12px 10px;background:var(--spectrum-background-base-color);box-shadow:inset 0 0 0 2px {{ m.ring }};display:flex;flex-direction:column;gap:4px;transition:box-shadow 150ms cubic-bezier(0.45,0,0.4,1)">
+<span style="font-size:15px;font-weight:700;color:{{ m.color }}">{{ m.label }}</span>
+<span style="font-size:12px;line-height:1.35;color:var(--spectrum-neutral-subdued-content-color-default)">{{ m.sub }}</span>
+</div>
+</sc-for>
+</div>
+
+<sc-if value="{{ isCoin }}" hint-placeholder-val="{{ true }}">
+<p style="margin:4px 0 0;font-size:13px;line-height:1.55;color:var(--spectrum-neutral-subdued-content-color-default);text-wrap:pretty">三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。</p>
+</sc-if>
+
+<sc-if value="{{ isNumber }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.TextField" label="上卦数" type="number" placeholder="任意" value="{{ n0 }}" on-change="{{ setN0 }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,62px"></x-import>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.TextField" label="下卦数" type="number" placeholder="任意" value="{{ n1 }}" on-change="{{ setN1 }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,62px"></x-import>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.TextField" label="动爻数" type="number" placeholder="任意" value="{{ n2 }}" on-change="{{ setN2 }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,62px"></x-import>
+</div>
+<span style="font-size:12px;line-height:1.5;color:var(--spectrum-neutral-subdued-content-color-default)">凭直觉写下三个正整数。上、下卦取除以八的余数，动爻取除以六的余数。</span>
+<sc-if value="{{ numPreview }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:14px;font-weight:700;color:var(--spectrum-accent-content-color-default)">{{ numPreview }}</span>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTime }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:4px;border-radius:10px;background:var(--spectrum-background-base-color);padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ timeRows }}" as="r" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;gap:12px;font-size:13px">
+<span style="color:var(--spectrum-neutral-subdued-content-color-default)">{{ r.k }}</span>
+<span style="font-weight:700;text-align:right">{{ r.v }}</span>
+</div>
+</sc-for>
+<span style="font-size:11px;color:var(--spectrum-neutral-subdued-content-color-default)">以年支、月、日、时支数起卦。原型中月日取公历作示意。</span>
+</div>
+</sc-if>
+</div>
+
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Button" variant="accent" size="XL" is-disabled="{{ startDisabled }}" on-press="{{ start }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,48px">{{ startLabel }}</x-import>
+
+<sc-if value="{{ recent }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:16px;font-weight:800">最近一卦</span>
+<div onClick="{{ recent.open }}" style="cursor:pointer;background:var(--spectrum-background-base-color);border-radius:10px;padding:14px;display:flex;gap:14px;align-items:center">
+<div style="width:26px;flex:none;display:flex;flex-direction:column;gap:3px">
+<sc-for list="{{ recent.glyph }}" as="g" hint-placeholder-count="6">
+<div style="display:flex;gap:5px;height:3px"><sc-if value="{{ g.yang }}"><div style="flex:1;border-radius:1px;background:{{ g.color }}"></div></sc-if><sc-if value="{{ g.yin }}"><div style="flex:1;border-radius:1px;background:{{ g.color }}"></div><div style="flex:1;border-radius:1px;background:{{ g.color }}"></div></sc-if></div>
+</sc-for>
+</div>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+<span style="font-size:15px;font-weight:700">{{ recent.title }}</span>
+<span style="font-size:13px;color:var(--spectrum-neutral-subdued-content-color-default);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ recent.q }}</span>
+</div>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Icon" name="ChevronRight" size="{{ 18 }}" style="color:var(--spectrum-gray-600)" hint-size="18px,18px"></x-import>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCast }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="02 摇卦" style="flex:1;display:flex;flex-direction:column;padding:0 20px 28px">
+<div style="height:44px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center">
+<div><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" is-quiet="{{ true }}" on-press="{{ goHome }}" hint-size="52px,32px">取消</x-import></div>
+<span style="font-size:17px;font-weight:800">摇卦</span>
+<span style="justify-self:end;font-size:14px;font-weight:700;color:var(--spectrum-neutral-subdued-content-color-default)">{{ castCount }} / 6</span>
+</div>
+<p style="margin:6px 0 0;text-align:center;font-size:14px;line-height:1.5;color:var(--spectrum-neutral-subdued-content-color-default)">{{ castQ }}</p>
+
+<div style="margin:20px auto 0;display:flex;flex-direction:column;gap:12px;width:300px">
+<sc-for list="{{ slots }}" as="s" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:40px 1fr 74px;align-items:center;gap:12px;height:18px">
+<span style="font-size:12px;font-weight:500;color:var(--spectrum-neutral-subdued-content-color-default)">{{ s.pos }}</span>
+<div style="height:14px;display:flex;gap:18px">
+<sc-if value="{{ s.empty }}"><div style="flex:1;border-radius:4px;border:2px dashed {{ s.dash }};box-sizing:border-box"></div></sc-if>
+<sc-if value="{{ s.yang }}"><div style="flex:1;border-radius:3px;background:{{ s.color }};animation:zyIn 300ms cubic-bezier(0.45,0,0.4,1)"></div></sc-if>
+<sc-if value="{{ s.yin }}"><div style="flex:1;border-radius:3px;background:{{ s.color }};animation:zyIn 300ms cubic-bezier(0.45,0,0.4,1)"></div><div style="flex:1;border-radius:3px;background:{{ s.color }};animation:zyIn 300ms cubic-bezier(0.45,0,0.4,1)"></div></sc-if>
+</div>
+<span style="font-size:13px;font-weight:700;color:{{ s.color }}">{{ s.result }}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="flex:1"></div>
+
+<div style="display:flex;justify-content:center;gap:22px;animation:{{ shakeAnim }}">
+<sc-for list="{{ coins }}" as="c" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+<div style="width:78px;height:78px;border-radius:50%;border:2px solid var(--spectrum-gray-800);box-sizing:border-box;background:{{ c.bg }};color:{{ c.fg }};display:flex;align-items:center;justify-content:center;position:relative;transform:rotateY({{ rot }}deg);transition:transform 650ms cubic-bezier(0.45,0,0.4,1),background 150ms">
+<div style="position:absolute;inset:6px;border-radius:50%;border:1px solid currentColor;opacity:.35"></div>
+<div style="width:18px;height:18px;border:2px solid currentColor;box-sizing:border-box;background:var(--spectrum-background-layer-1-color)"></div>
+<span style="position:absolute;top:12px;font-size:12px;font-weight:700">{{ c.top }}</span>
+<span style="position:absolute;bottom:12px;font-size:12px;font-weight:700">{{ c.bottom }}</span>
+</div>
+<span style="font-size:12px;font-weight:500;color:var(--spectrum-neutral-subdued-content-color-default)">{{ c.label }}</span>
+</div>
+</sc-for>
+</div>
+<p style="margin:16px 0 0;text-align:center;font-size:14px;font-weight:700;min-height:20px">{{ tossText }}</p>
+
+<div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;align-items:stretch">
+<sc-if value="{{ castDone }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Button" variant="accent" size="XL" on-press="{{ openCurrent }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,48px">查看解卦</x-import>
+</sc-if>
+<sc-if value="{{ castOpen }}" hint-placeholder-val="{{ true }}">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Button" variant="accent" size="XL" is-disabled="{{ busy }}" on-press="{{ toss }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,48px">掷钱</x-import>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Button" variant="secondary" fill-style="outline" size="L" is-disabled="{{ busy }}" on-press="{{ shake }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,40px">摇一摇</x-import>
+<span style="text-align:center;font-size:12px;color:var(--spectrum-neutral-subdued-content-color-default)">点按掷钱，或直接摇动手机</span>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isReading }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="03 解卦" style="flex:1;display:flex;flex-direction:column;min-height:0">
+<div style="height:44px;flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 12px">
+<div><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" is-quiet="{{ true }}" icon-only="{{ true }}" on-press="{{ back }}" hint-size="32px,32px"><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Icon" name="ChevronLeft" hint-size="20px,20px"></x-import></x-import></div>
+<span style="font-size:17px;font-weight:800">解卦</span>
+<div style="justify-self:end;display:flex;gap:4px">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" is-quiet="{{ true }}" icon-only="{{ true }}" is-selected="{{ rd.fav }}" on-press="{{ toggleFav }}" hint-size="32px,32px"><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Icon" name="Star" hint-size="20px,20px"></x-import></x-import>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" is-quiet="{{ true }}" icon-only="{{ true }}" on-press="{{ share }}" hint-size="32px,32px"><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Icon" name="Share" hint-size="20px,20px"></x-import></x-import>
+</div>
+</div>
+
+<div style="flex:1;overflow-y:auto;padding:8px 20px 32px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:12px;font-weight:500;color:var(--spectrum-neutral-subdued-content-color-default)">所问</span>
+<span style="font-size:22px;line-height:1.3;font-weight:800;text-wrap:pretty">{{ rd.q }}</span>
+<span style="font-size:13px;color:var(--spectrum-neutral-subdued-content-color-default)">{{ rd.meta }}</span>
+</div>
+
+<div style="background:var(--spectrum-background-base-color);border-radius:16px;padding:20px 16px;box-shadow:var(--spectrum-drop-shadow-emphasized);display:flex;align-items:flex-start;justify-content:center;gap:12px">
+<sc-for list="{{ rd.hexes }}" as="h" hint-placeholder-count="2">
+<sc-if value="{{ h.arrow }}"><div style="align-self:center;margin-top:-40px;font-size:20px;color:var(--spectrum-gray-500)">→</div></sc-if>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:12px">
+<span style="font-size:12px;font-weight:700;color:var(--spectrum-neutral-subdued-content-color-default)">{{ h.label }}</span>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ h.lines }}" as="l" hint-placeholder-count="6">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="width:88px;height:10px;display:flex;gap:12px"><sc-if value="{{ l.yang }}"><div style="flex:1;border-radius:2px;background:{{ l.color }}"></div></sc-if><sc-if value="{{ l.yin }}"><div style="flex:1;border-radius:2px;background:{{ l.color }}"></div><div style="flex:1;border-radius:2px;background:{{ l.color }}"></div></sc-if></div>
+<span style="width:12px;font-size:12px;font-weight:700;color:var(--spectrum-accent-content-color-default)">{{ l.mark }}</span>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:20px;font-weight:800">{{ h.full }}</span>
+<span style="font-size:12px;color:var(--spectrum-neutral-subdued-content-color-default)">{{ h.sub }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{ rd.still }}" hint-placeholder-val="{{ false }}">
+<span style="margin-top:-6px;text-align:center;font-size:12px;color:var(--spectrum-neutral-subdued-content-color-default)">六爻安静，无变卦</span>
+</sc-if>
+
+<div style="background:var(--spectrum-background-base-color);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:16px;font-weight:800">断卦要点</span>
+<span style="font-size:13px;line-height:1.5;color:var(--spectrum-neutral-subdued-content-color-default)">{{ rd.rule }}</span>
+<sc-for list="{{ rd.focus }}" as="f" hint-placeholder-count="1">
+<div style="border-radius:10px;padding:12px 14px;background:{{ f.bg }};display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:8px">
+<span style="font-size:12px;font-weight:700;color:{{ f.tagColor }}">{{ f.tag }}</span>
+<sc-if value="{{ f.main }}"><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Badge" variant="accent" size="S" hint-size="24px,20px">主</x-import></sc-if>
+</div>
+<span style="font-family:var(--spectrum-font-family-serif);font-size:18px;line-height:1.55;font-weight:600;text-wrap:pretty">{{ f.text }}</span>
+</div>
+</sc-for>
+</div>
+
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Tabs" items="{{ rtabs }}" default-selected-key="{{ rtab }}" on-selection-change="{{ setRtab }}" hint-size="100%,44px"></x-import>
+
+<sc-if value="{{ tabCi }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{ rd.ciList }}" as="c" hint-placeholder-count="1">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:13px;font-weight:700;color:var(--spectrum-neutral-subdued-content-color-default)">{{ c.tag }}</span>
+<span style="font-family:var(--spectrum-font-family-serif);font-size:18px;line-height:1.6;text-wrap:pretty">{{ c.text }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ tabYao }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:4px">
+<sc-for list="{{ rd.yaoList }}" as="y" hint-placeholder-count="6">
+<div style="border-radius:8px;padding:10px 12px;background:{{ y.bg }};display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:baseline">
+<span style="font-size:14px;font-weight:800;color:{{ y.tagColor }}">{{ y.label }}</span>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+<span style="font-family:var(--spectrum-font-family-serif);font-size:16px;line-height:1.55;text-wrap:pretty">{{ y.text }}</span>
+<sc-if value="{{ y.moving }}"><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Badge" variant="accent" fill-style="subtle" size="S" hint-size="60px,20px">{{ y.kind }}</x-import></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ tabBh }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ rd.bhList }}" as="b" hint-placeholder-count="2">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:13px;font-weight:700;color:var(--spectrum-neutral-subdued-content-color-default)">{{ b.tag }}</span>
+<span style="font-size:15px;line-height:1.6;text-wrap:pretty">{{ b.text }}</span>
+</div>
+</sc-for>
+<span style="font-size:12px;line-height:1.5;color:var(--spectrum-neutral-subdued-content-color-default)">本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。</span>
+</div>
+</sc-if>
+
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Divider" hint-size="100%,1px"></x-import>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:16px;font-weight:800">应验反馈</span>
+<div style="display:flex;gap:8px">
+<sc-for list="{{ verifyOpts }}" as="v" hint-placeholder-count="3">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" size="S" is-selected="{{ v.sel }}" on-press="{{ v.pick }}" hint-size="56px,24px">{{ v.label }}</x-import>
+</sc-for>
+</div>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.TextField" label="备注" placeholder="记下后来的结果，便于日后印证" value="{{ rd.note }}" on-change="{{ setNote }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,62px"></x-import>
+<div><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" is-quiet="{{ true }}" on-press="{{ del }}" hint-size="120px,32px"><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Icon" name="Delete" hint-size="20px,20px"></x-import>删除此记录</x-import></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isHistory }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="04 卜卦记录" style="flex:1;overflow-y:auto;padding:8px 20px 24px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;justify-content:space-between">
+<h1 style="margin:0;font-size:34px;line-height:1.15;font-weight:800">卜卦记录</h1>
+<span style="font-size:13px;color:var(--spectrum-neutral-subdued-content-color-default)">共 {{ recCount }} 卦</span>
+</div>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.SearchField" placeholder="搜索所问之事或卦名" default-value="{{ hq }}" on-change="{{ setHq }}" style="width:100%" dc-props="{{ fullW }}" hint-size="100%,32px"></x-import>
+<div style="display:flex;gap:8px;overflow-x:auto;margin:0 -20px;padding:0 20px 2px;scrollbar-width:none">
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.ActionButton" size="S" is-selected="{{ f.sel }}" on-press="{{ f.pick }}" style="flex:none" hint-size="52px,24px">{{ f.label }}</x-import>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ recList }}" as="r" hint-placeholder-count="4">
+<div onClick="{{ r.open }}" style="cursor:pointer;background:var(--spectrum-background-base-color);border-radius:10px;padding:14px;display:flex;gap:14px;align-items:flex-start">
+<div style="width:26px;flex:none;margin-top:3px;display:flex;flex-direction:column;gap:3px">
+<sc-for list="{{ r.glyph }}" as="g" hint-placeholder-count="6">
+<div style="display:flex;gap:5px;height:3px"><sc-if value="{{ g.yang }}"><div style="flex:1;border-radius:1px;background:{{ g.color }}"></div></sc-if><sc-if value="{{ g.yin }}"><div style="flex:1;border-radius:1px;background:{{ g.color }}"></div><div style="flex:1;border-radius:1px;background:{{ g.color }}"></div></sc-if></div>
+</sc-for>
+</div>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+<div style="display:flex;align-items:center;gap:6px">
+<span style="font-size:15px;font-weight:700;flex:1;min-width:0">{{ r.title }}</span>
+<sc-if value="{{ r.fav }}"><x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Icon" name="Star" size="{{ 16 }}" style="color:var(--spectrum-notice-visual-color)" hint-size="16px,16px"></x-import></sc-if>
+</div>
+<span style="font-size:14px;line-height:1.4;text-wrap:pretty">{{ r.q }}</span>
+<div style="display:flex;align-items:center;gap:8px;margin-top:2px">
+<span style="font-size:12px;color:var(--spectrum-neutral-subdued-content-color-default);flex:1">{{ r.meta }}</span>
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Badge" variant="{{ r.vVariant }}" fill-style="subtle" size="S" hint-size="40px,20px">{{ r.verify }}</x-import>
+</div>
+<sc-if value="{{ r.note }}"><span style="font-size:12px;line-height:1.45;color:var(--spectrum-neutral-subdued-content-color-default)">备注：{{ r.note }}</span></sc-if>
+</div>
+</div>
+</sc-for>
+<sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+<div style="padding:48px 0;text-align:center;display:flex;flex-direction:column;gap:6px">
+<span style="font-size:16px;font-weight:800">没有找到相关记录</span>
+<span style="font-size:13px;color:var(--spectrum-neutral-subdued-content-color-default)">换个关键词或筛选条件试试</span>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+<div style="flex:none;height:82px;box-sizing:border-box;padding:8px 40px 0;border-top:1px solid var(--spectrum-gray-200);background:var(--spectrum-background-base-color);display:grid;grid-template-columns:1fr 1fr">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+<div onClick="{{ t.go }}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ t.color }}">
+<x-import component-from-global-scope="ReactSpectrumDesignSystem_20d7e9.Icon" name="{{ t.icon }}" size="{{ 24 }}" hint-size="24px,24px"></x-import>
+<span style="font-size:11px;font-weight:700">{{ t.label }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:50%;bottom:104px;transform:translateX(-50%);background:var(--spectrum-gray-800);color:var(--spectrum-gray-50);font-size:13px;font-weight:700;padding:10px 16px;border-radius:999px;white-space:nowrap;animation:zyIn 200ms cubic-bezier(0.45,0,0.4,1)">{{ toast }}</div>
+</sc-if>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--spectrum-gray-900);pointer-events:none"></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;外观&quot;},&quot;defaultMethod&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;coin&quot;,&quot;number&quot;,&quot;time&quot;],&quot;default&quot;:&quot;coin&quot;,&quot;tsType&quot;:&quot;'coin'|'number'|'time'&quot;,&quot;section&quot;:&quot;起卦&quot;}}">
+class Component extends DCLogic {
+  state = { ready: !!window.ZY_HEX, screen: 'home', prev: 'home', method: null, q: '', cat: '事业', nums: ['', '', ''], cast: [], coins: [3, 2, 3], rot: 0, busy: false, shaking: false, lastSum: null, records: null, curId: null, rtab: 'ci', hq: '', hf: 'all', toast: '' };
+
+  componentDidMount() {
+    const init = () => this.setState({ ready: true, records: this.load() });
+    if (window.ZY_HEX) init(); else { this._p = setInterval(() => { if (window.ZY_HEX) { clearInterval(this._p); init(); } }, 50); }
+    this._m = e => { const a = e.accelerationIncludingGravity; if (!a || this.state.screen !== 'cast') return; if (Math.hypot(a.x || 0, a.y || 0, a.z || 0) > 28) this.shake(); };
+    window.addEventListener('devicemotion', this._m);
+  }
+  componentWillUnmount() { clearInterval(this._p); window.removeEventListener('devicemotion', this._m); clearTimeout(this._t); }
+
+  load() {
+    try { const r = JSON.parse(localStorage.getItem('zy-records-v1')); if (Array.isArray(r)) return r; } catch (e) {}
+    const d = 864e5, now = Date.now();
+    return [
+      { id: 1, ts: now - d - 3.2e6, q: '下个月是否适合跳槽到新公司？', cat: '事业', method: 'coin', lines: [7, 8, 9, 7, 8, 7], fav: true, note: '', verify: '待验' },
+      { id: 2, ts: now - 5 * d, q: '和朋友合伙开咖啡馆', cat: '财运', method: 'number', lines: [7, 7, 8, 9, 8, 8], fav: false, note: '合伙人半年后退出，店仍在经营。', verify: '应验' },
+      { id: 3, ts: now - 12 * d, q: '母亲的手术是否顺利', cat: '健康', method: 'time', lines: [8, 9, 8, 8, 7, 8], fav: true, note: '手术顺利，恢复期比预期长。', verify: '应验' },
+      { id: 4, ts: now - 20 * d, q: '这个周末去杭州出行', cat: '其他', method: 'coin', lines: [7, 7, 7, 8, 8, 8], fav: false, note: '临时下雨，行程取消。', verify: '未应验' }
+    ];
+  }
+  save(records) { try { localStorage.setItem('zy-records-v1', JSON.stringify(records)); } catch (e) {} }
+  flash(msg) { clearTimeout(this._t); this.setState({ toast: msg }); this._t = setTimeout(() => this.setState({ toast: '' }), 1800); }
+
+  analyze(lines) {
+    const H = window.ZY_HEX, T = window.ZY_TRI, K = window.ZY_KW;
+    const ti = b => T.findIndex(t => t.b[0] === b[0] && t.b[1] === b[1] && t.b[2] === b[2]);
+    const hex = bits => { const lo = ti(bits.slice(0, 3)), up = ti(bits.slice(3, 6)); return Object.assign({}, H[K[up][lo] - 1], { up: T[up], lo: T[lo], bits }); };
+    const bits = lines.map(v => v % 2);
+    const mov = [0, 1, 2, 3, 4, 5].filter(i => lines[i] === 6 || lines[i] === 9);
+    const ben = hex(bits);
+    const bian = mov.length ? hex(bits.map((b, i) => mov.includes(i) ? 1 - b : b)) : null;
+    return { bits, mov, ben, bian, lines };
+  }
+  lname(i, yang) { const n = yang ? '九' : '六'; return i === 0 ? '初' + n : i === 5 ? '上' + n : n + '二三四五'[i - 1]; }
+  focus(a) {
+    const { ben, bian, mov } = a;
+    const Y = (h, i, main) => ({ tag: this.lname(i, h.bits[i]) + ' · ' + h.name + '卦', text: h.yao[i], main });
+    const C = (h, main) => ({ tag: h.name + '卦 卦辞', text: h.ci, main });
+    const st = [0, 1, 2, 3, 4, 5].filter(i => !mov.includes(i));
+    switch (mov.length) {
+      case 0: return { rule: '六爻安静，以本卦卦辞为断。', items: [C(ben, true)] };
+      case 1: return { rule: '一爻动，以本卦动爻爻辞为断。', items: [Y(ben, mov[0], true)] };
+      case 2: return { rule: '二爻动，以本卦两动爻爻辞为断，以上爻为主。', items: [Y(ben, mov[1], true), Y(ben, mov[0])] };
+      case 3: return { rule: '三爻动，以本卦与变卦卦辞为断，本卦为主。', items: [C(ben, true), C(bian)] };
+      case 4: return { rule: '四爻动，以变卦两静爻爻辞为断，以下爻为主。', items: [Y(bian, st[0], true), Y(bian, st[1])] };
+      case 5: return { rule: '五爻动，以变卦静爻爻辞为断。', items: [Y(bian, st[0], true)] };
+      default:
+        if (ben.n === 1) return { rule: '六爻皆动，乾卦以用九为断。', items: [{ tag: '用九 · 乾卦', text: '见群龙无首，吉。', main: true }] };
+        if (ben.n === 2) return { rule: '六爻皆动，坤卦以用六为断。', items: [{ tag: '用六 · 坤卦', text: '利永贞。', main: true }] };
+        return { rule: '六爻皆动，以变卦卦辞为断。', items: [C(bian, true)] };
+    }
+  }
+  glyph(bits, lines) {
+    const out = [];
+    for (let i = 5; i >= 0; i--) {
+      const yang = bits[i] === 1, mv = lines && (lines[i] === 6 || lines[i] === 9);
+      out.push({ yang, yin: !yang, mark: lines ? (lines[i] === 9 ? '○' : lines[i] === 6 ? '×' : '') : '', color: mv ? 'var(--spectrum-accent-visual-color)' : 'var(--spectrum-gray-800)' });
+    }
+    return out;
+  }
+  fromTri(up, lo, mv) {
+    const T = window.ZY_TRI, bits = T[lo - 1].b.concat(T[up - 1].b);
+    return bits.map((b, i) => i === mv - 1 ? (b ? 9 : 6) : (b ? 7 : 8));
+  }
+  numVals() {
+    const n = this.state.nums.map(x => parseInt(x, 10));
+    if (n.some(x => !(x > 0))) return null;
+    return { up: n[0] % 8 || 8, lo: n[1] % 8 || 8, mv: n[2] % 6 || 6 };
+  }
+  timeVals(now) {
+    const BR = '子丑寅卯辰巳午未申酉戌亥';
+    const Y = ((now.getFullYear() - 4) % 12 + 12) % 12 + 1, M = now.getMonth() + 1, D = now.getDate(), Hn = Math.floor((now.getHours() + 1) / 2) % 12 + 1;
+    const s1 = Y + M + D, s2 = s1 + Hn;
+    return { Y, M, D, Hn, s1, s2, BR, up: s1 % 8 || 8, lo: s2 % 8 || 8, mv: s2 % 6 || 6 };
+  }
+  method() { return this.state.method || this.props.defaultMethod || 'coin'; }
+  fmt(ts) { const d = new Date(ts), p = n => String(n).padStart(2, '0'); return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + p(d.getHours()) + ':' + p(d.getMinutes()); }
+
+  addRecord(lines, method) {
+    const rec = { id: Date.now(), ts: Date.now(), q: this.state.q.trim() || '未填写所问之事', cat: this.state.cat, method, lines, fav: false, note: '', verify: '待验' };
+    const records = [rec].concat(this.state.records || []);
+    this.save(records);
+    return { rec, records };
+  }
+  upd(patch) {
+    const records = this.state.records.map(r => r.id === this.state.curId ? Object.assign({}, r, patch) : r);
+    this.save(records); this.setState({ records });
+  }
+  open(id, from) { this.setState({ curId: id, screen: 'reading', prev: from || this.state.screen, rtab: 'ci' }); }
+
+  toss() {
+    const s = this.state;
+    if (s.busy || s.cast.length >= 6) return;
+    const coins = [0, 0, 0].map(() => Math.random() < 0.5 ? 3 : 2), sum = coins[0] + coins[1] + coins[2];
+    this.setState({ busy: true, rot: s.rot + 720, lastSum: null });
+    setTimeout(() => this.setState({ coins }), 320);
+    setTimeout(() => {
+      const cast = this.state.cast.concat([sum]);
+      if (cast.length === 6) {
+        const { rec, records } = this.addRecord(cast, 'coin');
+        this.setState({ cast, busy: false, lastSum: sum, records, curId: rec.id });
+        this.flash('卦已成，已保存到卜卦记录');
+      } else this.setState({ cast, busy: false, lastSum: sum });
+    }, 680);
+  }
+  shake() {
+    if (this.state.busy || this.state.shaking || this.state.cast.length >= 6) return;
+    this.setState({ shaking: true, busy: true });
+    setTimeout(() => { this.setState({ shaking: false, busy: false }); this.toss(); }, 900);
+  }
+  start() {
+    const m = this.method();
+    if (m === 'coin') { this.setState({ screen: 'cast', cast: [], lastSum: null, rot: 0 }); return; }
+    const v = m === 'number' ? this.numVals() : this.timeVals(new Date());
+    if (!v) return;
+    const { rec, records } = this.addRecord(this.fromTri(v.up, v.lo, v.mv), m);
+    this.setState({ records, curId: rec.id, screen: 'reading', prev: 'home', rtab: 'ci' });
+    this.flash('已保存到卜卦记录');
+  }
+
+  renderVals() {
+    const s = this.state, dark = !!this.props.dark;
+    const base = { fullW: { style: { width: '100%', minWidth: 0, boxSizing: 'border-box' } }, scheme: dark ? 'dark' : 'light', isHome: s.screen === 'home', isCast: s.screen === 'cast', isReading: s.screen === 'reading', isHistory: s.screen === 'history', showTabs: s.screen === 'home' || s.screen === 'history', toast: s.toast };
+    if (!s.ready || !s.records) return base;
+    const T = window.ZY_TRI, m = this.method(), now = new Date();
+    const VN = { 6: '老阴', 7: '少阳', 8: '少阴', 9: '老阳' };
+    const ML = { coin: '铜钱摇卦', number: '数字起卦', time: '时间起卦' };
+    const accent = 'var(--spectrum-accent-content-color-default)';
+    const go = sc => () => this.setState({ screen: sc });
+    const recs = s.records;
+    const vm = r => {
+      const a = this.analyze(r.lines);
+      return Object.assign({}, r, {
+        title: a.ben.full + (a.bian ? ' → ' + a.bian.full : ''),
+        meta: this.fmt(r.ts) + ' · ' + ML[r.method] + ' · ' + r.cat,
+        glyph: this.glyph(a.bits, r.lines),
+        vVariant: r.verify === '应验' ? 'positive' : r.verify === '未应验' ? 'negative' : 'neutral',
+        open: () => this.open(r.id)
+      });
+    };
+
+    const nv = this.numVals(), tv = this.timeVals(now);
+    const triTxt = v => '上' + T[v.up - 1].k + ' 下' + T[v.lo - 1].k + ' · 动' + '初二三四五上'[v.mv - 1] + '爻';
+    const home = {
+      todayStr: (now.getMonth() + 1) + '月' + now.getDate() + '日 星期' + '日一二三四五六'[now.getDay()],
+      q: s.q, setQ: v => this.setState({ q: v }),
+      cats: ['事业', '感情', '财运', '健康', '学业', '其他'].map(c => ({ label: c, sel: s.cat === c, pick: () => this.setState({ cat: c }) })),
+      methods: [['coin', '铜钱', '三钱六掷，逐爻成卦'], ['number', '数字', '三个数定卦与动爻'], ['time', '时间', '以此刻年月日时起卦']].map(([k, l, sub]) => ({ label: l, sub, pick: () => this.setState({ method: k }), ring: m === k ? 'var(--spectrum-accent-visual-color)' : 'transparent', color: m === k ? accent : 'inherit' })),
+      isCoin: m === 'coin', isNumber: m === 'number', isTime: m === 'time',
+      n0: s.nums[0], n1: s.nums[1], n2: s.nums[2],
+      setN0: v => this.setState({ nums: [v, s.nums[1], s.nums[2]] }), setN1: v => this.setState(p => ({ nums: [p.nums[0], v, p.nums[2]] })), setN2: v => this.setState(p => ({ nums: [p.nums[0], p.nums[1], v] })),
+      numPreview: nv ? '→ ' + triTxt(nv) : '',
+      timeRows: [
+        { k: '年支 · 月 · 日 · 时支', v: tv.BR[tv.Y - 1] + '(' + tv.Y + ') · ' + tv.M + ' · ' + tv.D + ' · ' + tv.BR[tv.Hn - 1] + '(' + tv.Hn + ')' },
+        { k: '上卦：年+月+日 = ' + tv.s1, v: '÷8 余 ' + (tv.s1 % 8) + ' → ' + T[tv.up - 1].k + T[tv.up - 1].sym },
+        { k: '下卦：再加时 = ' + tv.s2, v: '÷8 余 ' + (tv.s2 % 8) + ' → ' + T[tv.lo - 1].k + T[tv.lo - 1].sym },
+        { k: '动爻：' + tv.s2 + ' ÷ 6', v: '余 ' + (tv.s2 % 6) + ' → ' + '初二三四五上'[tv.mv - 1] + '爻' }
+      ],
+      startLabel: m === 'coin' ? '开始摇卦' : '起卦',
+      startDisabled: m === 'number' && !nv,
+      start: () => this.start(),
+      recent: recs.length ? vm(recs[0]) : null
+    };
+
+    const slots = [];
+    for (let i = 5; i >= 0; i--) {
+      const f = i < s.cast.length, v = s.cast[i], mv = v === 6 || v === 9;
+      slots.push({ pos: ['初爻', '二爻', '三爻', '四爻', '五爻', '上爻'][i], empty: !f, yang: f && v % 2 === 1, yin: f && v % 2 === 0, color: mv ? 'var(--spectrum-accent-visual-color)' : 'var(--spectrum-gray-800)', result: f ? VN[v] + (v === 9 ? ' ○' : v === 6 ? ' ×' : '') : '', dash: i === s.cast.length ? 'var(--spectrum-accent-visual-color)' : 'var(--spectrum-gray-300)' });
+    }
+    const cast = {
+      castCount: s.cast.length, castQ: s.q.trim() || '心中默念所问之事', slots,
+      coins: s.coins.map(c => c === 3
+        ? { top: '', bottom: '', label: '背 · 3', bg: 'var(--spectrum-gray-800)', fg: 'var(--spectrum-gray-50)' }
+        : { top: '通', bottom: '寶', label: '字 · 2', bg: 'var(--spectrum-background-base-color)', fg: 'var(--spectrum-gray-800)' }),
+      rot: s.rot, shakeAnim: s.shaking ? 'zyShake 300ms linear 3' : 'none',
+      tossText: s.lastSum ? '三钱之和 ' + s.lastSum + ' · ' + VN[s.lastSum] + (s.lastSum === 6 || s.lastSum === 9 ? '（动爻）' : '') : (s.busy ? '…' : ''),
+      busy: s.busy, castDone: s.cast.length >= 6, castOpen: s.cast.length < 6,
+      toss: () => this.toss(), shake: () => this.shake(), goHome: go('home'),
+      openCurrent: () => this.open(s.curId, 'cast')
+    };
+
+    let rd = {};
+    const cur = recs.find(r => r.id === s.curId);
+    if (cur) {
+      const a = this.analyze(cur.lines), fo = this.focus(a);
+      const hx = (h, label, lines, arrow) => ({ label, arrow, full: h.full, sub: '第' + h.n + '卦 · 上' + h.up.k + '下' + h.lo.k, lines: this.glyph(h.bits, lines) });
+      const hexes = [hx(a.ben, '本卦', cur.lines, false)];
+      if (a.bian) hexes.push(hx(a.bian, '变卦', null, true));
+      rd = {
+        q: cur.q, meta: this.fmt(cur.ts) + ' · ' + ML[cur.method] + ' · ' + cur.cat, fav: cur.fav, note: cur.note,
+        hexes, still: !a.bian, rule: fo.rule,
+        focus: fo.items.map(f => Object.assign({}, f, { bg: f.main ? 'var(--spectrum-blue-200)' : 'var(--spectrum-gray-75)', tagColor: f.main ? accent : 'var(--spectrum-neutral-subdued-content-color-default)' })),
+        ciList: [{ tag: '本卦 · ' + a.ben.full, text: a.ben.name + '：' + a.ben.ci }].concat(a.bian ? [{ tag: '变卦 · ' + a.bian.full, text: a.bian.name + '：' + a.bian.ci }] : []),
+        yaoList: [0, 1, 2, 3, 4, 5].map(i => { const mv = a.mov.includes(i); return { label: this.lname(i, a.bits[i]), text: a.ben.yao[i], moving: mv, kind: mv ? (cur.lines[i] === 9 ? '动爻 · 老阳' : '动爻 · 老阴') : '', bg: mv ? 'var(--spectrum-blue-200)' : 'transparent', tagColor: mv ? accent : 'var(--spectrum-gray-800)' }; }),
+        bhList: [{ tag: '本卦 · ' + a.ben.full, text: a.ben.bh }].concat(a.bian ? [{ tag: '变卦 · ' + a.bian.full, text: a.bian.bh }] : [])
+      };
+    }
+    const reading = {
+      rd, rtab: s.rtab, rtabs: [{ key: 'ci', label: '卦辞' }, { key: 'yao', label: '爻辞' }, { key: 'bh', label: '白话解读' }],
+      setRtab: k => this.setState({ rtab: k }), tabCi: s.rtab === 'ci', tabYao: s.rtab === 'yao', tabBh: s.rtab === 'bh',
+      back: () => this.setState({ screen: s.prev === 'history' ? 'history' : 'home' }),
+      toggleFav: () => { this.upd({ fav: !(cur && cur.fav) }); this.flash(cur && cur.fav ? '已取消收藏' : '已收藏'); },
+      share: () => this.flash('已生成分享卡片'),
+      verifyOpts: ['待验', '应验', '未应验'].map(v => ({ label: v, sel: cur && cur.verify === v, pick: () => this.upd({ verify: v }) })),
+      setNote: v => this.upd({ note: v }),
+      del: () => { const records = recs.filter(r => r.id !== s.curId); this.save(records); this.setState({ records, screen: s.prev === 'history' ? 'history' : 'home', curId: null }); this.flash('记录已删除'); }
+    };
+
+    const all = recs.map(vm), qq = s.hq.trim();
+    const names = [];
+    all.forEach(r => { const n = this.analyze(r.lines).ben.name; if (!names.includes(n)) names.push(n); });
+    const list = all.filter(r => {
+      const a = this.analyze(r.lines);
+      if (s.hf === 'fav' && !r.fav) return false;
+      if (s.hf !== 'all' && s.hf !== 'fav' && a.ben.name !== s.hf) return false;
+      return !qq || (r.q + r.title + r.note).includes(qq);
+    });
+    const history = {
+      recCount: recs.length, hq: s.hq, setHq: v => this.setState({ hq: v }),
+      filters: [['all', '全部'], ['fav', '收藏']].concat(names.map(n => [n, n + '卦'])).map(([k, l]) => ({ label: l, sel: s.hf === k, pick: () => this.setState({ hf: k }) })),
+      recList: list, noResults: list.length === 0
+    };
+
+    const tabs = [['home', '卜卦', 'Home'], ['history', '记录', 'Clock']].map(([k, l, ic]) => ({ label: l, icon: ic, go: go(k), color: s.screen === k ? accent : 'var(--spectrum-gray-600)' }));
+
+    return Object.assign(base, home, cast, reading, history, { tabs });
+  }
+}
+</script>
+</body>
+</html>

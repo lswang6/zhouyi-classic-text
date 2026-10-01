@@ -1,0 +1,179 @@
+/* 通用 / 标签栏 */
+"卜卦" = "Orakel";
+"记录" = "Verlauf";
+
+/* 设置 */
+"跟随系统" = "Systemsprache";
+"语言" = "Sprache";
+"设置" = "Einstellungen";
+"完成" = "Fertig";
+
+/* 首页 · 卜一卦 */
+"所问之事" = "Ihre Frage";
+"例如：这次换工作是否合适？" = "z. B. Ist dieser Jobwechsel der richtige Schritt?";
+"类别" = "Kategorie";
+"开始摇卦" = "Münzen werfen";
+"起卦" = "Hexagramm bilden";
+"最近一卦" = "Letzte Befragung";
+"卜一卦" = "Orakel befragen";
+"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Kommen Sie zur Ruhe und sammeln Sie sich – eine Frage pro Befragung. Denken Sie still an Ihre Frage und beginnen Sie dann.";
+"起卦方式" = "Methode";
+"铜钱" = "Münzen";
+"三钱六掷，逐爻成卦" = "Drei Münzen, sechs Würfe – Linie für Linie";
+"数字" = "Zahlen";
+"三个数定卦与动爻" = "Drei Zahlen bestimmen Hexagramm und wandelnde Linie";
+"时间" = "Zeit";
+"以此刻年月日时起卦" = "Aus Jahr, Monat, Tag und Stunde dieses Moments";
+"三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。" = "Werfen Sie drei Münzen sechsmal; das Hexagramm entsteht von unten nach oben. Die Rückseite zählt 3, die Schriftseite 2: Die Summe 6 ergibt altes Yin, 7 junges Yang, 8 junges Yin, 9 altes Yang. 6 und 9 sind wandelnde Linien.";
+"上卦数" = "Obere Zahl";
+"下卦数" = "Untere Zahl";
+"动爻数" = "Linienzahl";
+"任意" = "Beliebig";
+"凭直觉写下三个正整数。上、下卦取除以八的余数，动爻取除以六的余数。" = "Geben Sie intuitiv drei positive ganze Zahlen ein. Der Rest der oberen und unteren Zahl bei Division durch 8 ergibt das obere und untere Trigramm, der Rest der Linienzahl bei Division durch 6 die wandelnde Linie.";
+"农历" = "Mondkalender";
+"%@时" = "%@-Stunde";
+"年支 · 月 · 日 · 时支" = "Jahreszweig · Monat · Tag · Stundenzweig";
+"上卦：年+月+日 = %d" = "Oberes Trigramm: Jahr+Monat+Tag = %d";
+"÷8 余 %1$d → %2$@" = "÷8 Rest %1$d → %2$@";
+"下卦：再加时 = %d" = "Unteres Trigramm: plus Stunde = %d";
+"动爻：%d ÷ 6" = "Wandelnde Linie: %d ÷ 6";
+"余 %1$d → %2$@爻" = "Rest %1$d → %2$@ Linie";
+"以农历年支、月、日与时支数起卦。闰月按本月数；23 点后为子时，按次日计。" = "Das Hexagramm ergibt sich aus Jahreszweig, Monat, Tag und Stundenzweig des Mondkalenders. Ein Schaltmonat zählt wie der reguläre Monat; ab 23 Uhr beginnt die Zi-Stunde und es zählt der Folgetag.";
+"已保存到卜卦记录" = "Im Verlauf gespeichert";
+
+/* 摇卦 */
+"心中默念所问之事" = "Denken Sie still an Ihre Frage";
+"背 · 3" = "Rückseite · 3";
+"字 · 2" = "Schriftseite · 2";
+"三钱之和 %1$d · %2$@" = "Summe %1$d · %2$@";
+"（动爻）" = " (wandelnd)";
+"查看解卦" = "Deutung ansehen";
+"卦已成，已保存到卜卦记录" = "Hexagramm vollständig – im Verlauf gespeichert";
+"掷钱" = "Werfen";
+"摇一摇" = "Schütteln";
+"点按掷钱，或直接摇动手机" = "Zum Werfen tippen oder iPhone schütteln";
+"摇卦" = "Münzwurf";
+"取消" = "Abbrechen";
+"初爻" = "1. Linie";
+"二爻" = "2. Linie";
+"三爻" = "3. Linie";
+"四爻" = "4. Linie";
+"五爻" = "5. Linie";
+"上爻" = "6. Linie";
+
+/* 解卦 */
+"所问" = "Frage";
+"本卦" = "Ausgangshexagramm";
+"变卦" = "Zielhexagramm";
+"六爻安静，无变卦" = "Keine wandelnden Linien, kein Zielhexagramm";
+"解卦" = "Deutung";
+"已收藏" = "Zu Favoriten hinzugefügt";
+"已取消收藏" = "Aus Favoriten entfernt";
+"所问：%@" = "Frage: %@";
+"断卦要点：%@" = "Deutungsregel: %@";
+"第%1$d卦 · 上%2$@下%3$@" = "Hexagramm %1$d · %2$@ über %3$@";
+"断卦要点" = "Deutungsregel";
+"主" = "Haupt";
+"卦辞" = "Urteil";
+"爻辞" = "Linientexte";
+"白话解读" = "Erläuterung";
+"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "Das Ausgangshexagramm zeigt die aktuelle Lage, das Zielhexagramm die weitere Entwicklung. Die Deutung dient nur als Anregung – treffen Sie wichtige Entscheidungen mit Blick auf Ihre tatsächliche Situation.";
+"动爻 · 老阳" = "Wandelnd · altes Yang";
+"动爻 · 老阴" = "Wandelnd · altes Yin";
+"应验反馈" = "Eingetroffen?";
+"备注" = "Notiz";
+"记下后来的结果，便于日后印证" = "Notieren Sie, wie es ausgegangen ist, um es später nachzuprüfen";
+"删除此记录" = "Eintrag löschen";
+"删除此记录？" = "Eintrag löschen?";
+"删除" = "Löschen";
+"记录已删除" = "Eintrag gelöscht";
+
+/* 卜卦记录 */
+"卜卦记录" = "Verlauf";
+"共 %d 卦" = "Befragungen: %d";
+"全部" = "Alle";
+"收藏" = "Favoriten";
+"%@卦" = "%@";
+"没有找到相关记录" = "Keine Einträge gefunden";
+"换个关键词或筛选条件试试" = "Versuchen Sie einen anderen Suchbegriff oder Filter";
+"备注：%@" = "Notiz: %@";
+"搜索所问之事或卦名" = "Frage oder Hexagramm suchen";
+"清除" = "Eingabe löschen";
+
+/* 记录 */
+"未填写所问之事" = "Keine Frage eingegeben";
+"%1$@ → %2$@" = "%1$@ → %2$@";
+"事业" = "Beruf";
+"感情" = "Liebe";
+"财运" = "Finanzen";
+"健康" = "Gesundheit";
+"学业" = "Studium";
+"其他" = "Sonstiges";
+"待验" = "Offen";
+"应验" = "Eingetroffen";
+"未应验" = "Nicht eingetroffen";
+
+/* 卦理 · 断卦规则 · 农历 */
+"农历闰%1$d月%2$d日" = "%2$d. Tag, Schaltmonat %1$d";
+"农历%1$d月%2$d日" = "%2$d. Tag des %1$d. Monats";
+"铜钱摇卦" = "Münzwurf";
+"数字起卦" = "Zahlenorakel";
+"时间起卦" = "Zeitorakel";
+"%1$@ · %2$@卦" = "%1$@ · Hexagramm %2$@";
+"%@卦 卦辞" = "Urteil zu Hexagramm %@";
+"六爻安静，以本卦卦辞为断。" = "Keine wandelnde Linie: Maßgeblich ist das Urteil des Ausgangshexagramms.";
+"一爻动，以本卦动爻爻辞为断。" = "Eine wandelnde Linie: Maßgeblich ist ihr Linientext im Ausgangshexagramm.";
+"二爻动，以本卦两动爻爻辞为断，以上爻为主。" = "Zwei wandelnde Linien: Maßgeblich sind ihre beiden Linientexte im Ausgangshexagramm, vorrangig der obere.";
+"三爻动，以本卦与变卦卦辞为断，本卦为主。" = "Drei wandelnde Linien: Maßgeblich sind die Urteile von Ausgangs- und Zielhexagramm, vorrangig das Ausgangshexagramm.";
+"四爻动，以变卦两静爻爻辞为断，以下爻为主。" = "Vier wandelnde Linien: Maßgeblich sind die Texte der beiden ruhenden Linien im Zielhexagramm, vorrangig der unteren.";
+"五爻动，以变卦静爻爻辞为断。" = "Fünf wandelnde Linien: Maßgeblich ist der Text der ruhenden Linie im Zielhexagramm.";
+"六爻皆动，乾卦以用九为断。" = "Alle sechs Linien wandeln: Beim Hexagramm Qián gilt der Text „Alle Neunen“.";
+"用九" = "Alle Neunen";
+"六爻皆动，坤卦以用六为断。" = "Alle sechs Linien wandeln: Beim Hexagramm Kūn gilt der Text „Alle Sechsen“.";
+"用六" = "Alle Sechsen";
+"六爻皆动，以变卦卦辞为断。" = "Alle sechs Linien wandeln: Maßgeblich ist das Urteil des Zielhexagramms.";
+"闰" = "Schalt-";
+"上%1$@ 下%2$@ · 动%3$@爻" = "Oben %1$@, unten %2$@ · wandelnd: %3$@ Linie";
+"子" = "Zi";
+"丑" = "Chou";
+"寅" = "Yin";
+"卯" = "Mao";
+"辰" = "Chen";
+"巳" = "Si";
+"午" = "Wu";
+"未" = "Wei";
+"申" = "Shen";
+"酉" = "You";
+"戌" = "Xu";
+"亥" = "Hai";
+"初" = "1.";
+"二" = "2.";
+"三" = "3.";
+"四" = "4.";
+"五" = "5.";
+"上" = "6.";
+"老阴" = "altes Yin";
+"少阳" = "junges Yang";
+"少阴" = "junges Yin";
+"老阳" = "altes Yang";
+"正月" = "1. Monat";
+"二月" = "2. Monat";
+"三月" = "3. Monat";
+"四月" = "4. Monat";
+"五月" = "5. Monat";
+"六月" = "6. Monat";
+"七月" = "7. Monat";
+"八月" = "8. Monat";
+"九月" = "9. Monat";
+"十月" = "10. Monat";
+"冬月" = "11. Monat";
+"腊月" = "12. Monat";
+"分享" = "Teilen";
+"还没有卜卦记录" = "Noch keine Einträge";
+"同一时辰内（%@）起卦结果相同，一事不二占。" = "Innerhalb derselben Doppelstunde (%@) ergibt sich immer dasselbe Hexagramm. Jedes Anliegen nur einmal befragen.";
+
+/* 易学 */
+"易学" = "Wissen";
+"今日一卦" = "Hexagramm des Tages";
+"易学专栏" = "Artikel";
+"六十四卦" = "Die 64 Hexagramme";

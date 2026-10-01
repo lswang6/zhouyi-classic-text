@@ -1,0 +1,179 @@
+/* 通用 / 标签栏 */
+"卜卦" = "Consulter";
+"记录" = "Historique";
+
+/* 设置 */
+"跟随系统" = "Langue du système";
+"语言" = "Langue";
+"设置" = "Réglages";
+"完成" = "OK";
+
+/* 首页 · 卜一卦 */
+"所问之事" = "Votre question";
+"例如：这次换工作是否合适？" = "Ex. : ce changement d’emploi est-il judicieux ?";
+"类别" = "Catégorie";
+"开始摇卦" = "Lancer les pièces";
+"起卦" = "Obtenir l’hexagramme";
+"最近一卦" = "Dernier tirage";
+"卜一卦" = "Nouveau tirage";
+"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Apaisez votre esprit et concentrez-vous : une seule question par consultation. Formulez-la intérieurement, puis lancez le tirage.";
+"起卦方式" = "Méthode de tirage";
+"铜钱" = "Pièces";
+"三钱六掷，逐爻成卦" = "Trois pièces lancées six fois, un trait à chaque lancer";
+"数字" = "Nombres";
+"三个数定卦与动爻" = "Trois nombres donnent l’hexagramme et le trait mutable";
+"时间" = "Heure";
+"以此刻年月日时起卦" = "Tirage d’après l’année, le mois, le jour et l’heure actuels";
+"三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。" = "Lancez trois pièces six fois ; l’hexagramme se construit de bas en haut. Pile vaut 3, face vaut 2 : une somme de 6 donne un vieux yin, 7 un jeune yang, 8 un jeune yin, 9 un vieux yang. Les 6 et les 9 sont des traits mutables.";
+"上卦数" = "Trigramme du haut";
+"下卦数" = "Trigramme du bas";
+"动爻数" = "Trait mutable";
+"任意" = "Libre";
+"凭直觉写下三个正整数。上、下卦取除以八的余数，动爻取除以六的余数。" = "Notez d’instinct trois entiers positifs. Les trigrammes du haut et du bas viennent du reste de la division par 8, le trait mutable du reste de la division par 6.";
+"农历" = "Calendrier lunaire";
+"%@时" = "heure %@";
+"年支 · 月 · 日 · 时支" = "Année · Mois · Jour · Heure";
+"上卦：年+月+日 = %d" = "Haut : année + mois + jour = %d";
+"÷8 余 %1$d → %2$@" = "÷ 8, reste %1$d → %2$@";
+"下卦：再加时 = %d" = "Bas : plus l’heure = %d";
+"动爻：%d ÷ 6" = "Trait mutable : %d ÷ 6";
+"余 %1$d → %2$@爻" = "reste %1$d → %2$@ trait";
+"以农历年支、月、日与时支数起卦。闰月按本月数；23 点后为子时，按次日计。" = "Tirage d’après la branche de l’année, le mois et le jour lunaires, et la branche de l’heure. Un mois intercalaire compte comme le mois ordinaire ; après 23 h, c’est l’heure Zi, comptée comme le jour suivant.";
+"已保存到卜卦记录" = "Enregistré dans l’historique";
+
+/* 摇卦 */
+"心中默念所问之事" = "Concentrez-vous sur votre question";
+"背 · 3" = "Pile · 3";
+"字 · 2" = "Face · 2";
+"三钱之和 %1$d · %2$@" = "Somme des pièces : %1$d · %2$@";
+"（动爻）" = " (mutable)";
+"查看解卦" = "Voir l’interprétation";
+"卦已成，已保存到卜卦记录" = "Hexagramme complet, enregistré dans l’historique";
+"掷钱" = "Lancer";
+"摇一摇" = "Secouer";
+"点按掷钱，或直接摇动手机" = "Touchez pour lancer, ou secouez votre téléphone";
+"摇卦" = "Lancer des pièces";
+"取消" = "Annuler";
+"初爻" = "1er trait";
+"二爻" = "2e trait";
+"三爻" = "3e trait";
+"四爻" = "4e trait";
+"五爻" = "5e trait";
+"上爻" = "6e trait";
+
+/* 解卦 */
+"所问" = "Question";
+"本卦" = "Hexagramme initial";
+"变卦" = "Hexagramme dérivé";
+"六爻安静，无变卦" = "Aucun trait mutable, pas d’hexagramme dérivé";
+"解卦" = "Interprétation";
+"已收藏" = "Ajouté aux favoris";
+"已取消收藏" = "Retiré des favoris";
+"所问：%@" = "Question : %@";
+"断卦要点：%@" = "Points clés : %@";
+"第%1$d卦 · 上%2$@下%3$@" = "Hexagramme %1$d · %2$@ sur %3$@";
+"断卦要点" = "Points clés";
+"主" = "Principal";
+"卦辞" = "Jugement";
+"爻辞" = "Traits";
+"白话解读" = "Interprétation";
+"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "L’hexagramme initial reflète la situation présente, l’hexagramme dérivé son évolution. Cette lecture est donnée à titre indicatif ; pour toute décision importante, tenez compte de votre situation réelle.";
+"动爻 · 老阳" = "Trait mutable · vieux yang";
+"动爻 · 老阴" = "Trait mutable · vieux yin";
+"应验反馈" = "Résultat";
+"备注" = "Notes";
+"记下后来的结果，便于日后印证" = "Notez la suite des événements pour vérifier plus tard";
+"删除此记录" = "Supprimer ce tirage";
+"删除此记录？" = "Supprimer ce tirage ?";
+"删除" = "Supprimer";
+"记录已删除" = "Tirage supprimé";
+
+/* 卜卦记录 */
+"卜卦记录" = "Historique";
+"共 %d 卦" = "Tirages : %d";
+"全部" = "Tout";
+"收藏" = "Favoris";
+"%@卦" = "%@";
+"没有找到相关记录" = "Aucun tirage trouvé";
+"换个关键词或筛选条件试试" = "Essayez un autre mot-clé ou filtre";
+"备注：%@" = "Notes : %@";
+"搜索所问之事或卦名" = "Rechercher une question ou un hexagramme";
+"清除" = "Effacer";
+
+/* 记录 */
+"未填写所问之事" = "Aucune question saisie";
+"%1$@ → %2$@" = "%1$@ → %2$@";
+"事业" = "Carrière";
+"感情" = "Amour";
+"财运" = "Finances";
+"健康" = "Santé";
+"学业" = "Études";
+"其他" = "Autre";
+"待验" = "En attente";
+"应验" = "Réalisé";
+"未应验" = "Non réalisé";
+
+/* 卦理 · 断卦规则 · 农历 */
+"农历闰%1$d月%2$d日" = "Mois %1$d intercalaire, jour %2$d";
+"农历%1$d月%2$d日" = "Mois %1$d, jour %2$d";
+"铜钱摇卦" = "Pièces";
+"数字起卦" = "Nombres";
+"时间起卦" = "Heure";
+"%1$@ · %2$@卦" = "%1$@ · %2$@";
+"%@卦 卦辞" = "%@ · Jugement";
+"六爻安静，以本卦卦辞为断。" = "Aucun trait mutable : on se fie au jugement de l’hexagramme initial.";
+"一爻动，以本卦动爻爻辞为断。" = "Un trait mutable : on se fie au texte de ce trait dans l’hexagramme initial.";
+"二爻动，以本卦两动爻爻辞为断，以上爻为主。" = "Deux traits mutables : on se fie à leurs textes dans l’hexagramme initial, le trait supérieur prévaut.";
+"三爻动，以本卦与变卦卦辞为断，本卦为主。" = "Trois traits mutables : on se fie aux jugements des deux hexagrammes, l’initial prévaut.";
+"四爻动，以变卦两静爻爻辞为断，以下爻为主。" = "Quatre traits mutables : on se fie aux textes des deux traits stables de l’hexagramme dérivé, le trait inférieur prévaut.";
+"五爻动，以变卦静爻爻辞为断。" = "Cinq traits mutables : on se fie au texte du trait stable de l’hexagramme dérivé.";
+"六爻皆动，乾卦以用九为断。" = "Six traits mutables : pour Qián, on se fie à « Tous les neuf ».";
+"用九" = "Tous les neuf";
+"六爻皆动，坤卦以用六为断。" = "Six traits mutables : pour Kūn, on se fie à « Tous les six ».";
+"用六" = "Tous les six";
+"六爻皆动，以变卦卦辞为断。" = "Six traits mutables : on se fie au jugement de l’hexagramme dérivé.";
+"闰" = "intercalaire ";
+"上%1$@ 下%2$@ · 动%3$@爻" = "Haut %1$@, bas %2$@ · %3$@ trait mutable";
+"子" = "Zi";
+"丑" = "Chou";
+"寅" = "Yin";
+"卯" = "Mao";
+"辰" = "Chen";
+"巳" = "Si";
+"午" = "Wu";
+"未" = "Wei";
+"申" = "Shen";
+"酉" = "You";
+"戌" = "Xu";
+"亥" = "Hai";
+"初" = "1er";
+"二" = "2e";
+"三" = "3e";
+"四" = "4e";
+"五" = "5e";
+"上" = "6e";
+"老阴" = "Vieux yin";
+"少阳" = "Jeune yang";
+"少阴" = "Jeune yin";
+"老阳" = "Vieux yang";
+"正月" = "1er mois";
+"二月" = "2e mois";
+"三月" = "3e mois";
+"四月" = "4e mois";
+"五月" = "5e mois";
+"六月" = "6e mois";
+"七月" = "7e mois";
+"八月" = "8e mois";
+"九月" = "9e mois";
+"十月" = "10e mois";
+"冬月" = "11e mois";
+"腊月" = "12e mois";
+"分享" = "Partager";
+"还没有卜卦记录" = "Aucun tirage pour l’instant";
+"同一时辰内（%@）起卦结果相同，一事不二占。" = "Pendant la même période de deux heures (%@), le tirage donne le même hexagramme. Ne consultez qu’une fois par question.";
+
+/* 易学 */
+"易学" = "Apprendre";
+"今日一卦" = "Hexagramme du jour";
+"易学专栏" = "Articles";
+"六十四卦" = "Les 64 hexagrammes";

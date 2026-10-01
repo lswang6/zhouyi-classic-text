@@ -1,0 +1,179 @@
+/* 通用 / 标签栏 */
+"卜卦" = "Consultar";
+"记录" = "Histórico";
+
+/* 设置 */
+"跟随系统" = "Usar idioma do sistema";
+"语言" = "Idioma";
+"设置" = "Ajustes";
+"完成" = "OK";
+
+/* 首页 · 卜一卦 */
+"所问之事" = "Sua pergunta";
+"例如：这次换工作是否合适？" = "Ex.: Devo mudar de emprego agora?";
+"类别" = "Categoria";
+"开始摇卦" = "Lançar moedas";
+"起卦" = "Formar hexagrama";
+"最近一卦" = "Última consulta";
+"卜一卦" = "Consultar o I Ching";
+"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Acalme a mente e concentre-se. Uma pergunta por consulta. Repita a pergunta mentalmente e então comece.";
+"起卦方式" = "Método";
+"铜钱" = "Moedas";
+"三钱六掷，逐爻成卦" = "Três moedas, seis lançamentos, uma linha por vez";
+"数字" = "Números";
+"三个数定卦与动爻" = "Três números definem o hexagrama e a linha móvel";
+"时间" = "Hora";
+"以此刻年月日时起卦" = "Forma o hexagrama a partir do ano, mês, dia e hora atuais";
+"三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。" = "Lance três moedas seis vezes; o hexagrama é formado de baixo para cima. Coroa vale 3 e cara vale 2: soma 6 é yin velho, 7 é yang jovem, 8 é yin jovem e 9 é yang velho. Os resultados 6 e 9 são linhas móveis.";
+"上卦数" = "Trigrama superior";
+"下卦数" = "Trigrama inferior";
+"动爻数" = "Linha móvel";
+"任意" = "Qualquer";
+"凭直觉写下三个正整数。上、下卦取除以八的余数，动爻取除以六的余数。" = "Escreva três números inteiros positivos, seguindo a intuição. Os trigramas superior e inferior vêm do resto da divisão por 8; a linha móvel, do resto da divisão por 6.";
+"农历" = "Calendário lunar";
+"%@时" = "hora %@";
+"年支 · 月 · 日 · 时支" = "Ramo do ano · Mês · Dia · Ramo da hora";
+"上卦：年+月+日 = %d" = "Superior: ano + mês + dia = %d";
+"÷8 余 %1$d → %2$@" = "÷8 resto %1$d → %2$@";
+"下卦：再加时 = %d" = "Inferior: + hora = %d";
+"动爻：%d ÷ 6" = "Linha móvel: %d ÷ 6";
+"余 %1$d → %2$@爻" = "resto %1$d → %2$@ linha";
+"以农历年支、月、日与时支数起卦。闰月按本月数；23 点后为子时，按次日计。" = "Usa o ramo terrestre do ano, o mês e o dia lunares e o ramo da hora. Mês intercalar conta como o mês de mesmo número; após as 23h começa a hora Zi, contada como o dia seguinte.";
+"已保存到卜卦记录" = "Salvo no histórico";
+
+/* 摇卦 */
+"心中默念所问之事" = "Repita a pergunta mentalmente";
+"背 · 3" = "Coroa · 3";
+"字 · 2" = "Cara · 2";
+"三钱之和 %1$d · %2$@" = "Soma %1$d · %2$@";
+"（动爻）" = " (linha móvel)";
+"查看解卦" = "Ver interpretação";
+"卦已成，已保存到卜卦记录" = "Hexagrama formado e salvo no histórico";
+"掷钱" = "Lançar";
+"摇一摇" = "Agite";
+"点按掷钱，或直接摇动手机" = "Toque para lançar ou agite o iPhone";
+"摇卦" = "Lançar moedas";
+"取消" = "Cancelar";
+"初爻" = "1ª linha";
+"二爻" = "2ª linha";
+"三爻" = "3ª linha";
+"四爻" = "4ª linha";
+"五爻" = "5ª linha";
+"上爻" = "6ª linha";
+
+/* 解卦 */
+"所问" = "Pergunta";
+"本卦" = "Hexagrama original";
+"变卦" = "Hexagrama resultante";
+"六爻安静，无变卦" = "Nenhuma linha móvel, sem hexagrama resultante";
+"解卦" = "Interpretação";
+"已收藏" = "Adicionado aos favoritos";
+"已取消收藏" = "Removido dos favoritos";
+"所问：%@" = "Pergunta: %@";
+"断卦要点：%@" = "Regra de leitura: %@";
+"第%1$d卦 · 上%2$@下%3$@" = "Hexagrama %1$d · %2$@ sobre %3$@";
+"断卦要点" = "Regra de leitura";
+"主" = "Principal";
+"卦辞" = "Julgamento";
+"爻辞" = "Texto das linhas";
+"白话解读" = "Interpretação";
+"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "O hexagrama original mostra a situação atual; o resultante, a direção em que ela se desenvolve. A interpretação é apenas uma referência — para decisões importantes, considere sua situação real.";
+"动爻 · 老阳" = "Linha móvel · yang velho";
+"动爻 · 老阴" = "Linha móvel · yin velho";
+"应验反馈" = "Resultado";
+"备注" = "Notas";
+"记下后来的结果，便于日后印证" = "Anote o que aconteceu depois para conferir mais tarde";
+"删除此记录" = "Apagar consulta";
+"删除此记录？" = "Apagar esta consulta?";
+"删除" = "Apagar";
+"记录已删除" = "Consulta apagada";
+
+/* 卜卦记录 */
+"卜卦记录" = "Histórico";
+"共 %d 卦" = "Total: %d";
+"全部" = "Todas";
+"收藏" = "Favoritas";
+"%@卦" = "%@";
+"没有找到相关记录" = "Nenhuma consulta encontrada";
+"换个关键词或筛选条件试试" = "Tente outra palavra-chave ou filtro";
+"备注：%@" = "Notas: %@";
+"搜索所问之事或卦名" = "Buscar pergunta ou hexagrama";
+"清除" = "Limpar";
+
+/* 记录 */
+"未填写所问之事" = "Sem pergunta";
+"%1$@ → %2$@" = "%1$@ → %2$@";
+"事业" = "Carreira";
+"感情" = "Amor";
+"财运" = "Finanças";
+"健康" = "Saúde";
+"学业" = "Estudos";
+"其他" = "Outros";
+"待验" = "Pendente";
+"应验" = "Aconteceu";
+"未应验" = "Não aconteceu";
+
+/* 卦理 · 断卦规则 · 农历 */
+"农历闰%1$d月%2$d日" = "Dia %2$d do mês %1$d intercalar";
+"农历%1$d月%2$d日" = "Dia %2$d do mês %1$d";
+"铜钱摇卦" = "Moedas";
+"数字起卦" = "Números";
+"时间起卦" = "Hora";
+"%1$@ · %2$@卦" = "%1$@ · %2$@";
+"%@卦 卦辞" = "%@ · Julgamento";
+"六爻安静，以本卦卦辞为断。" = "Nenhuma linha móvel: leia o Julgamento do hexagrama original.";
+"一爻动，以本卦动爻爻辞为断。" = "Uma linha móvel: leia o texto dessa linha no hexagrama original.";
+"二爻动，以本卦两动爻爻辞为断，以上爻为主。" = "Duas linhas móveis: leia o texto das duas no hexagrama original; a superior é a principal.";
+"三爻动，以本卦与变卦卦辞为断，本卦为主。" = "Três linhas móveis: leia os Julgamentos dos hexagramas original e resultante; o original é o principal.";
+"四爻动，以变卦两静爻爻辞为断，以下爻为主。" = "Quatro linhas móveis: leia o texto das duas linhas fixas no hexagrama resultante; a inferior é a principal.";
+"五爻动，以变卦静爻爻辞为断。" = "Cinco linhas móveis: leia o texto da linha fixa no hexagrama resultante.";
+"六爻皆动，乾卦以用九为断。" = "Seis linhas móveis: em Qián, leia \"Todos os noves\".";
+"用九" = "Todos os noves";
+"六爻皆动，坤卦以用六为断。" = "Seis linhas móveis: em Kūn, leia \"Todos os seis\".";
+"用六" = "Todos os seis";
+"六爻皆动，以变卦卦辞为断。" = "Seis linhas móveis: leia o Julgamento do hexagrama resultante.";
+"闰" = "intercalar ";
+"上%1$@ 下%2$@ · 动%3$@爻" = "%1$@ sobre %2$@ · %3$@ linha móvel";
+"子" = "Zi";
+"丑" = "Chou";
+"寅" = "Yin";
+"卯" = "Mao";
+"辰" = "Chen";
+"巳" = "Si";
+"午" = "Wu";
+"未" = "Wei";
+"申" = "Shen";
+"酉" = "You";
+"戌" = "Xu";
+"亥" = "Hai";
+"初" = "1ª";
+"二" = "2ª";
+"三" = "3ª";
+"四" = "4ª";
+"五" = "5ª";
+"上" = "6ª";
+"老阴" = "yin velho";
+"少阳" = "yang jovem";
+"少阴" = "yin jovem";
+"老阳" = "yang velho";
+"正月" = "1º mês";
+"二月" = "2º mês";
+"三月" = "3º mês";
+"四月" = "4º mês";
+"五月" = "5º mês";
+"六月" = "6º mês";
+"七月" = "7º mês";
+"八月" = "8º mês";
+"九月" = "9º mês";
+"十月" = "10º mês";
+"冬月" = "11º mês";
+"腊月" = "12º mês";
+"分享" = "Compartilhar";
+"还没有卜卦记录" = "Ainda não há consultas";
+"同一时辰内（%@）起卦结果相同，一事不二占。" = "No mesmo período de duas horas (%@), sai sempre o mesmo hexagrama. Consulte cada assunto uma só vez.";
+
+/* 易学 */
+"易学" = "Aprender";
+"今日一卦" = "Hexagrama do dia";
+"易学专栏" = "Artigos";
+"六十四卦" = "Os 64 hexagramas";
