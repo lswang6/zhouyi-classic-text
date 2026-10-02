@@ -42,6 +42,7 @@ xcodebuild test -project Zhouyi.xcodeproj -scheme Zhouyi -destination 'platform=
 - 纳甲对校：[bopo/najia](https://github.com/bopo/najia)（MIT）。
 - 算法思路参考：kentang2017/ichingshifa（MIT）、ZhouYiLab（MIT）、liuyao-engine（Apache-2.0）。
 - 字体：Noto Serif CJK 子集，SIL OFL 1.1（见 `OFL-NotoSerifCJK.txt`）。
+- 第三方 MIT 许可全文见 `THIRD_PARTY.md`。
 - 水墨配图由 AI 生成。
 
 ## 许可
