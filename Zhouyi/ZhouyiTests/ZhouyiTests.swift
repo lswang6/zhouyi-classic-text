@@ -359,11 +359,14 @@ private let manifest = strings("zh-Hans", "Localizable") ?? [:]
     }
 }
 
-/// S16 白话译文：仅简繁中文；64×15 + 用九/用六各 2 + 文言 2 = 966 键，非空；文言段数同 Commentary
+/// 经文全键：64×15 + 用九/用六各 2 + 文言 2 = 966
+private let scriptureKeys = Set((1...64).flatMap { n in
+    ["ci", "tuan", "daxiang"].map { "hex.\(n).\($0)" } + (0..<6).flatMap { ["hex.\(n).yao.\($0)", "hex.\(n).xiao.\($0)"] }
+} + ["hex.1.yong", "hex.2.yong", "hex.1.xiao.6", "hex.2.xiao.6", "wenyan.1", "wenyan.2"])
+
+/// S16 白话译文：仅简繁中文；966 键，非空；文言段数同 Commentary
 @Test func vernacularCoverage() throws {
-    let keys = Set((1...64).flatMap { n in
-        ["ci", "tuan", "daxiang"].map { "hex.\(n).\($0)" } + (0..<6).flatMap { ["hex.\(n).yao.\($0)", "hex.\(n).xiao.\($0)"] }
-    } + ["hex.1.yong", "hex.2.yong", "hex.1.xiao.6", "hex.2.xiao.6", "wenyan.1", "wenyan.2"])
+    let keys = scriptureKeys
     #expect(keys.count == 966)
     for lang in ["zh-Hans", "zh-Hant"] {
         let v = try #require(strings(lang, "Vernacular"), "\(lang) Vernacular")
@@ -379,6 +382,18 @@ private let manifest = strings("zh-Hans", "Localizable") ?? [:]
     for lang in langs where !lang.hasPrefix("zh-") { #expect(strings(lang, "Vernacular") == nil, "\(lang) Vernacular") }
 }
 
+/// 经文译文：en 理雅各全本 966 键；其余八种为卦辞、爻辞、大象、用九/用六 514 键；简繁中文无此表
+@Test func translationTable() throws {
+    let core = scriptureKeys.filter { !$0.contains("tuan") && !$0.contains("xiao") && !$0.hasPrefix("wenyan") }
+    #expect(core.count == 514)
+    for lang in ["en", "ja", "ko", "es", "pt-BR", "fr", "de", "ru", "ar"] {
+        let t = try #require(strings(lang, "Translation"), "\(lang) Translation")
+        #expect(Set(t.keys) == (lang == "en" ? scriptureKeys : core), "\(lang) Translation keys")
+        for (k, v) in t { #expect(!v.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, "\(lang) empty: \(k)") }
+    }
+    for lang in ["zh-Hans", "zh-Hant"] { #expect(strings(lang, "Translation") == nil, "\(lang) Translation") }
+}
+
 private let sources: [(name: String, text: String)] = {
     let dir = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Zhouyi")
     let files = (try? FileManager.default.contentsOfDirectory(atPath: dir.path)) ?? []
@@ -390,7 +405,7 @@ private let sources: [(name: String, text: String)] = {
 /// 运行时拼出的动态键也都在清单里
 @Test func dynamicKeysInManifest() {
     let keys = Record.categories + Record.verifyOptions + Zhouyi.branches + Zhouyi.positions
-        + Array(Zhouyi.lineValueName.values) + Zhouyi.lunarMonths + ["闰", "用九", "用六"]
+        + Array(Zhouyi.lineValueName.values) + Zhouyi.lunarMonths + ["闰", "用九", "用六"] + Zhouyi.positions.map { $0 + "爻" }
         + ["比和", "用生体", "体生用", "用克体", "体克用"] + ["木", "火", "土", "金", "水"]   // TiYong.Relation、Trigram.wx
         + LiuQin.allCases.map(\.rawValue) + LiuShen.allCases.map(\.rawValue) + GongKind.allCases.map(\.rawValue)   // 纳甲页
     for k in keys { #expect(manifest[k] != nil, "\(k)") }

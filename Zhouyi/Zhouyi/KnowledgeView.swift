@@ -195,12 +195,13 @@ struct HexagramView: View {
                 block(L("白话解读")) {
                     Text(h.bh).font(.scaled(16)).lineSpacing(4).foregroundStyle(Color.text)
                 }
-                if zh {
+                if zh || Translation.available {
                     VernacularToggle()
                     block(L("卦辞")) {
-                        Text(h.name + "：" + h.ci).font(.serif(18)).lineSpacing(3).foregroundStyle(Color.text)
+                        Scripture("hex.\(n).ci", zh ? h.name + "：" + h.ci : h.ci, size: 18)
                         Vernacular("hex.\(n).ci")
                     }
+                    if !zh { TranslationImage(n: n) }
                     block(L("爻辞")) {
                         VStack(alignment: .leading, spacing: 12) {
                             let yong = Self.yong(n)
@@ -210,10 +211,10 @@ struct HexagramView: View {
                                         .font(.scaled(14, .heavy)).foregroundStyle(Color.line)
                                         .frame(minWidth: 44, alignment: .leading)
                                     VStack(alignment: .leading, spacing: 6) {
-                                        Text(i < 6 ? h.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                                        Scripture(i < 6 ? "hex.\(n).yao.\(i)" : "hex.\(n).yong", i < 6 ? h.yao[i] : yong!.text)
                                         Vernacular(i < 6 ? "hex.\(n).yao.\(i)" : "hex.\(n).yong")
                                         let k = "hex.\(n).xiao.\(i)", xiao = L(k, table: "Commentary")
-                                        if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
+                                        if xiao != k || Translation.lookup(k) != nil { Scripture(k, xiao, size: 14, color: .subdued) }
                                         Vernacular(k, size: 13)
                                     }
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -221,7 +222,8 @@ struct HexagramView: View {
                             }
                         }
                     }
-                    block(L("传")) { ZhuanView(n: n) }
+                    if zh || Translation.lookup("hex.\(n).tuan") != nil { block(L("传")) { ZhuanView(n: n) } }
+                    TranslationCredit()
                 }
             }
             .padding(.top, 8)
@@ -238,8 +240,8 @@ struct HexagramView: View {
     /// 乾用九、坤用六：第七行，小象键 hex.n.xiao.6
     static func yong(_ n: Int) -> (label: String, text: String)? {
         switch n {
-        case 1: (L("用九"), L("yongjiu.text", table: "Classical", default: "见群龙无首，吉。"))
-        case 2: (L("用六"), L("yongliu.text", table: "Classical", default: "利永贞。"))
+        case 1: (L("用九"), Zhouyi.classical("yongjiu.text", default: "见群龙无首，吉。"))
+        case 2: (L("用六"), Zhouyi.classical("yongliu.text", default: "利永贞。"))
         default: nil
         }
     }
@@ -283,14 +285,15 @@ struct HexRelations: View {
     }
 }
 
-/// 传：彖、大象、文言（仅乾坤）。表中缺的段不显示
+/// 传：彖、大象、文言（仅乾坤）。表中缺的段不显示；非中文读 Translation 表（仅英文有传）
 struct ZhuanView: View {
     let n: Int
     @AppStorage("vernacular") private var vernacular = true
 
     var body: some View {
+        let zh = Localizer.shared.isChinese
         let parts = [(L("彖曰"), "hex.\(n).tuan"), (L("象曰"), "hex.\(n).daxiang"), (L("文言"), "wenyan.\(n)")]
-            .map { ($0.0, L($0.1, table: "Commentary"), $0.1) }
+            .map { ($0.0, L($0.1, table: zh ? "Commentary" : "Translation"), $0.1) }
             .filter { $0.1 != $0.2 }   // 缺键时 L 返回键名
         VStack(alignment: .leading, spacing: 12) {
             ForEach(parts, id: \.0) { label, text, key in
@@ -299,7 +302,9 @@ struct ZhuanView: View {
                     // 白话逐段对照（文言按 \n\n 分段）；段数对不上则整段原文后接整段白话
                     let paras = text.components(separatedBy: "\n\n")
                     let vs = vernacular ? Vernacular.lookup(key)?.components(separatedBy: "\n\n") : nil
-                    if let vs, vs.count == paras.count {
+                    if !zh {
+                        Scripture(key, "")
+                    } else if let vs, vs.count == paras.count {
                         VStack(alignment: .leading, spacing: 10) {
                             ForEach(paras.indices, id: \.self) { i in
                                 VStack(alignment: .leading, spacing: 4) {
@@ -346,13 +351,82 @@ struct Vernacular: View {
     }
 }
 
-/// 白话对照开关，卦辞/爻辞/传页签顶部各一
+/// 白话对照开关，卦辞/爻辞/传页签顶部各一；日韩为「原文」对照开关，其他语言不显示
 struct VernacularToggle: View {
     @AppStorage("vernacular") private var on = true
+    @AppStorage("original") private var original = true
 
     var body: some View {
-        ChipButton(label: L("白话对照"), selected: on) { on.toggle() }
-            .frame(maxWidth: .infinity, alignment: .trailing)
+        if Localizer.shared.isChinese {
+            ChipButton(label: L("白话对照"), selected: on) { on.toggle() }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        } else if Translation.hasOriginal {
+            ChipButton(label: L("原文"), selected: original) { original.toggle() }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
+}
+
+/// 经文译文（非中文界面）：Translation 表。en 为理雅各全本（含彖、大小象、文言），其余为卦辞、爻辞、大象、用九用六
+enum Translation {
+    /// 缺表或缺键时 L 返回键名
+    static func lookup(_ key: String) -> String? {
+        let t = L(key, table: "Translation")
+        return t == key ? nil : t
+    }
+    static var available: Bool { !Localizer.shared.isChinese && lookup("hex.1.ci") != nil }
+    /// 日韩可对照汉文原文（繁体）
+    static var hasOriginal: Bool { [.ja, .ko].contains(Localizer.shared.lang) }
+}
+
+/// 经文：中文界面为原文；有译文时为译文（\n 分段），日韩开「原文」时原文在上
+struct Scripture: View {
+    let key: String, original: String
+    var size: CGFloat = 16
+    var color = Color.text
+    @AppStorage("original") private var on = true
+
+    init(_ key: String, _ original: String, size: CGFloat = 16, color: Color = .text) {
+        self.key = key; self.original = original; self.size = size; self.color = color
+    }
+
+    var body: some View {
+        let t = Localizer.shared.isChinese ? nil : Translation.lookup(key)
+        if t == nil || (on && Translation.hasOriginal) {
+            Text(original).font(.serif(size)).lineSpacing(size >= 18 ? 3 : 2).foregroundStyle(color)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        if let t {
+            ForEach(Array(t.components(separatedBy: "\n").enumerated()), id: \.offset) { _, p in
+                Text(p).font(.scaled(size, design: .serif)).lineSpacing(3).foregroundStyle(color)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+    }
+}
+
+/// 非中文卦辞页签下的大象（象曰）
+struct TranslationImage: View {
+    let n: Int
+
+    var body: some View {
+        let k = "hex.\(n).daxiang"
+        if Translation.lookup(k) != nil {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(L("象曰")).font(.scaled(12, .bold)).foregroundStyle(Color.accentText)
+                Scripture(k, Zhouyi.classical(k, default: "", table: "Commentary"))
+            }
+        }
+    }
+}
+
+/// 译文出处，非中文卦辞/爻辞/传底部
+struct TranslationCredit: View {
+    var body: some View {
+        if Translation.available {
+            Text(Localizer.shared.lang == .en ? L("译文：理雅各（1882）") : L("译文：周易编辑部"))
+                .font(.scaled(12)).foregroundStyle(Color.subdued)
+        }
     }
 }
 

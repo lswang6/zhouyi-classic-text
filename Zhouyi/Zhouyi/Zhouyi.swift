@@ -122,7 +122,7 @@ enum Zhouyi {
         let lo = ti(bits[0..<3]), up = ti(bits[3..<6])
         let n = kingWen[up][lo], t = texts[n - 1]
         let h = { (x: String, zh: String) in L("hex.\(n).\(x)", table: "Hexagrams", default: zh) }
-        let c = { (x: String, zh: String) in L("hex.\(n).\(x)", table: "Classical", default: zh) }
+        let c = { (x: String, zh: String) in classical("hex.\(n).\(x)", default: zh) }
         return Hexagram(n: n, name: h("name", t[0]), full: h("full", t[1]), ci: c("ci", t[2]), bh: h("bh", t[3]),
                         yao: (0..<6).map { c("yao.\($0)", t[4 + $0]) }, up: trigrams[up], lo: trigrams[lo], bits: bits)
     }
@@ -141,20 +141,30 @@ enum Zhouyi {
         return Analysis(lines: lines, bits: bits, moving: moving, ben: hexagram(bits: bits), bian: bian)
     }
 
-    /// 爻名：初九、九二……上六
+    /// 经文原文：简繁随界面；日韩取繁体（「原文」对照用），其余语言取简体默认
+    static func classical(_ key: String, default zh: String, table: String = "Classical") -> String {
+        guard [.ja, .ko].contains(Localizer.shared.lang), let b = hant else { return L(key, table: table, default: zh) }
+        return b.localizedString(forKey: key, value: zh, table: table)
+    }
+    private static let hant = Bundle.main.path(forResource: "zh-Hant", ofType: "lproj").flatMap(Bundle.init(path:))
+
+    /// 爻名：初九、九二……上六；中日韩以外为“第 n 爻”
     static func lineName(_ i: Int, yang: Bool) -> String {
+        let l = Localizer.shared
+        guard l.isChinese || l.lang == .ja || l.lang == .ko else { return L(positions[i] + "爻") }
         let n = yang ? "九" : "六"
         return i == 0 ? "初" + n : i == 5 ? "上" + n : n + positions[i]
     }
 
-    /// 朱熹《易学启蒙》动爻断法
+    /// 朱熹《易学启蒙》动爻断法。经文：非中文有 Translation 表时取译文，否则原文
     static func focus(_ a: Analysis) -> Focus {
         let ben = a.ben, mov = a.moving
+        let ci = { (h: Hexagram) in L("hex.\(h.n).ci", table: "Translation", default: h.ci) }
         func Y(_ h: Hexagram, _ i: Int, _ main: Bool = false) -> FocusItem {
-            FocusItem(tag: L("%1$@ · %2$@卦", lineName(i, yang: h.bits[i] == 1), h.name), text: h.yao[i], main: main)
+            FocusItem(tag: L("%1$@ · %2$@卦", lineName(i, yang: h.bits[i] == 1), h.name), text: L("hex.\(h.n).yao.\(i)", table: "Translation", default: h.yao[i]), main: main)
         }
         func C(_ h: Hexagram, _ main: Bool = false) -> FocusItem {
-            FocusItem(tag: L("%@卦 卦辞", h.name), text: h.ci, main: main)
+            FocusItem(tag: L("%@卦 卦辞", h.name), text: ci(h), main: main)
         }
         let still = (0..<6).filter { !mov.contains($0) }
         switch mov.count {
@@ -162,13 +172,13 @@ enum Zhouyi {
         case 1: return Focus(rule: L("一爻动，以本卦动爻爻辞为断。"), items: [Y(ben, mov[0], true)])
         case 2: return Focus(rule: L("二爻动，以本卦两动爻爻辞为断，以上爻为主。"), items: [Y(ben, mov[1], true), Y(ben, mov[0])])
         case 3: return Focus(rule: L("三爻动，以本卦与变卦卦辞为断，本卦为贞（主），变卦为悔。"), items: [
-            FocusItem(tag: L("贞 · %@卦 卦辞", ben.name), text: ben.ci, main: true),
-            FocusItem(tag: L("悔 · %@卦 卦辞", a.bian!.name), text: a.bian!.ci, main: false)])
+            FocusItem(tag: L("贞 · %@卦 卦辞", ben.name), text: ci(ben), main: true),
+            FocusItem(tag: L("悔 · %@卦 卦辞", a.bian!.name), text: ci(a.bian!), main: false)])
         case 4: return Focus(rule: L("四爻动，以变卦两静爻爻辞为断，以下爻为主。"), items: [Y(a.bian!, still[0], true), Y(a.bian!, still[1])])
         case 5: return Focus(rule: L("五爻动，以变卦静爻爻辞为断。"), items: [Y(a.bian!, still[0], true)])
         default:
-            if ben.n == 1 { return Focus(rule: L("六爻皆动，乾卦以用九为断。"), items: [FocusItem(tag: L("%1$@ · %2$@卦", L("用九"), ben.name), text: L("yongjiu.text", table: "Classical", default: "见群龙无首，吉。"), main: true)]) }
-            if ben.n == 2 { return Focus(rule: L("六爻皆动，坤卦以用六为断。"), items: [FocusItem(tag: L("%1$@ · %2$@卦", L("用六"), ben.name), text: L("yongliu.text", table: "Classical", default: "利永贞。"), main: true)]) }
+            if ben.n == 1 { return Focus(rule: L("六爻皆动，乾卦以用九为断。"), items: [FocusItem(tag: L("%1$@ · %2$@卦", L("用九"), ben.name), text: L("hex.1.yong", table: "Translation", default: classical("yongjiu.text", default: "见群龙无首，吉。")), main: true)]) }
+            if ben.n == 2 { return Focus(rule: L("六爻皆动，坤卦以用六为断。"), items: [FocusItem(tag: L("%1$@ · %2$@卦", L("用六"), ben.name), text: L("hex.2.yong", table: "Translation", default: classical("yongliu.text", default: "利永贞。")), main: true)]) }
             return Focus(rule: L("六爻皆动，以变卦卦辞为断。"), items: [C(a.bian!, true)])
         }
     }

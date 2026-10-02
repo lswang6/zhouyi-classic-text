@@ -22,7 +22,7 @@ struct ReadingView: View {
     private var content: some View {
         let a = record.analysis
         let f = Zhouyi.focus(a)
-        let zh = Localizer.shared.isChinese
+        let zh = Localizer.shared.isChinese, tr = Translation.available
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading, spacing: 6) {
@@ -47,14 +47,14 @@ struct ReadingView: View {
                         .padding(.top, -6)
                 }
 
-                // 非中文只有白话解卦
+                // 非中文无译文表时只有白话解卦
                 if let ty = Zhouyi.tiYong(a), [CastMethod.number.rawValue, CastMethod.time.rawValue].contains(record.method) {
                     tiYongCard(ty, upper: a.moving[0] >= 3)
                 }
 
-                if zh {
+                if zh || tr {
                     focusCard(f)
-                    tabBar
+                    tabBar(a)
                     if ["ci", "yao", "zhuan"].contains(tab) { VernacularToggle() }
                     tabContent(a)
                 } else {
@@ -71,7 +71,7 @@ struct ReadingView: View {
         .paperBackground()
         .scrollDismissesKeyboard(.interactively)
         .task {
-            let r = ImageRenderer(content: shareCard(a, f, zh: zh))
+            let r = ImageRenderer(content: shareCard(a, f, zh: zh || tr))
             r.scale = 3
             shareImage = r.uiImage.map(Image.init(uiImage:))
         }
@@ -91,7 +91,7 @@ struct ReadingView: View {
                 .accessibilityLabel(L("收藏"))
                 .accessibilityAddTraits(record.fav ? .isSelected : [])
                 Menu {
-                    ShareLink(item: shareText(a, f, zh: zh), subject: Text(record.title)) {
+                    ShareLink(item: shareText(a, f, zh: zh || tr), subject: Text(record.title)) {
                         Label(L("分享文字"), systemImage: "text.alignleft")
                     }
                     if let img = shareImage {
@@ -131,7 +131,7 @@ struct ReadingView: View {
         }
     }
 
-    /// 分享图：所问、卦象、断卦要点主条（非中文为本卦白话）、应用名。固定浅色
+    /// 分享图：所问、卦象、断卦要点主条（非中文无译文时为本卦白话）、应用名。固定浅色
     private func shareCard(_ a: Analysis, _ f: Focus, zh: Bool) -> some View {
         let main = f.items.first { $0.main }
         return VStack(alignment: .leading, spacing: 16) {
@@ -144,7 +144,7 @@ struct ReadingView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(f.rule).font(.scaled(13)).foregroundStyle(Color.subdued)
                     Text(main.tag).font(.scaled(12, .bold)).foregroundStyle(Color.accentText)
-                    Text(main.text).font(.serif(18, semibold: true)).lineSpacing(2).foregroundStyle(Color.text)
+                    Text(main.text).font(scriptureFont).lineSpacing(2).foregroundStyle(Color.text)
                 }
             } else {
                 Text(a.ben.bh).font(.scaled(15)).lineSpacing(3).foregroundStyle(Color.text)
@@ -240,7 +240,7 @@ struct ReadingView: View {
                         if item.main { Badge(text: L("主")) }
                     }
                     Text(item.text)
-                        .font(.serif(18, semibold: true))
+                        .font(scriptureFont)
                         .lineSpacing(2)
                         .foregroundStyle(Color.text)
                 }
@@ -253,14 +253,23 @@ struct ReadingView: View {
         .card()
     }
 
+    /// 断卦要点经文：中文宋体，译文用系统衬线体
+    private var scriptureFont: Font {
+        Localizer.shared.isChinese ? .serif(18, semibold: true) : .scaled(17, .semibold, design: .serif)
+    }
+
     // MARK: 卦辞 / 爻辞 / 白话解读
 
     /// 指示条不挂在任何标签内（否则该标签的点按/无障碍区域被撑高），而是跟随所选标签的 frame
-    /// 大字号放不下五个标签时横向滚动
-    private var tabBar: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+    /// 大字号放不下五个标签时横向滚动。非中文无纳甲，传仅在有译文时（英文）
+    private func tabBar(_ a: Analysis) -> some View {
+        let zh = Localizer.shared.isChinese
+        let tabs = [("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞"))]
+            + (zh || Translation.lookup("hex.\(a.ben.n).tuan") != nil ? [("zhuan", L("传"))] : [])
+            + (zh ? [("najia", L("纳甲"))] : [])
+        return ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 24) {
-                ForEach([("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞")), ("zhuan", L("传")), ("najia", L("纳甲"))], id: \.0) { key, label in
+                ForEach(tabs, id: \.0) { key, label in
                     let on = tab == key
                     Button { withAnimation(.spectrum) { tab = key } } label: {
                         Text(label)
@@ -323,10 +332,10 @@ struct ReadingView: View {
                             .foregroundStyle(moving ? Color.accentText : Color.line)
                             .frame(minWidth: 44, alignment: .leading)
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(i < 6 ? a.ben.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                            Scripture(i < 6 ? "hex.\(a.ben.n).yao.\(i)" : "hex.\(a.ben.n).yong", i < 6 ? a.ben.yao[i] : yong!.text)
                             Vernacular(i < 6 ? "hex.\(a.ben.n).yao.\(i)" : "hex.\(a.ben.n).yong")
                             let k = "hex.\(a.ben.n).xiao.\(i)", xiao = L(k, table: "Commentary")
-                            if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
+                            if xiao != k || Translation.lookup(k) != nil { Scripture(k, xiao, size: 14, color: .subdued) }
                             Vernacular(k, size: 13)
                             if moving && i < 6 { Badge(text: a.lines[i] == 9 ? L("动爻 · 老阳") : L("动爻 · 老阴"), subtle: true) }
                         }
@@ -336,6 +345,7 @@ struct ReadingView: View {
                     .padding(.horizontal, 12)
                     .background(moving ? Color.blue200 : .clear, in: RoundedRectangle(cornerRadius: 8))
                 }
+                TranslationCredit().frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
             }
         case "bh":
             plain(a)
@@ -349,16 +359,19 @@ struct ReadingView: View {
                         ZhuanView(n: h.n)
                     }
                 }
+                TranslationCredit()
             }
         default:
             VStack(alignment: .leading, spacing: 16) {
                 ForEach(pair(a), id: \.0) { t, h in
                     VStack(alignment: .leading, spacing: 6) {
                         tag(t)
-                        Text(h.name + "：" + h.ci).font(.serif(18)).lineSpacing(3).foregroundStyle(Color.text)
+                        Scripture("hex.\(h.n).ci", Localizer.shared.isChinese ? h.name + "：" + h.ci : h.ci, size: 18)
                         Vernacular("hex.\(h.n).ci")
+                        if !Localizer.shared.isChinese { TranslationImage(n: h.n) }
                     }
                 }
+                TranslationCredit()
             }
         }
     }
