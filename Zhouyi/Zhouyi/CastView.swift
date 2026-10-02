@@ -119,14 +119,10 @@ struct CastView: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 28)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background {   // 衬一幅淡画；深色反相为淡夜景
+        .background {   // 衬一幅淡画：浅色日景，深色月夜（资源按外观自动切换）
             if UIImage(named: "cast-backdrop") != nil {
                 Color.clear.overlay {
-                    if scheme == .light {
-                        Image(decorative: "cast-backdrop").resizable().scaledToFill().opacity(0.6)
-                    } else {
-                        Image(decorative: "cast-backdrop").resizable().scaledToFill().colorInvert().opacity(0.15)
-                    }
+                    Image(decorative: "cast-backdrop").resizable().scaledToFill().opacity(scheme == .light ? 0.6 : 1)
                 }
                 .clipped()
                 // 状态栏、导航栏下渐显，至上爻前淡出：山水只在导航栏与所问之间，爻位与铜钱处为素纸

@@ -3,6 +3,16 @@
     {
       "filename": "cast-backdrop.jpg",
       "idiom": "universal"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "filename": "cast-backdrop-dark.jpg",
+      "idiom": "universal"
     }
   ],
   "info": {

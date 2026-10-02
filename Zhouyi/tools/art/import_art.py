@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """把 gen.py 出的 PNG 导入资源目录：python3 tools/art/import_art.py <raw 目录>
-JPEG q80 按用途定宽 → Assets.xcassets/<name>.imageset；app-icon → AppIcon（1024 不透明 PNG）。缺图跳过。"""
+JPEG q80 按用途定宽 → Assets.xcassets/<name>.imageset；<name>-dark 为同图深色外观，存入 <name>.imageset；app-icon → AppIcon（1024 不透明 PNG）。缺图跳过。"""
 import json, pathlib, sys
 from PIL import Image
 
@@ -20,15 +20,19 @@ for src in sorted(raw.glob("*.png")):
         im.crop((l, t, l + side, t + side)).resize((1024, 1024), Image.LANCZOS).save(ROOT / "AppIcon.appiconset/AppIcon.png")
         done.append(name)
         continue
-    w = WIDTH.get(name, 1024)
+    base = name.removesuffix("-dark")   # -dark = 同名图的深色外观（header-night-* 是独立图，不算）
+    w = WIDTH.get(base, 1024)
     if im.width > w:
         im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
-    d = ROOT / f"{name}.imageset"
+    d = ROOT / f"{base}.imageset"
     d.mkdir(exist_ok=True)
     im.save(d / f"{name}.jpg", quality=80, optimize=True, progressive=True)
+    images = [{"filename": f"{base}.jpg", "idiom": "universal"}]
+    if (d / f"{base}-dark.jpg").exists():   # 先导哪张都保留深色条目
+        images.append({"appearances": [{"appearance": "luminosity", "value": "dark"}],
+                       "filename": f"{base}-dark.jpg", "idiom": "universal"})
     (d / "Contents.json").write_text(json.dumps({
-        "images": [{"filename": f"{name}.jpg", "idiom": "universal"}],
-        "info": {"author": "xcode", "version": 1}}, indent=2))
+        "images": images, "info": {"author": "xcode", "version": 1}}, indent=2))
     done.append(name)
 
 total = sum(f.stat().st_size for f in ROOT.glob("*.imageset/*.jpg"))
