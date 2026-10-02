@@ -8,7 +8,7 @@ for i,g in enumerate(d,1):
     u='https://zh.wikisource.org/w/api.php?action=query&prop=revisions&rvprop=content&rvslots=main&format=json&titles='+urllib.parse.quote(t)
     for k in range(4):
         try:
-            r=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'verify-script lswang6@gmail.com'}),timeout=30).read()
+            r=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'zhouyi-verify (https://github.com/lswang6/zhouyi-Ching-Oracle)'}),timeout=30).read()
             pg=list(json.loads(r)['query']['pages'].values())[0]
             open(p,'w').write(pg['revisions'][0]['slots']['main']['*']);break
         except Exception as e: print(i,t,e);time.sleep(2)

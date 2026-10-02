@@ -63,6 +63,7 @@ struct TimeCast {
     let isLeapMonth: Bool
     let day: Int            // 农历日
     let hourBranch: Int     // 时支数，子=1
+    let extra: Int          // 所问之事字数（以字数加时），传统纯时间为 0
     let s1: Int, s2: Int
     let cast: TriCast
     /// 中文：八月十八；其他语言：农历8月18日
@@ -213,7 +214,8 @@ enum Zhouyi {
     /// 时间起卦（梅花易数）：年支 + 农历月 + 农历日 → 上卦；再加时支 → 下卦；总和 % 6 → 动爻。
     /// 日期、时辰取设备当地时钟；以当地公历日正午按北京时间查农历（闰月按本月数）。
     /// 年支随农历年，春节换年而非立春（梅花旧例）；23 点起为子时，日期计入次日。
-    static func timeCast(_ date: Date, calendar local: Calendar = .current) -> TimeCast {
+    /// extra：《梅花易数》「以字数加时」，所问之事字数并入下卦与动爻之和（见 charCount）；0 即纯时间。
+    static func timeCast(_ date: Date, calendar local: Calendar = .current, extra: Int = 0) -> TimeCast {
         var g = Calendar(identifier: .gregorian)   // 设备日历可能是和历/佛历等，年月日须按公历取
         g.timeZone = local.timeZone
         let hour = g.component(.hour, from: date)
@@ -230,9 +232,16 @@ enum Zhouyi {
         let y = (lunar.year! - 1) % 12 + 1          // 六十甲子序 1=甲子 → 子=1
         let m = lunar.month!, d = lunar.day!
         let h = (hour + 1) / 2 % 12 + 1
-        let s1 = y + m + d, s2 = s1 + h
-        return TimeCast(yearBranch: y, month: m, isLeapMonth: lunar.isLeapMonth ?? false, day: d, hourBranch: h,
+        let s1 = y + m + d, s2 = s1 + h + extra
+        return TimeCast(yearBranch: y, month: m, isLeapMonth: lunar.isLeapMonth ?? false, day: d, hourBranch: h, extra: extra,
                         s1: s1, s2: s2, cast: TriCast(up: s1 % 8 == 0 ? 8 : s1 % 8, lo: s2 % 8 == 0 ? 8 : s2 % 8, mv: s2 % 6 == 0 ? 6 : s2 % 6))
+    }
+
+    /// 所问之事的字数：按 Swift Character（字形簇）计，空白、换行、标点、符号（¥ + 及多数 emoji）不计。
+    /// 「这次换工作是否合适？」→ 9；「  a b，c 」→ 3
+    static func charCount(_ s: String) -> Int {
+        let skip = CharacterSet.punctuationCharacters.union(.symbols).union(.whitespacesAndNewlines)
+        return s.filter { !$0.unicodeScalars.allSatisfy(skip.contains) }.count
     }
 
     static let lunarMonths = ["正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "腊月"]

@@ -36,6 +36,10 @@
 "上卦：年+月+日 = %d" = "Superior: año+mes+día = %d";
 "÷8 余 %1$d → %2$@" = "÷8 resto %1$d → %2$@";
 "下卦：再加时 = %d" = "Inferior: + hora = %d";
+"传统：只按时间" = "Clásico: solo la hora";
+"请先写下所问之事（字数参与起卦）" = "Escribe primero tu pregunta (su número de caracteres entra en el cálculo)";
+"下卦：再加时支 %1$d + 字数 %2$d = %3$d" = "Inferior: + rama horaria %1$d + caracteres %2$d = %3$d";
+"字数不计空格与标点" = "no cuentan espacios ni signos de puntuación";
 "动爻：%d ÷ 6" = "Línea mutante: %d ÷ 6";
 "余 %1$d → %2$@爻" = "resto %1$d → línea %2$@";
 "已保存到卜卦记录" = "Guardado en el historial";
@@ -172,6 +176,7 @@
 "分享" = "Compartir";
 "还没有卜卦记录" = "Aún no hay consultas";
 "同一时辰内（%@）起卦结果相同，一事不二占。" = "Dentro del mismo periodo de dos horas (%@) sale siempre el mismo hexagrama. Consulta cada asunto una sola vez.";
+"同一时辰内（%@）所问字数相同则卦同，一事不二占。" = "Dentro del mismo periodo de dos horas (%@), preguntas con el mismo número de caracteres dan el mismo hexagrama. Consulta cada asunto una sola vez.";
 
 /* 易学 */
 "易学" = "Aprender";

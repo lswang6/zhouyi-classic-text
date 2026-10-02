@@ -6,7 +6,7 @@ A free, ad-free, offline, open-source I Ching app for iOS — a tool for reading
 
 ## 功能
 
-- **起卦**：铜钱摇卦（可摇手机）、大衍筮法（蓍草，精确概率 1/16·5/16·7/16·3/16）、数字起卦、时间起卦（梅花易数，农历）。
+- **起卦**：铜钱摇卦（可摇手机）、大衍筮法（蓍草，精确概率 1/16·5/16·7/16·3/16）、数字起卦、时间起卦（梅花易数，农历；默认「以字数加时」，所问不同则卦不同，可切换传统纯时间）。
 - **解卦**：本卦 / 变卦，朱熹《易学启蒙》动爻断法（含贞悔、用九用六）；卦辞、爻辞、白话；互卦 · 错卦 · 综卦。
 - **十翼**：彖传、大象、小象（随爻）、文言（乾坤）。
 - **梅花体用**：体用五行生克，本 → 互 → 变 的始中终。
@@ -29,6 +29,7 @@ xcodebuild test -project Zhouyi.xcodeproj -scheme Zhouyi -destination 'platform=
 
 ## 准确性
 
+- 经传白话译文 966 条（原创），原文下方对照显示。
 - 卦辞 64 条、爻辞 384 条与 Wikisource《周易》、freizl/yijing、Kanripo、《周易正义》多源对校。
 - 十翼以 Wikisource 公有领域原文为准、freizl/yijing 为第二见证，分歧按《周易正义》裁决，取舍逐条留档。
 - 纳甲八宫、世应、纳甲、六亲、伏神对 [bopo/najia](https://github.com/bopo/najia) 做 64 卦穷举对拍。

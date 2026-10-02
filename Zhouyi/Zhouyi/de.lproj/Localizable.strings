@@ -36,6 +36,10 @@
 "上卦：年+月+日 = %d" = "Oberes Trigramm: Jahr+Monat+Tag = %d";
 "÷8 余 %1$d → %2$@" = "÷8 Rest %1$d → %2$@";
 "下卦：再加时 = %d" = "Unteres Trigramm: plus Stunde = %d";
+"传统：只按时间" = "Klassisch: nur Zeit";
+"请先写下所问之事（字数参与起卦）" = "Bitte zuerst das Anliegen eingeben (die Zeichenzahl fließt ein)";
+"下卦：再加时支 %1$d + 字数 %2$d = %3$d" = "Unteres Trigramm: plus Stundenzweig %1$d + Zeichen %2$d = %3$d";
+"字数不计空格与标点" = "Leer- und Satzzeichen zählen nicht";
 "动爻：%d ÷ 6" = "Wandelnde Linie: %d ÷ 6";
 "余 %1$d → %2$@爻" = "Rest %1$d → %2$@ Linie";
 "已保存到卜卦记录" = "Im Verlauf gespeichert";
@@ -172,6 +176,7 @@
 "分享" = "Teilen";
 "还没有卜卦记录" = "Noch keine Einträge";
 "同一时辰内（%@）起卦结果相同，一事不二占。" = "Innerhalb derselben Doppelstunde (%@) ergibt sich immer dasselbe Hexagramm. Jedes Anliegen nur einmal befragen.";
+"同一时辰内（%@）所问字数相同则卦同，一事不二占。" = "Innerhalb derselben Doppelstunde (%@) ergibt die gleiche Zeichenzahl dasselbe Hexagramm. Jedes Anliegen nur einmal befragen.";
 
 /* 易学 */
 "易学" = "Wissen";

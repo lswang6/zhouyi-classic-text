@@ -36,6 +36,10 @@
 "上卦：年+月+日 = %d" = "Upper: year + month + day = %d";
 "÷8 余 %1$d → %2$@" = "÷8 remainder %1$d → %2$@ ";
 "下卦：再加时 = %d" = "Lower: plus hour = %d";
+"传统：只按时间" = "Classic: time only";
+"请先写下所问之事（字数参与起卦）" = "Write your question first (its character count joins the cast)";
+"下卦：再加时支 %1$d + 字数 %2$d = %3$d" = "Lower: plus hour branch %1$d + characters %2$d = %3$d";
+"字数不计空格与标点" = "spaces and punctuation not counted";
 "动爻：%d ÷ 6" = "Changing line: %d ÷ 6";
 "余 %1$d → %2$@爻" = "Remainder %1$d → line %2$@";
 "已保存到卜卦记录" = "Saved to history";
@@ -172,6 +176,7 @@
 "分享" = "Share";
 "还没有卜卦记录" = "No readings yet";
 "同一时辰内（%@）起卦结果相同，一事不二占。" = "Within the same two-hour period (%@), casting gives the same hexagram. Ask about each matter only once.";
+"同一时辰内（%@）所问字数相同则卦同，一事不二占。" = "Within the same two-hour period (%@), questions with the same character count give the same hexagram. Ask about each matter only once.";
 
 /* 易学 */
 "易学" = "Learn";

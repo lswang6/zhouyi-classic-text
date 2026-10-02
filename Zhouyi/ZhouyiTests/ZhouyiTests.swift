@@ -204,6 +204,21 @@ private func cast(_ y: Int, _ m: Int, _ d: Int, _ h: Int, _ mi: Int = 0) -> Time
     #expect(t.lunarText == "八月十八")
 }
 
+@Test func timeCastWithCharCount() {
+    // 以字数加时：同上 41 再加 5 字 = 46 → 上卦仍乾，下卦 46%8=6 坎，动爻 46%6=4
+    let date = shanghai.date(from: DateComponents(year: 2026, month: 9, day: 28, hour: 14, minute: 30))!
+    let t = Zhouyi.timeCast(date, calendar: shanghai, extra: 5)
+    #expect(t.extra == 5 && t.s1 == 33 && t.s2 == 46)
+    #expect(t.cast == TriCast(up: 1, lo: 6, mv: 4))
+    #expect(cast(2026, 9, 28, 14, 30).extra == 0)
+}
+
+@Test func charCount() {
+    #expect(Zhouyi.charCount("这次换工作是否合适？") == 9)
+    #expect(Zhouyi.charCount("  a b，c ") == 3)
+    #expect(Zhouyi.charCount(" ？！\n") == 0)
+}
+
 @Test func timeCastIgnoresDeviceCalendarSystem() {
     pinChinese()
     let date = shanghai.date(from: DateComponents(year: 2026, month: 9, day: 28, hour: 14, minute: 30))!

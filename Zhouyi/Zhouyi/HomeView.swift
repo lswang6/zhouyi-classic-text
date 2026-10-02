@@ -11,6 +11,10 @@ struct HomeView: View {
     @State private var nums = ["", "", ""]
     @AppStorage("solarTime") private var solarTime = false
     @AppStorage("longitude") private var longitude = 116.40
+    @AppStorage("timeCastClassic") private var timeCastClassic = false   // 传统：只按时间，不加字数
+
+    /// 时间起卦所加字数（以字数加时）；传统模式为 0
+    private var timeExtra: Int { timeCastClassic ? 0 : Zhouyi.charCount(app.q) }
 
     private var numberCast: TriCast? {
         // wholeNumberValue 兼认阿拉伯-印度数字（١٢）
@@ -44,7 +48,7 @@ struct HomeView: View {
                 methodSection
 
                 PillButton(title: method == .coin ? L("开始摇卦") : method == .yarrow ? L("开始揲蓍") : L("起卦"),
-                           disabled: method == .number && numberCast == nil, action: start)
+                           disabled: method == .number && numberCast == nil || method == .time && !timeCastClassic && timeExtra == 0, action: start)
 
                 if let r = records.first {
                     VStack(alignment: .leading, spacing: 10) {
@@ -198,18 +202,25 @@ struct HomeView: View {
     }
 
     private var timePanel: some View {
-        TimelineView(.everyMinute) { context in
+        let extra = timeExtra, classic = timeCastClassic
+        return TimelineView(.everyMinute) { context in
             let solar = SettingsView.solar(context.date, on: solarTime, longitude: longitude)
-            let tv = Zhouyi.timeCast(solar.date)
+            let tv = Zhouyi.timeCast(solar.date, extra: extra)
             let T = Zhouyi.trigrams, B = Zhouyi.branches
             let y = tv.yearBranch, h = tv.hourBranch, c = tv.cast
             VStack(alignment: .leading, spacing: 8) {
+                ChipButton(label: L("传统：只按时间"), selected: classic) { withAnimation(.spectrum) { timeCastClassic.toggle() } }
+                if !classic && extra == 0 {
+                    Text(L("请先写下所问之事（字数参与起卦）"))
+                        .font(.scaled(12, .medium))
+                        .foregroundStyle(Color.accentText)
+                }
                 row(L("农历"), Text(tv.lunarText + " · " + L("%@时", L(B[h - 1]))))
                 row(L("年支 · 月 · 日 · 时支"), Text(verbatim: "\(L(B[y - 1]))(\(y)) · \(tv.month) · \(tv.day) · \(L(B[h - 1]))(\(h))"))
                 row(L("上卦：年+月+日 = %d", tv.s1), tri(tv.s1, T[c.up - 1]))
-                row(L("下卦：再加时 = %d", tv.s2), tri(tv.s2, T[c.lo - 1]))
+                row(classic ? L("下卦：再加时 = %d", tv.s2) : L("下卦：再加时支 %1$d + 字数 %2$d = %3$d", h, tv.extra, tv.s2), tri(tv.s2, T[c.lo - 1]))
                 row(L("动爻：%d ÷ 6", tv.s2), Text(L("余 %1$d → %2$@爻", tv.s2 % 6, L(Zhouyi.positions[c.mv - 1]))))
-                Text(L("年支按农历年（春节换年）· 闰月按本月数 · 23 点起为次日子时 · 按本机时区"))
+                Text(L("年支按农历年（春节换年）· 闰月按本月数 · 23 点起为次日子时 · 按本机时区") + (classic ? "" : " · " + L("字数不计空格与标点")))
                     .font(.scaled(11))
                     .foregroundStyle(Color.subdued)
                 if let note = solar.note {
@@ -217,7 +228,8 @@ struct HomeView: View {
                 }
                 // 只取时辰：两小时内结果不变，属传统本意
                 let from = (2 * h + 21) % 24
-                Text(L("同一时辰内（%@）起卦结果相同，一事不二占。", String(format: "%02d:00–%02d:00", from, (from + 2) % 24)))
+                let span = String(format: "%02d:00–%02d:00", from, (from + 2) % 24)
+                Text(classic ? L("同一时辰内（%@）起卦结果相同，一事不二占。", span) : L("同一时辰内（%@）所问字数相同则卦同，一事不二占。", span))
                     .font(.scaled(11, .medium))
                     .foregroundStyle(Color.subdued)
             }
@@ -259,7 +271,7 @@ struct HomeView: View {
             guard let c = numberCast else { return }
             cast = c
         case .time:
-            cast = Zhouyi.timeCast(SettingsView.solar(Date(), on: solarTime, longitude: longitude).date).cast
+            cast = Zhouyi.timeCast(SettingsView.solar(Date(), on: solarTime, longitude: longitude).date, extra: timeExtra).cast
         }
         let r = Record(q: app.q, cat: app.cat, method: method, lines: Zhouyi.lines(from: cast))
         withAnimation(.easeOut(duration: 0.2)) { app.forming = r }   // 过场结束后入库并打开
