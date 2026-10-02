@@ -9,8 +9,6 @@ struct ReadingView: View {
     @State private var tab = "bh"
     @State private var confirmDelete = false
     @State private var shareImage: Image?
-    @AppStorage("solarTime") private var solarTime = false
-    @AppStorage("longitude") private var longitude = 116.40
     @Namespace private var tabNS
 
     var body: some View {
@@ -367,9 +365,9 @@ struct ReadingView: View {
 
     // MARK: 纳甲
 
-    /// 六爻纳甲排盘，上爻在上。时刻取起卦钟点，开真太阳时则校正
+    /// 六爻纳甲排盘，上爻在上。时刻取起卦钟点，起卦时开了真太阳时则按当时经度校正
     private func najia(_ a: Analysis) -> some View {
-        let solar = SettingsView.solar(record.ts, on: solarTime, longitude: longitude)
+        let solar = SettingsView.solar(record.ts, on: record.solarLongitude != nil, longitude: record.solarLongitude ?? 0)
         let pan = NaJia.pan(a, at: solar.date, timeZone: .current)
         let hasFu = pan.rows.contains { $0.fu != nil }
         let yao = { (y: NaJiaPan.Yao) in L(y.liuqin.rawValue) + y.ganzhi + L(y.wuxing) }
@@ -381,7 +379,7 @@ struct ReadingView: View {
                 Text(L("%1$@年 %2$@月 %3$@日 %4$@时 · 旬空 %5$@", pan.year, pan.month, pan.day, pan.hour, pan.xunKong.map { L($0) }.joined()))
                     .font(.serif(14)).foregroundStyle(Color.subdued)
             }
-            ScrollView(.horizontal, showsIndicators: false) {   // 大字号或有伏神列时放不下则横滑，不缩字
+            ViewThatFits(in: .horizontal) {   // 表放不下（大字号、有伏神列）则逐爻分行，不横滑、不缩字
                 Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 10) {
                     GridRow {
                         small(L("六神"))
@@ -413,8 +411,29 @@ struct ReadingView: View {
                     }
                 }
                 .lineLimit(1)
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach((0..<6).reversed(), id: \.self) { i in
+                        let r = pan.rows[i], v = a.lines[i]
+                        let mark = i + 1 == pan.shi ? L("世") : i + 1 == pan.ying ? L("应") : ""
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(spacing: 6) {
+                                Text(L(r.liushen.rawValue)).font(.serif(14)).foregroundStyle(Color.subdued)
+                                YaoBar(yang: a.bits[i] == 1, color: Zhouyi.isMoving(v) ? .accentVisual : .line, split: 6, seed: i, halo: false)
+                                    .frame(width: 36, height: 6)
+                                Text(v == 9 ? "○" : v == 6 ? "×" : "")
+                                    .font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                                if !mark.isEmpty { Text(mark).font(.serif(14, semibold: true)).foregroundStyle(Color.accentText) }
+                            }
+                            Text(yao(.init(liuqin: r.liuqin, ganzhi: r.ganzhi)))
+                                .font(.serif(15, semibold: true))
+                                .foregroundStyle(Zhouyi.isMoving(v) ? Color.accentText : Color.text)
+                            if let fu = r.fu { small(L("伏神") + " " + yao(fu)) }
+                            if let b = r.bian { Text(L("变卦") + " " + yao(b)).font(.serif(14)).foregroundStyle(Color.text) }
+                        }
+                        .accessibilityElement(children: .combine)
+                    }
+                }
             }
-            .scrollBounceBehavior(.basedOnSize)
             Text(([solar.note].compactMap { $0 } + [L("只排盘，不自动断用神旺衰。")]).joined(separator: "\n"))
                 .font(.scaled(12)).foregroundStyle(Color.subdued)
         }

@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import Testing
 @testable import Zhouyi
 
@@ -430,5 +431,18 @@ private let sources: [(name: String, text: String)] = {
                 #expect(allowed.contains { code.contains($0) && $0.contains(lit) }, "\(name): \(t)")
             }
         }
+    }
+}
+
+/// Font.scaled：默认字号与原定字号同宽同高，无障碍字号更大（iOS 26 起有 Font.scaled(by:)）
+@MainActor @Test func scaledFontDefaultSize() throws {
+    guard #available(iOS 26, *) else { return }
+    func size(_ font: Font, _ type: DynamicTypeSize) -> CGSize {
+        UIHostingController(rootView: Text(verbatim: "Ag 周易").font(font).fixedSize().environment(\.dynamicTypeSize, type))
+            .sizeThatFits(in: CGSize(width: 2000, height: 2000))
+    }
+    for s: CGFloat in [10, 14, 16, 19, 24, 40] {
+        #expect(size(.scaled(s, .bold), .large) == size(.system(size: s, weight: .bold), .large), "\(s)")
+        #expect(size(.scaled(s), .accessibility3).height > size(.scaled(s), .large).height * 1.5, "\(s)")
     }
 }

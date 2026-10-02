@@ -8,6 +8,8 @@ struct CastView: View {
     @Environment(AppState.self) private var app
     @Environment(\.modelContext) private var modelContext
     @Environment(\.colorScheme) private var scheme
+    @AppStorage("solarTime") private var solarTime = false
+    @AppStorage("longitude") private var longitude = 116.40
 
     @State private var cast: [Int] = []
     @State private var coins = [3, 2, 3]
@@ -247,7 +249,7 @@ struct CastView: View {
                 busy = false
                 return
             }
-            let r = Record(q: app.q, cat: app.cat, method: method, lines: cast)
+            let r = Record(q: app.q, cat: app.cat, method: method, lines: cast, solarLongitude: solarTime ? longitude : nil)
             modelContext.insert(r)
             try? modelContext.save()
             CastDraft.clear()

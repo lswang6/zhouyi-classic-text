@@ -12,11 +12,12 @@ final class Record {
     var fav: Bool = false
     var note: String = ""
     var verify: String = "待验"      // Record.verifyOptions
+    var solarLongitude: Double? = nil   // 起卦时开真太阳时则记其经度；nil 不校正（旧记录同）
 
     static let categories = ["事业", "感情", "财运", "健康", "学业", "其他"]
     static let verifyOptions = ["待验", "应验", "未应验"]
 
-    init(q: String, cat: String, method: CastMethod, lines: [Int], ts: Date = .now) {
+    init(q: String, cat: String, method: CastMethod, lines: [Int], ts: Date = .now, solarLongitude: Double? = nil) {
         self.ts = ts
         self.q = q.trimmingCharacters(in: .whitespacesAndNewlines)   // 空则显示时再译占位语，随语言切换
         self.cat = cat
@@ -25,6 +26,7 @@ final class Record {
         self.fav = false
         self.note = ""
         self.verify = "待验"
+        self.solarLongitude = solarLongitude
     }
 
     /// 显示用所问之事

@@ -273,7 +273,7 @@ struct HomeView: View {
         case .time:
             cast = Zhouyi.timeCast(SettingsView.solar(Date(), on: solarTime, longitude: longitude).date, extra: timeExtra).cast
         }
-        let r = Record(q: app.q, cat: app.cat, method: method, lines: Zhouyi.lines(from: cast))
+        let r = Record(q: app.q, cat: app.cat, method: method, lines: Zhouyi.lines(from: cast), solarLongitude: solarTime ? longitude : nil)
         withAnimation(.easeOut(duration: 0.2)) { app.forming = r }   // 过场结束后入库并打开
     }
 }

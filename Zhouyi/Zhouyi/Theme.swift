@@ -42,9 +42,28 @@ extension Font {
         .custom(semibold ? "ZhouyiSerif-SemiBold" : "ZhouyiSerif-Regular", size: size, relativeTo: textStyle(size))
     }
 
-    /// 系统字体随动态字体缩放：按 size 所近的文本样式（默认字号可差 1pt，如 14 → 15）
+    /// 系统字体随动态字体缩放：按 size 所近的文本样式的比例；默认字号即 size
+    /// ponytail: iOS 17–25 无 Font.scaled(by:)，退为所近样式字号（可差 1pt，如 14 → 15）
     static func scaled(_ size: CGFloat, _ weight: Weight = .regular, design: Design = .default) -> Font {
-        .system(textStyle(size), design: design, weight: weight)
+        let style = textStyle(size), font = Font.system(style, design: design, weight: weight)
+        if #available(iOS 26, *) { return font.scaled(by: size / defaultSize(style)) }
+        return font
+    }
+
+    /// 文本样式在默认（.large）动态字体下的字号
+    static func defaultSize(_ style: TextStyle) -> CGFloat {
+        switch style {
+        case .largeTitle: 34
+        case .title: 28
+        case .title2: 22
+        case .title3: 20
+        case .body, .headline: 17
+        case .callout: 16
+        case .subheadline: 15
+        case .footnote: 13
+        case .caption: 12
+        default: 11
+        }
     }
 
     /// 字号 → 默认字号与之最近的系统文本样式（缩放比例随之）
