@@ -424,6 +424,7 @@ struct ReadingView: View {
                     }
                 }
                 .lineLimit(1)
+                .fixedSize(horizontal: true, vertical: false)   // 按理想宽排，Grid 不再把有限宽度均摊给各列致截断
                 VStack(alignment: .leading, spacing: 12) {
                     ForEach((0..<6).reversed(), id: \.self) { i in
                         let r = pan.rows[i], v = a.lines[i]
