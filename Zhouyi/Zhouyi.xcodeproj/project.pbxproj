@@ -31,9 +31,11 @@
 		8573DFBFA584BA4E6E75DE7B /* Zhouyi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EB9F028BD150A36F1771A9 /* Zhouyi.swift */; };
 		879C7005501DB4A6DF14CD37 /* Hexagrams.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D4CBA578D93BDD17980139 /* Hexagrams.strings */; };
 		8D8D6D700E83ACBB7F7AE093 /* Classical.strings in Resources */ = {isa = PBXBuildFile; fileRef = A69C3DF80DC72569508291A7 /* Classical.strings */; };
+		8F63B612C477E057A718C4E9 /* Vernacular.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9D5140C448C7E63AA52A3AA /* Vernacular.strings */; };
 		99032FA82693042730498EF1 /* ZhouyiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18BC73A3E8BF93328A1A9C5 /* ZhouyiApp.swift */; };
 		9D6BB6C4DAF7CB91ADF35392 /* ZhouyiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B23FE5B1B5F219344B22C /* ZhouyiTests.swift */; };
 		A3E067103CB2C04C250F52A0 /* Knowledge.strings in Resources */ = {isa = PBXBuildFile; fileRef = 691D918AD7CB2EF91242A608 /* Knowledge.strings */; };
+		A662C3B4996FD5FA1092A564 /* Vernacular.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE2D1EE3E24CE6E3AD87F3F3 /* Vernacular.strings */; };
 		A6AE30B50FBC8A1891F0A187 /* ZhouyiWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F366706326F9B188763E6 /* ZhouyiWidget.swift */; };
 		AA11695B023E034377D447FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D884BF04A654F757260385A6 /* Assets.xcassets */; };
 		AD9EF4434F350237052DBA1F /* ZhouyiSerif-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733A8083573BA3CD8E866315 /* ZhouyiSerif-SemiBold.ttf */; };
@@ -139,6 +141,7 @@
 		B4289CD6F9B7BA65DBE9C49D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B56D6BF465E833A106772E4D /* ZhouyiSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZhouyiSerif-Regular.ttf"; sourceTree = "<group>"; };
 		B7E0116DD8EE082A752524F2 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Knowledge.strings; sourceTree = "<group>"; };
+		C9D5140C448C7E63AA52A3AA /* Vernacular.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Vernacular.strings; path = "zh-Hant.lproj/Vernacular.strings"; sourceTree = "<group>"; };
 		CA70169E86BB82DB7A503C85 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		CBE5CEBD9F852BD9381629B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Hexagrams.strings; sourceTree = "<group>"; };
 		CCD4F6DF7E62FD47B822EFD3 /* Commentary.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Commentary.strings; path = "zh-Hant.lproj/Commentary.strings"; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 		D6142C2075FFE19C84B4DF3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D860C416A0DAF004C6F91FA6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D884BF04A654F757260385A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE2D1EE3E24CE6E3AD87F3F3 /* Vernacular.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Vernacular.strings; path = "zh-Hans.lproj/Vernacular.strings"; sourceTree = "<group>"; };
 		E8FC760C43422C61D8B8F78D /* NaJiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaJiaTests.swift; sourceTree = "<group>"; };
 		EC08857EC998D1FFBC29A78C /* Zhouyi.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Zhouyi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC73473111023BF9A2B9A44A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Knowledge.strings; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				7102D527992C73B6A1E6E969 /* splash-dark.mp4 */,
 				81F489E0CBE76C195A20FE51 /* splash-light.mp4 */,
 				779013E926D7B433A63F94F2 /* Theme.swift */,
+				DE2D1EE3E24CE6E3AD87F3F3 /* Vernacular.strings */,
+				C9D5140C448C7E63AA52A3AA /* Vernacular.strings */,
 				70EB9F028BD150A36F1771A9 /* Zhouyi.swift */,
 				F18BC73A3E8BF93328A1A9C5 /* ZhouyiApp.swift */,
 				B56D6BF465E833A106772E4D /* ZhouyiSerif-Regular.ttf */,
@@ -389,6 +395,8 @@
 				353F3F97AA7A3E2358D5DE16 /* InfoPlist.strings in Resources */,
 				A3E067103CB2C04C250F52A0 /* Knowledge.strings in Resources */,
 				70BB624A205948740777DACF /* Localizable.strings in Resources */,
+				A662C3B4996FD5FA1092A564 /* Vernacular.strings in Resources */,
+				8F63B612C477E057A718C4E9 /* Vernacular.strings in Resources */,
 				1ED27B3DEB4CB64B24BE4FAE /* ZhouyiSerif-Regular.ttf in Resources */,
 				63A13F5DED01B6BAEB58054E /* ZhouyiSerif-SemiBold.ttf in Resources */,
 				4C86EB5EA07E6A712D6C5CA3 /* coin-drop.wav in Resources */,

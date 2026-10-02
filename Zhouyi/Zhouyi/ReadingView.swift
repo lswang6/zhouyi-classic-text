@@ -57,6 +57,7 @@ struct ReadingView: View {
                 if zh {
                     focusCard(f)
                     tabBar
+                    if ["ci", "yao", "zhuan"].contains(tab) { VernacularToggle() }
                     tabContent(a)
                 } else {
                     plain(a)
@@ -325,8 +326,10 @@ struct ReadingView: View {
                             .frame(minWidth: 44, alignment: .leading)
                         VStack(alignment: .leading, spacing: 6) {
                             Text(i < 6 ? a.ben.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                            Vernacular(i < 6 ? "hex.\(a.ben.n).yao.\(i)" : "hex.\(a.ben.n).yong")
                             let k = "hex.\(a.ben.n).xiao.\(i)", xiao = L(k, table: "Commentary")
                             if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
+                            Vernacular(k, size: 13)
                             if moving && i < 6 { Badge(text: a.lines[i] == 9 ? L("动爻 · 老阳") : L("动爻 · 老阴"), subtle: true) }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -355,6 +358,7 @@ struct ReadingView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         tag(t)
                         Text(h.name + "：" + h.ci).font(.serif(18)).lineSpacing(3).foregroundStyle(Color.text)
+                        Vernacular("hex.\(h.n).ci")
                     }
                 }
             }

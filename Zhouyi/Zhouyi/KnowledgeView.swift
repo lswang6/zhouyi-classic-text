@@ -196,8 +196,10 @@ struct HexagramView: View {
                     Text(h.bh).font(.scaled(16)).lineSpacing(4).foregroundStyle(Color.text)
                 }
                 if zh {
+                    VernacularToggle()
                     block(L("卦辞")) {
                         Text(h.name + "：" + h.ci).font(.serif(18)).lineSpacing(3).foregroundStyle(Color.text)
+                        Vernacular("hex.\(n).ci")
                     }
                     block(L("爻辞")) {
                         VStack(alignment: .leading, spacing: 12) {
@@ -209,8 +211,10 @@ struct HexagramView: View {
                                         .frame(minWidth: 44, alignment: .leading)
                                     VStack(alignment: .leading, spacing: 6) {
                                         Text(i < 6 ? h.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                                        Vernacular(i < 6 ? "hex.\(n).yao.\(i)" : "hex.\(n).yong")
                                         let k = "hex.\(n).xiao.\(i)", xiao = L(k, table: "Commentary")
                                         if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
+                                        Vernacular(k, size: 13)
                                     }
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 }
@@ -282,20 +286,73 @@ struct HexRelations: View {
 /// 传：彖、大象、文言（仅乾坤）。表中缺的段不显示
 struct ZhuanView: View {
     let n: Int
+    @AppStorage("vernacular") private var vernacular = true
 
     var body: some View {
         let parts = [(L("彖曰"), "hex.\(n).tuan"), (L("象曰"), "hex.\(n).daxiang"), (L("文言"), "wenyan.\(n)")]
             .map { ($0.0, L($0.1, table: "Commentary"), $0.1) }
             .filter { $0.1 != $0.2 }   // 缺键时 L 返回键名
         VStack(alignment: .leading, spacing: 12) {
-            ForEach(parts, id: \.0) { label, text, _ in
+            ForEach(parts, id: \.0) { label, text, key in
                 VStack(alignment: .leading, spacing: 4) {
                     Text(label).font(.scaled(12, .bold)).foregroundStyle(Color.accentText)
-                    Text(text).font(.serif(16)).lineSpacing(3).foregroundStyle(Color.text)
-                        .fixedSize(horizontal: false, vertical: true)
+                    // 白话逐段对照（文言按 \n\n 分段）；段数对不上则整段原文后接整段白话
+                    let paras = text.components(separatedBy: "\n\n")
+                    let vs = vernacular ? Vernacular.lookup(key)?.components(separatedBy: "\n\n") : nil
+                    if let vs, vs.count == paras.count {
+                        VStack(alignment: .leading, spacing: 10) {
+                            ForEach(paras.indices, id: \.self) { i in
+                                VStack(alignment: .leading, spacing: 4) {
+                                    original(paras[i])
+                                    Vernacular(text: vs[i])
+                                }
+                            }
+                        }
+                    } else {
+                        original(text)
+                        Vernacular(key)
+                    }
                 }
             }
         }
+    }
+
+    private func original(_ s: String) -> some View {
+        Text(s).font(.serif(16)).lineSpacing(3).foregroundStyle(Color.text)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+/// 白话对照（S16）：Vernacular 表仅简繁中文；开关关闭或缺键时不显示
+struct Vernacular: View {
+    let text: String?
+    var size: CGFloat = 14
+    @AppStorage("vernacular") private var on = true
+
+    init(_ key: String, size: CGFloat = 14) { text = Self.lookup(key); self.size = size }
+    init(text: String) { self.text = text }
+
+    var body: some View {
+        if on, let text {
+            Text(text).font(.scaled(size)).lineSpacing(2).foregroundStyle(Color.subdued)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    /// 缺键时 L 返回键名
+    static func lookup(_ key: String) -> String? {
+        let t = L(key, table: "Vernacular")
+        return t == key ? nil : t
+    }
+}
+
+/// 白话对照开关，卦辞/爻辞/传页签顶部各一
+struct VernacularToggle: View {
+    @AppStorage("vernacular") private var on = true
+
+    var body: some View {
+        ChipButton(label: L("白话对照"), selected: on) { on.toggle() }
+            .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }
 

@@ -343,6 +343,26 @@ private let manifest = strings("zh-Hans", "Localizable") ?? [:]
     }
 }
 
+/// S16 白话译文：仅简繁中文；64×15 + 用九/用六各 2 + 文言 2 = 966 键，非空；文言段数同 Commentary
+@Test func vernacularCoverage() throws {
+    let keys = Set((1...64).flatMap { n in
+        ["ci", "tuan", "daxiang"].map { "hex.\(n).\($0)" } + (0..<6).flatMap { ["hex.\(n).yao.\($0)", "hex.\(n).xiao.\($0)"] }
+    } + ["hex.1.yong", "hex.2.yong", "hex.1.xiao.6", "hex.2.xiao.6", "wenyan.1", "wenyan.2"])
+    #expect(keys.count == 966)
+    for lang in ["zh-Hans", "zh-Hant"] {
+        let v = try #require(strings(lang, "Vernacular"), "\(lang) Vernacular")
+        #expect(Set(v.keys) == keys, "\(lang) Vernacular keys")
+        for (k, s) in v { #expect(!s.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, "\(lang) empty: \(k)") }
+        let c = try #require(strings(lang, "Commentary"), "\(lang) Commentary")
+        for k in ["wenyan.1", "wenyan.2"] {
+            #expect(v[k]?.components(separatedBy: "\n\n").count == c[k]?.components(separatedBy: "\n\n").count, "\(lang) \(k) paragraphs")
+        }
+    }
+    let langs = try FileManager.default.contentsOfDirectory(atPath: Bundle.main.bundlePath)
+        .filter { $0.hasSuffix(".lproj") }.map { String($0.dropLast(6)) }
+    for lang in langs where !lang.hasPrefix("zh-") { #expect(strings(lang, "Vernacular") == nil, "\(lang) Vernacular") }
+}
+
 private let sources: [(name: String, text: String)] = {
     let dir = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Zhouyi")
     let files = (try? FileManager.default.contentsOfDirectory(atPath: dir.path)) ?? []

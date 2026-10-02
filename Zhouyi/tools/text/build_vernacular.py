@@ -7,6 +7,10 @@ d = {}
 for f in sorted(glob.glob(os.path.join(sys.argv[1], "part-*.json"))):
     d.update(json.load(open(f, encoding="utf8")))
 
+# 去掉与界面标签重复的前缀（初九：、乾卦：、《象传》说：）
+label = re.compile(r"^((初|上)[九六]|[九六][二三四五]|用[九六]|.{1,3}卦|《?[彖象]传》?(说|曰)?|[彖象]曰)：")
+d = {k: label.sub("", v, count=1) for k, v in d.items()}
+
 keys = [f"hex.{n}.{k}" for n in range(1, 65) for k in
         ["ci", *[f"yao.{i}" for i in range(6)], "tuan", "daxiang", *[f"xiao.{i}" for i in range(6)]]]
 keys += ["hex.1.yong", "hex.1.xiao.6", "hex.2.yong", "hex.2.xiao.6", "wenyan.1", "wenyan.2"]
