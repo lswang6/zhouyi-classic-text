@@ -14,7 +14,7 @@ A free, ad-free, offline, open-source I Ching app for iOS — a tool for reading
 - **真太阳时**（可选，手选城市或经度，不申请定位）。
 - **记录**：搜索、收藏、应验反馈、备注、导出 JSON / 文本；iCloud 同步。
 - **易学专栏** 12 篇、今日一卦、桌面小组件。
-- 12 种界面语言；支持动态字体。
+- 11 种界面语言；支持动态字体。
 
 ## 构建
 
