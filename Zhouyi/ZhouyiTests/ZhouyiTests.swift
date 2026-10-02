@@ -356,6 +356,7 @@ private let sources: [(name: String, text: String)] = {
     let keys = Record.categories + Record.verifyOptions + Zhouyi.branches + Zhouyi.positions
         + Array(Zhouyi.lineValueName.values) + Zhouyi.lunarMonths + ["闰", "用九", "用六"]
         + ["比和", "用生体", "体生用", "用克体", "体克用"] + ["木", "火", "土", "金", "水"]   // TiYong.Relation、Trigram.wx
+        + LiuQin.allCases.map(\.rawValue) + LiuShen.allCases.map(\.rawValue) + GongKind.allCases.map(\.rawValue)   // 纳甲页
     for k in keys { #expect(manifest[k] != nil, "\(k)") }
 }
 

@@ -9,6 +9,8 @@ struct ReadingView: View {
     @State private var tab = "bh"
     @State private var confirmDelete = false
     @State private var shareImage: Image?
+    @AppStorage("solarTime") private var solarTime = false
+    @AppStorage("longitude") private var longitude = 116.40
     @Namespace private var tabNS
 
     var body: some View {
@@ -256,7 +258,7 @@ struct ReadingView: View {
     /// 指示条不挂在任何标签内（否则该标签的点按/无障碍区域被撑高），而是跟随所选标签的 frame
     private var tabBar: some View {
         HStack(spacing: 24) {
-            ForEach([("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞")), ("zhuan", L("传"))], id: \.0) { key, label in
+            ForEach([("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞")), ("zhuan", L("传")), ("najia", L("纳甲"))], id: \.0) { key, label in
                 let on = tab == key
                 Button { withAnimation(.spectrum) { tab = key } } label: {
                     Text(label)
@@ -307,19 +309,21 @@ struct ReadingView: View {
     private func tabContent(_ a: Analysis) -> some View {
         switch tab {
         case "yao":
+            let yong = HexagramView.yong(a.ben.n)
             VStack(spacing: 4) {
-                ForEach(0..<6, id: \.self) { i in
-                    let moving = Zhouyi.isMoving(a.lines[i])
+                ForEach(0..<(yong == nil ? 6 : 7), id: \.self) { i in
+                    // 第七行用九/用六：六爻皆动时高亮
+                    let moving = i < 6 ? Zhouyi.isMoving(a.lines[i]) : a.moving.count == 6
                     HStack(alignment: .firstTextBaseline, spacing: 10) {
-                        Text(Zhouyi.lineName(i, yang: a.bits[i] == 1))
+                        Text(i < 6 ? Zhouyi.lineName(i, yang: a.bits[i] == 1) : yong!.label)
                             .font(.system(size: 14, weight: .heavy))
                             .foregroundStyle(moving ? Color.accentText : Color.line)
                             .frame(width: 44, alignment: .leading)
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(a.ben.yao[i]).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                            Text(i < 6 ? a.ben.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
                             let k = "hex.\(a.ben.n).xiao.\(i)", xiao = L(k, table: "Commentary")
                             if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
-                            if moving { Badge(text: a.lines[i] == 9 ? L("动爻 · 老阳") : L("动爻 · 老阴"), subtle: true) }
+                            if moving && i < 6 { Badge(text: a.lines[i] == 9 ? L("动爻 · 老阳") : L("动爻 · 老阴"), subtle: true) }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -330,6 +334,8 @@ struct ReadingView: View {
             }
         case "bh":
             plain(a)
+        case "najia":
+            najia(a)
         case "zhuan":
             VStack(alignment: .leading, spacing: 16) {
                 ForEach(pair(a), id: \.0) { t, h in
@@ -349,6 +355,60 @@ struct ReadingView: View {
                 }
             }
         }
+    }
+
+    // MARK: 纳甲
+
+    /// 六爻纳甲排盘，上爻在上。时刻取起卦钟点，开真太阳时则校正
+    private func najia(_ a: Analysis) -> some View {
+        let solar = SettingsView.solar(record.ts, on: solarTime, longitude: longitude)
+        let pan = NaJia.pan(a, at: solar.date, timeZone: .current)
+        let hasFu = pan.rows.contains { $0.fu != nil }
+        let yao = { (y: NaJiaPan.Yao) in L(y.liuqin.rawValue) + y.ganzhi + L(y.wuxing) }
+        let small = { (s: String) in Text(s).font(.serif(13)).foregroundStyle(Color.subdued) }
+        return VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(L("%1$@宫 · %2$@", pan.palace.name, L(pan.kind.rawValue)))
+                    .font(.serif(18, semibold: true)).foregroundStyle(Color.text)
+                Text(L("%1$@年 %2$@月 %3$@日 %4$@时 · 旬空 %5$@", pan.year, pan.month, pan.day, pan.hour, pan.xunKong.map { L($0) }.joined()))
+                    .font(.serif(14)).foregroundStyle(Color.subdued)
+            }
+            Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 10) {
+                GridRow {
+                    small(L("六神"))
+                    if hasFu { small(L("伏神")) }
+                    small(L("本卦"))
+                    Color.clear.gridCellUnsizedAxes([.horizontal, .vertical])
+                    Color.clear.gridCellUnsizedAxes([.horizontal, .vertical])
+                    if a.bian != nil { small(L("变卦")) }
+                }
+                ForEach((0..<6).reversed(), id: \.self) { i in
+                    let r = pan.rows[i], v = a.lines[i]
+                    GridRow(alignment: .center) {
+                        Text(L(r.liushen.rawValue)).font(.serif(14)).foregroundStyle(Color.subdued)
+                        if hasFu { small(r.fu.map(yao) ?? "") }
+                        Text(yao(.init(liuqin: r.liuqin, ganzhi: r.ganzhi)))
+                            .font(.serif(15, semibold: true))
+                            .foregroundStyle(Zhouyi.isMoving(v) ? Color.accentText : Color.text)
+                        HStack(spacing: 4) {
+                            YaoBar(yang: a.bits[i] == 1, color: Zhouyi.isMoving(v) ? .accentVisual : .line, split: 6, seed: i, halo: false)
+                                .frame(width: 36, height: 6)
+                            Text(v == 9 ? "○" : v == 6 ? "×" : "")
+                                .font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                                .frame(width: 12)
+                        }
+                        Text(i + 1 == pan.shi ? L("世") : i + 1 == pan.ying ? L("应") : "")
+                            .font(.serif(14, semibold: true)).foregroundStyle(Color.accentText)
+                        if a.bian != nil { Text(r.bian.map(yao) ?? "").font(.serif(14)).foregroundStyle(Color.text) }
+                    }
+                }
+            }
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            Text(([solar.note].compactMap { $0 } + [L("只排盘，不自动断用神旺衰。")]).joined(separator: "\n"))
+                .font(.system(size: 12)).foregroundStyle(Color.subdued)
+        }
+        .card()
     }
 
     // MARK: 应验反馈

@@ -1,89 +1,30 @@
 import SwiftUI
 
-/// 界面语言。rawValue 即 lproj 目录名
-enum AppLanguage: String, CaseIterable {
-    case system, zhHans = "zh-Hans", zhHant = "zh-Hant", en, ja, ko, es, fr, de, ptBR = "pt-BR", ru, ar
-
-    /// 自称名，不翻译
-    var endonym: String {
-        switch self {
-        case .system: L("跟随系统")
-        case .zhHans: "简体中文"
-        case .zhHant: "繁體中文"
-        case .en: "English"
-        case .ja: "日本語"
-        case .ko: "한국어"
-        case .es: "Español"
-        case .fr: "Français"
-        case .de: "Deutsch"
-        case .ptBR: "Português"
-        case .ru: "Русский"
-        case .ar: "العربية"
-        }
-    }
-
-    /// 跟随系统：依次取首选语言中第一个支持的（与系统选 lproj 一致）；繁体地区归 zh-Hant，葡语归 pt-BR，都不匹配用英文
-    static func resolve(_ preferred: [String]) -> AppLanguage {
-        for p in preferred {
-            if p.hasPrefix("zh") {
-                return ["zh-Hant", "zh-TW", "zh-HK", "zh-MO"].contains { p.hasPrefix($0) } ? .zhHant : .zhHans
-            }
-            let code = String(p.prefix { $0 != "-" && $0 != "_" })
-            if code == "pt" { return .ptBR }
-            if let l = AppLanguage(rawValue: code), l != .system { return l }
-        }
-        return .en
-    }
-}
-
-@Observable
-final class Localizer {
-    static let shared = Localizer()
-
-    var choice: AppLanguage {
-        didSet {
-            UserDefaults.standard.set(choice.rawValue, forKey: "appLanguage")
-            bundle = Self.bundle(for: lang)
-        }
-    }
-    /// 当前语言的 lproj；尚无该语言时退回主包（即中文）
-    private(set) var bundle: Bundle
-
-    init() {
-        choice = AppLanguage(rawValue: UserDefaults.standard.string(forKey: "appLanguage") ?? "") ?? .system
-        bundle = .main
-        bundle = Self.bundle(for: lang)
-    }
-
-    /// 实际语言，不会是 .system
-    var lang: AppLanguage { choice == .system ? .resolve(Locale.preferredLanguages) : choice }
-    var isChinese: Bool { lang == .zhHans || lang == .zhHant }
-    var isRTL: Bool { lang == .ar }
-    /// 跟随系统且首选语言同语种时用完整地区（en-GB 日期为 “28 Sep”）
-    var locale: Locale {
-        if choice == .system, let p = Locale.preferredLanguages.first, p.hasPrefix(lang.rawValue.prefix(2)) { return Locale(identifier: p) }
-        return Locale(identifier: lang.rawValue)
-    }
-
-    private static func bundle(for lang: AppLanguage) -> Bundle {
-        Bundle.main.path(forResource: lang.rawValue, ofType: "lproj").flatMap(Bundle.init(path:)) ?? .main
-    }
-}
-
-/// 取本地化文字。读 Localizer.shared.bundle，SwiftUI 在 body 中据此追踪语言切换
-func L(_ key: String, table: String? = nil, default def: String? = nil) -> String {
-    Localizer.shared.bundle.localizedString(forKey: key, value: def ?? key, table: table)
-}
-
-/// 格式化：键为含 %@ / %d 的中文原文
-func L(_ key: String, _ args: CVarArg...) -> String {
-    String(format: L(key), locale: Localizer.shared.locale, arguments: args)
-}
-
 // MARK: - 设置
 
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("solarTime") private var solarTime = false
+    @AppStorage("longitude") private var longitude = 116.40
+
+    /// 常用城市经度（东经为正）
+    private var cities: [(String, Double)] {
+        [(L("北京"), 116.40), (L("上海"), 121.47), (L("广州"), 113.26), (L("深圳"), 114.06), (L("成都"), 104.07),
+         (L("重庆"), 106.55), (L("西安"), 108.94), (L("武汉"), 114.31), (L("南京"), 118.80), (L("杭州"), 120.16),
+         (L("天津"), 117.20), (L("沈阳"), 123.43), (L("哈尔滨"), 126.63), (L("昆明"), 102.83), (L("乌鲁木齐"), 87.62),
+         (L("拉萨"), 91.13), (L("香港"), 114.17), (L("台北"), 121.56), (L("新加坡"), 103.82), (L("东京"), 139.69),
+         (L("纽约"), -74.01), (L("洛杉矶"), -118.24), (L("伦敦"), -0.13), (L("悉尼"), 151.21)]
+    }
+
+    /// 真太阳时：开启时返回校正后的时刻与说明行，否则原样、无说明。时间起卦与纳甲时柱共用
+    static func solar(_ date: Date, on: Bool, longitude: Double) -> (date: Date, note: String?) {
+        guard on else { return (date, nil) }
+        let t = NaJia.trueSolarTime(date, longitude: longitude, timeZone: .current)
+        let f = DateFormatter()
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.dateFormat = "HH:mm"
+        return (t, L("已按真太阳时（经度 %1$@°）· 时钟 %2$@ → 真太阳 %3$@", String(format: "%.2f", longitude), f.string(from: date), f.string(from: t)))
+    }
 
     var body: some View {
         let loc = Localizer.shared
@@ -106,6 +47,27 @@ struct SettingsView: View {
                         .listRowBackground(Color.base)
                     }
                 }
+                Section {
+                    Toggle(L("真太阳时"), isOn: $solarTime).tint(Color.accentText)
+                    if solarTime {
+                        Picker(L("城市"), selection: $longitude) {
+                            ForEach(cities, id: \.1) { Text($0.0).tag($0.1) }
+                            if !cities.contains(where: { $0.1 == longitude }) {
+                                Text(L("自定义经度")).tag(longitude)
+                            }
+                        }
+                        HStack {
+                            Text(L("自定义经度"))
+                            TextField("", value: $longitude, format: .number.precision(.fractionLength(0...2)))
+                                .keyboardType(.numbersAndPunctuation)
+                                .multilineTextAlignment(.trailing)
+                        }
+                        .onChange(of: longitude) { longitude = min(180, max(-180, longitude)) }
+                    }
+                } footer: {
+                    Text(L("按经度与均时差校正时间起卦的时辰与纳甲时柱。东经为正、西经为负；不使用定位。"))
+                }
+                .listRowBackground(Color.base)
                 Section(L("关于与致谢")) {
                     let info = Bundle.main.infoDictionary
                     credit(L("版本"), "\(info?["CFBundleShortVersionString"] as? String ?? "") (\(info?["CFBundleVersion"] as? String ?? ""))")

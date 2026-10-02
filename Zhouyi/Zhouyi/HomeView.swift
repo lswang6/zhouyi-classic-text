@@ -8,6 +8,8 @@ struct HomeView: View {
     @State private var method: CastMethod = .time
     @AppStorage("shakeMethod") private var shakeMethod: CastMethod = .coin   // 摇卦卡内：铜钱 / 蓍草
     @State private var nums = ["", "", ""]
+    @AppStorage("solarTime") private var solarTime = false
+    @AppStorage("longitude") private var longitude = 116.40
 
     private var numberCast: TriCast? {
         // wholeNumberValue 兼认阿拉伯-印度数字（١٢）
@@ -195,7 +197,8 @@ struct HomeView: View {
 
     private var timePanel: some View {
         TimelineView(.everyMinute) { context in
-            let tv = Zhouyi.timeCast(context.date)
+            let solar = SettingsView.solar(context.date, on: solarTime, longitude: longitude)
+            let tv = Zhouyi.timeCast(solar.date)
             let T = Zhouyi.trigrams, B = Zhouyi.branches
             let y = tv.yearBranch, h = tv.hourBranch, c = tv.cast
             VStack(alignment: .leading, spacing: 8) {
@@ -204,12 +207,12 @@ struct HomeView: View {
                 row(L("上卦：年+月+日 = %d", tv.s1), tri(tv.s1, T[c.up - 1]))
                 row(L("下卦：再加时 = %d", tv.s2), tri(tv.s2, T[c.lo - 1]))
                 row(L("动爻：%d ÷ 6", tv.s2), Text(L("余 %1$d → %2$@爻", tv.s2 % 6, L(Zhouyi.positions[c.mv - 1]))))
-                Text(L("以农历年支、月、日与时支数起卦。闰月按本月数；23 点后为子时，按次日计。"))
+                Text(L("年支按农历年（春节换年）· 闰月按本月数 · 23 点起为次日子时 · 按本机时区"))
                     .font(.system(size: 11))
                     .foregroundStyle(Color.subdued)
-                Text(L("年支按农历年（春节换年）· 23 点起为次日子时 · 按本机时区"))
-                    .font(.system(size: 11))
-                    .foregroundStyle(Color.subdued)
+                if let note = solar.note {
+                    Text(note).font(.system(size: 11)).foregroundStyle(Color.subdued)
+                }
                 // 只取时辰：两小时内结果不变，属传统本意
                 let from = (2 * h + 21) % 24
                 Text(L("同一时辰内（%@）起卦结果相同，一事不二占。", String(format: "%02d:00–%02d:00", from, (from + 2) % 24)))
@@ -254,7 +257,7 @@ struct HomeView: View {
             guard let c = numberCast else { return }
             cast = c
         case .time:
-            cast = Zhouyi.timeCast(Date()).cast
+            cast = Zhouyi.timeCast(SettingsView.solar(Date(), on: solarTime, longitude: longitude).date).cast
         }
         let r = Record(q: app.q, cat: app.cat, method: method, lines: Zhouyi.lines(from: cast))
         withAnimation(.easeOut(duration: 0.2)) { app.forming = r }   // 过场结束后入库并打开

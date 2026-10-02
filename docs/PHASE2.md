@@ -100,7 +100,7 @@
 | Wave | 内容 | 负责 | 文件边界 |
 | --- | --- | --- | --- |
 | 1 | S1 S2 S3(逻辑) S5 S6 S7(采样) 算法 + 单测 | Opus worker A | Zhouyi.swift、HexagramData.swift、ZhouyiTests.swift |
-| 1 | S4 数据 | Opus worker B | */Commentary.strings、脚本在 scratchpad |
+| 1 | S4 数据 | Opus worker B | */Commentary.strings、脚本在 Zhouyi/tools/text |
 | 2 | S8 纳甲引擎 + S9 真太阳时函数 + tyme4swift 接入 | Opus worker D | NaJia.swift、SolarTime（并入 NaJia.swift 或 Zhouyi.swift）、NaJiaTests.swift、project.yml |
 | 2 | S14 配图 | 主会话 imagegen | Assets.xcassets |
 | 3 | UI-1：解卦页（传、互错综、体用、纳甲页签、分享图片）+ 卦详情 | Opus worker C1 | ReadingView.swift、KnowledgeView.swift |

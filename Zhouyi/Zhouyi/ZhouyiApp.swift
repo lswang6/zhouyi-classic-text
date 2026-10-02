@@ -17,8 +17,17 @@ struct ZhouyiApp: App {
         WindowGroup {
             RootView()
         }
-        .modelContainer(for: Record.self)
+        .modelContainer(container)
     }
+
+    /// iCloud 私有库同步；未登录 iCloud 时 SwiftData 照常本地存取。
+    /// groupContainer 须 .none：默认 .automatic 有 App Group 权限时会把库移进组容器，旧记录就找不到了
+    private let container: ModelContainer = {
+        let cloud = ModelConfiguration(groupContainer: .none, cloudKitDatabase: .private("iCloud.com.lswang.zhouyi"))
+        if let c = try? ModelContainer(for: Record.self, configurations: cloud) { return c }
+        // 权限或容器出错时退回纯本地，同一库文件
+        return try! ModelContainer(for: Record.self, configurations: ModelConfiguration(groupContainer: .none, cloudKitDatabase: .none))
+    }()
 }
 
 enum Route: Hashable {
@@ -95,6 +104,12 @@ struct RootView: View {
         .overlay { ToastOverlay(toast: app.toast) }
         .overlay { if splash { SplashOverlay { splash = false } } }
         .sheet(isPresented: $app.showSettings) { SettingsView() }
+        .onOpenURL { url in   // 小组件：zhouyi://hexagram/<n>
+            guard url.scheme == "zhouyi", url.host == "hexagram", let n = Int(url.lastPathComponent), (1...64).contains(n) else { return }
+            app.showSettings = false
+            app.tab = .learn
+            app.learnPath = [.hexagram(n)]
+        }
         .environment(app)
         .environment(\.locale, loc.locale)
         .environment(\.layoutDirection, loc.isRTL ? .rightToLeft : .leftToRight)

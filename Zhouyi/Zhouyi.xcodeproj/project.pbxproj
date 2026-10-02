@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		006EEE1CB49314B2B3E663A0 /* coin-rattle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 25622BCEDB5C4AD9FC9A41AE /* coin-rattle.wav */; };
 		1C491CC78885D21FB287E46F /* HexagramData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7DBCE980E5BABB2B44F513 /* HexagramData.swift */; };
+		1D099EDD587107C2F11DC3C8 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA70169E86BB82DB7A503C85 /* Language.swift */; };
 		1ED27B3DEB4CB64B24BE4FAE /* ZhouyiSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B56D6BF465E833A106772E4D /* ZhouyiSerif-Regular.ttf */; };
 		1FC80D303754C6186B604BE6 /* NaJia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EF5881507286F83953493 /* NaJia.swift */; };
+		305CA031AD62FEBEB57BC57A /* HexagramData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7DBCE980E5BABB2B44F513 /* HexagramData.swift */; };
 		33353B0D9AD60AD335E147FD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71581B6AA8A67F25AED1B48B /* HomeView.swift */; };
 		353F3F97AA7A3E2358D5DE16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D15A2152DA5825DC2668AC04 /* InfoPlist.strings */; };
 		3CD4A9B260718621A6178B76 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A786C25708E393EB65D49B6 /* Localization.swift */; };
 		40369D047F4FB5B1EC34CE89 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B88F638A4E5E4C7C120ECB1 /* Record.swift */; };
+		40392F0FDEFC091815E0199C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779013E926D7B433A63F94F2 /* Theme.swift */; };
 		4C86EB5EA07E6A712D6C5CA3 /* coin-drop.wav in Resources */ = {isa = PBXBuildFile; fileRef = FD65FD6192372A5AA7832F98 /* coin-drop.wav */; };
 		582E098DF126AC4743FF22B5 /* Zhouyi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EB9F028BD150A36F1771A9 /* Zhouyi.swift */; };
 		58E435CE28B26F8CEDEE8B83 /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961B21C3E84E020461D866D /* ReadingView.swift */; };
@@ -24,18 +27,27 @@
 		70BB624A205948740777DACF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E6B52EC2111BB1E06602195 /* Localizable.strings */; };
 		7522C48FA36C5E76D6BD7DE4 /* Commentary.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCD4F6DF7E62FD47B822EFD3 /* Commentary.strings */; };
 		7D7FEBFA64BCE5A97094E132 /* Tyme4Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 40B06EF1178A5B2E28A7B9D8 /* Tyme4Swift */; };
+		7E5D15D9765CA08BC6716C0A /* ZhouyiWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 63B3CD3E3258D3145A389D9A /* ZhouyiWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8573DFBFA584BA4E6E75DE7B /* Zhouyi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EB9F028BD150A36F1771A9 /* Zhouyi.swift */; };
 		879C7005501DB4A6DF14CD37 /* Hexagrams.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D4CBA578D93BDD17980139 /* Hexagrams.strings */; };
+		8D8D6D700E83ACBB7F7AE093 /* Classical.strings in Resources */ = {isa = PBXBuildFile; fileRef = A69C3DF80DC72569508291A7 /* Classical.strings */; };
 		99032FA82693042730498EF1 /* ZhouyiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18BC73A3E8BF93328A1A9C5 /* ZhouyiApp.swift */; };
 		9D6BB6C4DAF7CB91ADF35392 /* ZhouyiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B23FE5B1B5F219344B22C /* ZhouyiTests.swift */; };
 		A3E067103CB2C04C250F52A0 /* Knowledge.strings in Resources */ = {isa = PBXBuildFile; fileRef = 691D918AD7CB2EF91242A608 /* Knowledge.strings */; };
+		A6AE30B50FBC8A1891F0A187 /* ZhouyiWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F366706326F9B188763E6 /* ZhouyiWidget.swift */; };
 		AA11695B023E034377D447FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D884BF04A654F757260385A6 /* Assets.xcassets */; };
+		AD9EF4434F350237052DBA1F /* ZhouyiSerif-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733A8083573BA3CD8E866315 /* ZhouyiSerif-SemiBold.ttf */; };
 		D5023891D6486F2D6D9D25D6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779013E926D7B433A63F94F2 /* Theme.swift */; };
+		D8318002D35955F1510781BF /* Hexagrams.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D4CBA578D93BDD17980139 /* Hexagrams.strings */; };
 		D9E31ABDB9A5C352ED711F0F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7675BA107D3BE4DEA18F4F /* HistoryView.swift */; };
+		E00C83C924BB742445AC4DBB /* ZhouyiSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B56D6BF465E833A106772E4D /* ZhouyiSerif-Regular.ttf */; };
+		E4CBF8FCEB3CE015713BCF05 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA70169E86BB82DB7A503C85 /* Language.swift */; };
 		EEDC892954040A3F526D21BD /* NaJiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC760C43422C61D8B8F78D /* NaJiaTests.swift */; };
 		F27931D8ADA2DA4BAECA31D2 /* Classical.strings in Resources */ = {isa = PBXBuildFile; fileRef = A69C3DF80DC72569508291A7 /* Classical.strings */; };
 		F4A54BC511A389D9321406E9 /* CastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC4E23643650F8E5371F08 /* CastView.swift */; };
 		F59799BD271C75DC56B9A443 /* Commentary.strings in Resources */ = {isa = PBXBuildFile; fileRef = 943D2328B3084280F508C832 /* Commentary.strings */; };
 		F608D8CA2669EDF352DF4C62 /* splash-light.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 81F489E0CBE76C195A20FE51 /* splash-light.mp4 */; };
+		F732F02CADAD05B4FA3146A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E6B52EC2111BB1E06602195 /* Localizable.strings */; };
 		FFCF450654FD068C3EC3443B /* KnowledgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBF60E136E29F1F16276AC6 /* KnowledgeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +59,28 @@
 			remoteGlobalIDString = 0BFC077ED54DB50F70B98A7A;
 			remoteInfo = Zhouyi;
 		};
+		42406A395539B9CC27141562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38B49F193449E7C1E4BADD94 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F0BC87D242CD301359382D0;
+			remoteInfo = ZhouyiWidget;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4EB8738F7FD645070261DA0B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7E5D15D9765CA08BC6716C0A /* ZhouyiWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		017D253B8FAEB7292093D455 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Knowledge.strings"; sourceTree = "<group>"; };
@@ -67,10 +100,12 @@
 		47EC4E23643650F8E5371F08 /* CastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastView.swift; sourceTree = "<group>"; };
 		4C29B856D9ED57E089030B50 /* Ink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ink.swift; sourceTree = "<group>"; };
 		507733767830D9195EDD8C25 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Knowledge.strings; sourceTree = "<group>"; };
+		50C1BCA2551B988663BF5A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5666FABFE66DB9FD182C4AC5 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Hexagrams.strings"; sourceTree = "<group>"; };
 		5A42A7184DB03F31C47B8D80 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Hexagrams.strings; sourceTree = "<group>"; };
 		5FAAC3EBE53A7DCF46BE71DA /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		612B096981673CDFC5A2CFF0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		63B3CD3E3258D3145A389D9A /* ZhouyiWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ZhouyiWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70EB9F028BD150A36F1771A9 /* Zhouyi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zhouyi.swift; sourceTree = "<group>"; };
 		7102D527992C73B6A1E6E969 /* splash-dark.mp4 */ = {isa = PBXFileReference; path = "splash-dark.mp4"; sourceTree = "<group>"; };
 		71581B6AA8A67F25AED1B48B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -85,6 +120,7 @@
 		868737B254288DE4EB2A4B7B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8935B4D28B2C04358973668F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8A786C25708E393EB65D49B6 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		8A8F366706326F9B188763E6 /* ZhouyiWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZhouyiWidget.swift; sourceTree = "<group>"; };
 		8C9EEDB9EE6C1EF7C5DE9713 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Knowledge.strings; sourceTree = "<group>"; };
 		91B50509E6705139FB72EE18 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9216D228F2039D965770C821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -103,6 +139,7 @@
 		B4289CD6F9B7BA65DBE9C49D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B56D6BF465E833A106772E4D /* ZhouyiSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZhouyiSerif-Regular.ttf"; sourceTree = "<group>"; };
 		B7E0116DD8EE082A752524F2 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Knowledge.strings; sourceTree = "<group>"; };
+		CA70169E86BB82DB7A503C85 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		CBE5CEBD9F852BD9381629B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Hexagrams.strings; sourceTree = "<group>"; };
 		CCD4F6DF7E62FD47B822EFD3 /* Commentary.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Commentary.strings; path = "zh-Hant.lproj/Commentary.strings"; sourceTree = "<group>"; };
 		CD7DBCE980E5BABB2B44F513 /* HexagramData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagramData.swift; sourceTree = "<group>"; };
@@ -140,8 +177,18 @@
 			children = (
 				8802885A432DD52EC7634D30 /* Zhouyi */,
 				E3C095028B5EE470B06E2C12 /* ZhouyiTests */,
+				108F8D69F6783893894EEFBB /* ZhouyiWidget */,
 				F2FDACBBA291C46C088838EF /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		108F8D69F6783893894EEFBB /* ZhouyiWidget */ = {
+			isa = PBXGroup;
+			children = (
+				50C1BCA2551B988663BF5A25 /* Info.plist */,
+				8A8F366706326F9B188763E6 /* ZhouyiWidget.swift */,
+			);
+			path = ZhouyiWidget;
 			sourceTree = "<group>";
 		};
 		8802885A432DD52EC7634D30 /* Zhouyi */ = {
@@ -160,6 +207,7 @@
 				9216D228F2039D965770C821 /* Info.plist */,
 				4C29B856D9ED57E089030B50 /* Ink.swift */,
 				FBBF60E136E29F1F16276AC6 /* KnowledgeView.swift */,
+				CA70169E86BB82DB7A503C85 /* Language.swift */,
 				8A786C25708E393EB65D49B6 /* Localization.swift */,
 				295EF5881507286F83953493 /* NaJia.swift */,
 				A961B21C3E84E020461D866D /* ReadingView.swift */,
@@ -193,6 +241,7 @@
 			children = (
 				EC08857EC998D1FFBC29A78C /* Zhouyi.app */,
 				2CF1764C9AF128A0C96D85FE /* ZhouyiTests.xctest */,
+				63B3CD3E3258D3145A389D9A /* ZhouyiWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,10 +256,12 @@
 				A4602EFA515A61130DE7CB51 /* Sources */,
 				BF471B7A9871EB3B312E48E2 /* Resources */,
 				1632D575D83FEFB31731BABE /* Frameworks */,
+				4EB8738F7FD645070261DA0B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				59F5E98D0B2E65E423E33DF1 /* PBXTargetDependency */,
 			);
 			name = Zhouyi;
 			packageProductDependencies = (
@@ -219,6 +270,24 @@
 			productName = Zhouyi;
 			productReference = EC08857EC998D1FFBC29A78C /* Zhouyi.app */;
 			productType = "com.apple.product-type.application";
+		};
+		0F0BC87D242CD301359382D0 /* ZhouyiWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C03F9088F822C20F3D808D46 /* Build configuration list for PBXNativeTarget "ZhouyiWidget" */;
+			buildPhases = (
+				7FC322E0A4A3FFCF895ABA3E /* Sources */,
+				7A75FD57C8333A7C19CCD64E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZhouyiWidget;
+			packageProductDependencies = (
+			);
+			productName = ZhouyiWidget;
+			productReference = 63B3CD3E3258D3145A389D9A /* ZhouyiWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		BE08D24EEF6B04AC1693C4D6 /* ZhouyiTests */ = {
 			isa = PBXNativeTarget;
@@ -248,6 +317,10 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					0BFC077ED54DB50F70B98A7A = {
+						DevelopmentTeam = TX57ZT87FD;
+						ProvisioningStyle = Automatic;
+					};
+					0F0BC87D242CD301359382D0 = {
 						DevelopmentTeam = TX57ZT87FD;
 						ProvisioningStyle = Automatic;
 					};
@@ -285,12 +358,25 @@
 			projectRoot = "";
 			targets = (
 				0BFC077ED54DB50F70B98A7A /* Zhouyi */,
+				0F0BC87D242CD301359382D0 /* ZhouyiWidget */,
 				BE08D24EEF6B04AC1693C4D6 /* ZhouyiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7A75FD57C8333A7C19CCD64E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D8D6D700E83ACBB7F7AE093 /* Classical.strings in Resources */,
+				D8318002D35955F1510781BF /* Hexagrams.strings in Resources */,
+				F732F02CADAD05B4FA3146A4 /* Localizable.strings in Resources */,
+				E00C83C924BB742445AC4DBB /* ZhouyiSerif-Regular.ttf in Resources */,
+				AD9EF4434F350237052DBA1F /* ZhouyiSerif-SemiBold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BF471B7A9871EB3B312E48E2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,6 +401,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7FC322E0A4A3FFCF895ABA3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				305CA031AD62FEBEB57BC57A /* HexagramData.swift in Sources */,
+				E4CBF8FCEB3CE015713BCF05 /* Language.swift in Sources */,
+				40392F0FDEFC091815E0199C /* Theme.swift in Sources */,
+				8573DFBFA584BA4E6E75DE7B /* Zhouyi.swift in Sources */,
+				A6AE30B50FBC8A1891F0A187 /* ZhouyiWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A4602EFA515A61130DE7CB51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,6 +423,7 @@
 				33353B0D9AD60AD335E147FD /* HomeView.swift in Sources */,
 				5C76C673EF269CC137FDDEE5 /* Ink.swift in Sources */,
 				FFCF450654FD068C3EC3443B /* KnowledgeView.swift in Sources */,
+				1D099EDD587107C2F11DC3C8 /* Language.swift in Sources */,
 				3CD4A9B260718621A6178B76 /* Localization.swift in Sources */,
 				1FC80D303754C6186B604BE6 /* NaJia.swift in Sources */,
 				58E435CE28B26F8CEDEE8B83 /* ReadingView.swift in Sources */,
@@ -351,6 +450,11 @@
 			isa = PBXTargetDependency;
 			target = 0BFC077ED54DB50F70B98A7A /* Zhouyi */;
 			targetProxy = 2A572A321BFA5BC1B28268BE /* PBXContainerItemProxy */;
+		};
+		59F5E98D0B2E65E423E33DF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F0BC87D242CD301359382D0 /* ZhouyiWidget */;
+			targetProxy = 42406A395539B9CC27141562 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -513,6 +617,25 @@
 			};
 			name = Debug;
 		};
+		67C9E7C8C54BE988C00875DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ZhouyiWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZhouyiWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "周易卜卦";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lswang.zhouyi.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		C0BE961F2BB316FD0F930B6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -594,6 +717,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Zhouyi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Zhouyi/Info.plist;
@@ -615,6 +739,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Zhouyi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Zhouyi/Info.plist;
@@ -628,6 +753,25 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lswang.zhouyi;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		F425B5E7741041F28832441B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ZhouyiWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZhouyiWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "周易卜卦";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lswang.zhouyi.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -658,6 +802,15 @@
 			buildConfigurations = (
 				DF36CE16C29CB63C35FD5B49 /* Debug */,
 				E6762787FA7930957F386F08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C03F9088F822C20F3D808D46 /* Build configuration list for PBXNativeTarget "ZhouyiWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67C9E7C8C54BE988C00875DA /* Debug */,
+				F425B5E7741041F28832441B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

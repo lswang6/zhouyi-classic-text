@@ -207,13 +207,14 @@ struct HexagramView: View {
                     }
                     block(L("爻辞")) {
                         VStack(alignment: .leading, spacing: 12) {
-                            ForEach(0..<6, id: \.self) { i in
+                            let yong = Self.yong(n)
+                            ForEach(0..<(yong == nil ? 6 : 7), id: \.self) { i in
                                 HStack(alignment: .firstTextBaseline, spacing: 10) {
-                                    Text(Zhouyi.lineName(i, yang: h.bits[i] == 1))
+                                    Text(i < 6 ? Zhouyi.lineName(i, yang: h.bits[i] == 1) : yong!.label)
                                         .font(.system(size: 14, weight: .heavy)).foregroundStyle(Color.line)
                                         .frame(width: 44, alignment: .leading)
                                     VStack(alignment: .leading, spacing: 6) {
-                                        Text(h.yao[i]).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                                        Text(i < 6 ? h.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
                                         let k = "hex.\(n).xiao.\(i)", xiao = L(k, table: "Commentary")
                                         if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
                                     }
@@ -234,6 +235,15 @@ struct HexagramView: View {
         .navigationTitle(h.full)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarRole(.editor)
+    }
+
+    /// 乾用九、坤用六：第七行，小象键 hex.n.xiao.6
+    static func yong(_ n: Int) -> (label: String, text: String)? {
+        switch n {
+        case 1: (L("用九"), L("yongjiu.text", table: "Classical", default: "见群龙无首，吉。"))
+        case 2: (L("用六"), L("yongliu.text", table: "Classical", default: "利永贞。"))
+        default: nil
+        }
     }
 
     private func block(_ title: String, @ViewBuilder _ content: () -> some View) -> some View {

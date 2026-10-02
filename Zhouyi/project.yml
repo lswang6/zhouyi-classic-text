@@ -22,12 +22,24 @@ targets:
     sources: [Zhouyi]
     dependencies:
       - package: Tyme4Swift
+      - target: ZhouyiWidget   # 嵌入 PlugIns
     info:
       path: Zhouyi/Info.plist   # 与 GENERATE_INFOPLIST_FILE 合并
       properties:
         CFBundleLocalizations: [zh-Hans, zh-Hant, en, ja, ko, es, fr, de, pt-BR, ru, ar]
         UILaunchScreen:
           UIColorName: LaunchBackground   # 启动屏宣纸底色，与首帧 layer1 一致
+        UIBackgroundModes: [remote-notification]   # CloudKit 静默推送
+        CFBundleURLTypes:   # 小组件深链 zhouyi://hexagram/<n>
+          - CFBundleURLName: com.lswang.zhouyi
+            CFBundleURLSchemes: [zhouyi]
+    entitlements:
+      path: Zhouyi.entitlements
+      properties:
+        com.apple.developer.icloud-container-identifiers: [iCloud.com.lswang.zhouyi]
+        com.apple.developer.icloud-services: [CloudKit]
+        aps-environment: development   # 归档分发时 Xcode 自动换 production
+        com.apple.security.application-groups: [group.com.lswang.zhouyi]   # 语言选择与小组件共享
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.lswang.zhouyi
@@ -38,6 +50,40 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon   # 临时图标，正式上架前替换
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+  ZhouyiWidget:   # 今日一卦，与应用共用卦文、本地化、卦画源码
+    type: app-extension
+    platform: iOS
+    sources:
+      - ZhouyiWidget
+      - path: Zhouyi
+        includes:
+          - Zhouyi.swift
+          - HexagramData.swift
+          - Language.swift
+          - Theme.swift
+          - ZhouyiSerif-*.ttf
+          - "*.lproj/Hexagrams.strings"
+          - "*.lproj/Classical.strings"
+          - "*.lproj/Localizable.strings"
+    info:
+      path: ZhouyiWidget/Info.plist
+      properties:
+        CFBundleDisplayName: 周易卜卦
+        CFBundleLocalizations: [zh-Hans, zh-Hant, en, ja, ko, es, fr, de, pt-BR, ru, ar]
+        UIAppFonts: [ZhouyiSerif-Regular.ttf, ZhouyiSerif-SemiBold.ttf]
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: ZhouyiWidget.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.lswang.zhouyi]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lswang.zhouyi.widget
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_KEY_CFBundleDisplayName: 周易卜卦
+        SKIP_INSTALL: YES
   ZhouyiTests:
     type: bundle.unit-test
     platform: iOS

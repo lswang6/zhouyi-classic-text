@@ -38,7 +38,6 @@
 "下卦：再加时 = %d" = "Bas : plus l’heure = %d";
 "动爻：%d ÷ 6" = "Trait mutable : %d ÷ 6";
 "余 %1$d → %2$@爻" = "reste %1$d → %2$@ trait";
-"以农历年支、月、日与时支数起卦。闰月按本月数；23 点后为子时，按次日计。" = "Tirage d’après la branche de l’année, le mois et le jour lunaires, et la branche de l’heure. Un mois intercalaire compte comme le mois ordinaire ; après 23 h, c’est l’heure Zi, comptée comme le jour suivant.";
 "已保存到卜卦记录" = "Enregistré dans l’historique";
 
 /* 摇卦 */
@@ -216,7 +215,6 @@
 "蓍草" = "Yarrow"; /* i18n-todo */
 "大衍之数五十，其用四十九：分二、挂一、揲四、归奇，四营成易，三变成一爻，十有八变而成卦。" = "Of fifty stalks, forty-nine are used: divide in two, set one aside, count off by fours, lay aside the remainder. These four steps make one change; three changes make a line, and eighteen changes make the hexagram."; /* i18n-todo */
 "老阳 : 老阴 = 3 : 1，铜钱为 1 : 1。" = "Old yang : old yin = 3 : 1 (coins give 1 : 1)."; /* i18n-todo */
-"年支按农历年（春节换年）· 23 点起为次日子时 · 按本机时区" = "Year branch follows the lunar year (changes at Lunar New Year) · from 23:00 counts as the next day's Zi hour · device time zone"; /* i18n-todo */
 "三变得 %1$d · %2$@" = "Three changes give %1$d · %2$@"; /* i18n-todo */
 "揲蓍" = "Count Stalks"; /* i18n-todo */
 "点按揲蓍，或直接摇动手机" = "Tap to count the stalks, or shake your phone"; /* i18n-todo */
@@ -231,3 +229,61 @@
 "《周易》通行本（Wikisource 公有领域原文；freizl/yijing, MIT）" = "Received text of the Zhouyi (public-domain original via Wikisource; freizl/yijing, MIT)"; /* i18n-todo */
 "历法" = "Calendar"; /* i18n-todo */
 "纳甲对校" = "Na Jia Cross-check"; /* i18n-todo */
+"年支按农历年（春节换年）· 闰月按本月数 · 23 点起为次日子时 · 按本机时区" = "Year branch follows the lunar year (changes at Lunar New Year) · a leap month counts as its regular month · from 23:00 counts as the next day's Zi hour · device time zone"; /* i18n-todo */
+"已按真太阳时（经度 %1$@°）· 时钟 %2$@ → 真太阳 %3$@" = "Adjusted to true solar time (longitude %1$@°) · clock %2$@ → solar %3$@"; /* i18n-todo */
+"纳甲" = "Najia"; /* i18n-todo */
+"%1$@宫 · %2$@" = "%1$@ palace · %2$@"; /* i18n-todo */
+"%1$@年 %2$@月 %3$@日 %4$@时 · 旬空 %5$@" = "Year %1$@ · month %2$@ · day %3$@ · hour %4$@ · void %5$@"; /* i18n-todo */
+"六神" = "Spirits"; /* i18n-todo */
+"伏神" = "Hidden"; /* i18n-todo */
+"世" = "Self"; /* i18n-todo */
+"应" = "Other"; /* i18n-todo */
+"只排盘，不自动断用神旺衰。" = "Chart only; no automatic judgment of the focal line or its strength."; /* i18n-todo */
+"兄弟" = "Siblings"; /* i18n-todo */
+"子孙" = "Offspring"; /* i18n-todo */
+"妻财" = "Wealth"; /* i18n-todo */
+"官鬼" = "Officials"; /* i18n-todo */
+"父母" = "Parents"; /* i18n-todo */
+"青龙" = "Azure Dragon"; /* i18n-todo */
+"朱雀" = "Vermilion Bird"; /* i18n-todo */
+"勾陈" = "Gouchen"; /* i18n-todo */
+"螣蛇" = "Soaring Serpent"; /* i18n-todo */
+"白虎" = "White Tiger"; /* i18n-todo */
+"玄武" = "Black Tortoise"; /* i18n-todo */
+"本宫" = "Palace head"; /* i18n-todo */
+"一世" = "First generation"; /* i18n-todo */
+"二世" = "Second generation"; /* i18n-todo */
+"三世" = "Third generation"; /* i18n-todo */
+"四世" = "Fourth generation"; /* i18n-todo */
+"五世" = "Fifth generation"; /* i18n-todo */
+"游魂" = "Wandering soul"; /* i18n-todo */
+"归魂" = "Returning soul"; /* i18n-todo */
+"真太阳时" = "True solar time"; /* i18n-todo */
+"城市" = "City"; /* i18n-todo */
+"自定义经度" = "Custom longitude"; /* i18n-todo */
+"按经度与均时差校正时间起卦的时辰与纳甲时柱。东经为正、西经为负；不使用定位。" = "Corrects the hour used by time casting and the Najia hour pillar by longitude and the equation of time. East is positive, west negative; location services are not used."; /* i18n-todo */
+"北京" = "Beijing"; /* i18n-todo */
+"上海" = "Shanghai"; /* i18n-todo */
+"广州" = "Guangzhou"; /* i18n-todo */
+"深圳" = "Shenzhen"; /* i18n-todo */
+"成都" = "Chengdu"; /* i18n-todo */
+"重庆" = "Chongqing"; /* i18n-todo */
+"西安" = "Xi'an"; /* i18n-todo */
+"武汉" = "Wuhan"; /* i18n-todo */
+"南京" = "Nanjing"; /* i18n-todo */
+"杭州" = "Hangzhou"; /* i18n-todo */
+"天津" = "Tianjin"; /* i18n-todo */
+"沈阳" = "Shenyang"; /* i18n-todo */
+"哈尔滨" = "Harbin"; /* i18n-todo */
+"昆明" = "Kunming"; /* i18n-todo */
+"乌鲁木齐" = "Urumqi"; /* i18n-todo */
+"拉萨" = "Lhasa"; /* i18n-todo */
+"香港" = "Hong Kong"; /* i18n-todo */
+"台北" = "Taipei"; /* i18n-todo */
+"新加坡" = "Singapore"; /* i18n-todo */
+"东京" = "Tokyo"; /* i18n-todo */
+"纽约" = "New York"; /* i18n-todo */
+"洛杉矶" = "Los Angeles"; /* i18n-todo */
+"伦敦" = "London"; /* i18n-todo */
+"悉尼" = "Sydney"; /* i18n-todo */
+"每日一卦，点按查看卦辞。" = "A hexagram each day. Tap to read it."; /* i18n-todo */

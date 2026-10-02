@@ -3,14 +3,15 @@ import SwiftData
 
 @Model
 final class Record {
-    var ts: Date
-    var q: String
-    var cat: String
-    var method: String      // CastMethod.rawValue
-    var lines: [Int]        // 6/7/8/9，初→上
-    var fav: Bool
-    var note: String
-    var verify: String      // Record.verifyOptions
+    // CloudKit 要求每个属性有默认值、无唯一约束
+    var ts: Date = Date.now
+    var q: String = ""
+    var cat: String = "其他"
+    var method: String = "coin"      // CastMethod.rawValue
+    var lines: [Int] = []            // 6/7/8/9，初→上
+    var fav: Bool = false
+    var note: String = ""
+    var verify: String = "待验"      // Record.verifyOptions
 
     static let categories = ["事业", "感情", "财运", "健康", "学业", "其他"]
     static let verifyOptions = ["待验", "应验", "未应验"]

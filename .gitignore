@@ -10,3 +10,4 @@ Zhouyi/build/
 node_modules/
 Zhouyi/opencc-*.tar.gz
 Zhouyi/tools/art/raw*/
+Zhouyi/tools/text/ref/

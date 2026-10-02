@@ -37,9 +37,25 @@ extension Animation {
 }
 
 extension Font {
-    /// 卦辞、爻辞用衬线（思源宋体子集，仅含卦文用字）
+    /// 卦辞、爻辞用衬线（思源宋体子集，仅含卦文用字）；随动态字体按 size 所近的文本样式缩放
     static func serif(_ size: CGFloat, semibold: Bool = false) -> Font {
-        .custom(semibold ? "ZhouyiSerif-SemiBold" : "ZhouyiSerif-Regular", fixedSize: size)
+        .custom(semibold ? "ZhouyiSerif-SemiBold" : "ZhouyiSerif-Regular", size: size, relativeTo: textStyle(size))
+    }
+
+    /// 字号 → 默认字号与之最近的系统文本样式（缩放比例随之）
+    static func textStyle(_ size: CGFloat) -> TextStyle {
+        switch size {
+        case 30...: .largeTitle
+        case 25..<30: .title
+        case 21..<25: .title2
+        case 18..<21: .title3
+        case 17..<18: .body
+        case 16..<17: .callout
+        case 14..<16: .subheadline
+        case 13..<14: .footnote
+        case 12..<13: .caption
+        default: .caption2
+        }
     }
 }
 
@@ -47,7 +63,7 @@ extension Font {
 /// ponytail: 卜 左侧留白大（SemiBold LSB 378/1000，易 45/1000），以卜开头的中文标题左移补齐页边；他字再补
 func pageTitle(_ s: String) -> some View {
     let zh = Localizer.shared.isChinese
-    return Text(s).font(zh ? .serif(34, semibold: true) : .system(size: 34, weight: .bold, design: .serif))
+    return Text(s).font(zh ? .serif(34, semibold: true) : .system(.largeTitle, design: .serif, weight: .bold))
         .padding(.leading, zh && s.first == "\u{535C}" ? -CGFloat(378 - 45) * 34 / 1000 : 0)
 }
 
@@ -267,9 +283,9 @@ struct ChipButton: View {
     var body: some View {
         Button(action: action) {
             Text(label)
-                .font(.system(size: 13, weight: .medium))
+                .font(.footnote.weight(.medium))
                 .padding(.horizontal, 10)
-                .frame(height: 26)
+                .frame(minHeight: 26)
                 .foregroundStyle(selected ? Color.accentText : Color.text)
                 .background(selected ? Color.blue200 : Color.gray100, in: RoundedRectangle(cornerRadius: 8))
                 .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(selected ? Color.accentVisual : .clear, lineWidth: 1))   // 选中：淡朱底朱字朱边，同方法卡
@@ -287,13 +303,14 @@ struct PillButton: View {
     var large = true
     var disabled = false
     let action: () -> Void
+    @ScaledMetric(relativeTo: .body) private var scale = 1.0
 
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.system(size: large ? 18 : 16, weight: .bold))
+                .font(.system(size: (large ? 18 : 16) * scale, weight: .bold))
                 .frame(maxWidth: .infinity)
-                .frame(height: large ? 48 : 40)
+                .frame(minHeight: large ? 48 : 40)
                 .foregroundStyle(disabled ? Color.gray500 : accent ? Color.onAccent : Color.line)
                 .background {
                     if disabled { Capsule().fill(Color.gray100) }   // 禁用态：浅底淡字
@@ -317,7 +334,7 @@ struct SpectrumField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
-                .font(.system(size: 12, weight: .medium))
+                .font(.caption.weight(.medium))
                 .foregroundStyle(Color.subdued)
             // 系统占位语不换行（德语、阿语会截断）：自绘可换行的占位语，标题仍作无障碍标签
             ZStack(alignment: .topLeading) {
@@ -336,7 +353,7 @@ struct SpectrumField: View {
                         focused = false
                     }
             }
-            .font(.system(size: 15))
+            .font(.subheadline)
             .padding(.horizontal, 10)
             .padding(.vertical, 10)
             .frame(minHeight: 40)
@@ -363,9 +380,9 @@ struct Badge: View {
         case .neutral: (.gray600, .gray100, .subdued)
         }
         Text(text)
-            .font(.system(size: 11, weight: .bold))
+            .font(.caption2.bold())
             .padding(.horizontal, 7)
-            .frame(height: 20)
+            .frame(minHeight: 20)
             .foregroundStyle(subtle ? ink : .onAccent)
             .background(subtle ? soft : solid, in: RoundedRectangle(cornerRadius: 5))
     }
@@ -399,7 +416,7 @@ struct ToastOverlay: View {
     var body: some View {
         if !toast.message.isEmpty {
             Text(toast.message)
-                .font(.system(size: 13, weight: .bold))
+                .font(.footnote.bold())
                 .foregroundStyle(Color.gray50)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
