@@ -213,7 +213,9 @@ struct HomeView: View {
 
     private func row(_ k: String, _ v: Text) -> some View {
         HStack {
-            Text(k).font(.system(size: 13)).foregroundStyle(Color.subdued)
+            // “= 37” 前后换不换行空格，折行时与前词同行，不落单
+            Text(k.replacingOccurrences(of: " = ", with: "\u{00A0}=\u{00A0}"))
+                .font(.system(size: 13)).foregroundStyle(Color.subdued)
             Spacer(minLength: 12)
             v.font(.system(size: 13, weight: .bold)).multilineTextAlignment(.trailing)
                 .layoutPriority(1)   // 值列优先取宽，长标签折行，免值列参差折行

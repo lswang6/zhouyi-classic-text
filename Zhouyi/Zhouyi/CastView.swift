@@ -36,7 +36,7 @@ struct CastView: View {
             Grid(horizontalSpacing: 12, verticalSpacing: 16) {   // 列对齐：标签、爻画、爻值各成一列
                 ForEach((0..<6).reversed(), id: \.self) { slot($0) }
             }
-            .frame(width: 300)
+            .frame(width: 334)   // 两侧列同宽，爻画列居中
             .backgroundPreferenceValue(LineBounds.self) { a in   // 墨晕只衬爻画一列，不含左右文字
                 GeometryReader { g in
                     if let r = a.map({ g[$0] }).reduce(nil, { $0?.union($1) ?? $1 }) {
@@ -119,12 +119,21 @@ struct CastView: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 28)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background {   // 浅色时衬一幅淡画，深色不衬
-            if scheme == .light, UIImage(named: "cast-backdrop") != nil {
-                Color.clear.overlay { Image(decorative: "cast-backdrop").resizable().scaledToFill().opacity(0.6) }
-                    .clipped()
-                    .mask(LinearGradient(stops: [.init(color: .black, location: 0.3), .init(color: .clear, location: 0.5)], startPoint: .top, endPoint: .bottom))   // 上方山水，至爻位底部淡出；铜钱、按钮、提示处为素纸
-                    .ignoresSafeArea()
+        .background {   // 衬一幅淡画；深色反相为淡夜景
+            if UIImage(named: "cast-backdrop") != nil {
+                Color.clear.overlay {
+                    if scheme == .light {
+                        Image(decorative: "cast-backdrop").resizable().scaledToFill().opacity(0.6)
+                    } else {
+                        Image(decorative: "cast-backdrop").resizable().scaledToFill().colorInvert().opacity(0.15)
+                    }
+                }
+                .clipped()
+                // 状态栏、导航栏下渐显，至上爻前淡出：山水只在导航栏与所问之间，爻位与铜钱处为素纸
+                .mask(LinearGradient(stops: [.init(color: .clear, location: 0.07), .init(color: .black, location: 0.18),
+                                             .init(color: .black, location: 0.22), .init(color: .clear, location: 0.32)],
+                                     startPoint: .top, endPoint: .bottom))
+                .ignoresSafeArea()
             }
         }
         .paperBackground()
@@ -154,17 +163,21 @@ struct CastView: View {
         let moving = v.map(Zhouyi.isMoving) ?? false
         let color: Color = moving ? .accentVisual : .line
         return GridRow {
-            Text([L("初爻"), L("二爻"), L("三爻"), L("四爻"), L("五爻"), L("上爻")][i])
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(Color.subdued)
-                .frame(minWidth: 40, minHeight: 18, alignment: .leading)
-                .gridColumnAlignment(.leading)
+            ZStack(alignment: .trailing) {   // 与爻值列同宽，标签贴近爻画
+                valueWidth
+                Text([L("初爻"), L("二爻"), L("三爻"), L("四爻"), L("五爻"), L("上爻")][i])
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(Color.subdued)
+                    .frame(minHeight: 18)
+            }
+            .frame(minWidth: 74, alignment: .trailing)   // 下限：中文爻值短，爻画不致过长
+            .gridColumnAlignment(.trailing)
             ZStack {
                 if let v {
                     WrittenYao(yang: v % 2 == 1, color: color, seed: i)
                 } else {
                     RoundedRectangle(cornerRadius: 4)
-                        .strokeBorder(i == cast.count ? Color.accentVisual : Color.gray300,
+                        .strokeBorder(i == cast.count ? Color.accentVisual : Color.gray600.opacity(0.45),   // 空位虚线压得住画面，仍次于当前位
                                       style: StrokeStyle(lineWidth: 2, dash: [6, 4]))
                 }
             }
@@ -174,13 +187,29 @@ struct CastView: View {
             .phaseAnimator([1.0, 1.25, 1.0], trigger: ripple) { v, k in v.scaleEffect(y: k) } animation: { _ in
                 .easeOut(duration: 0.14).delay(Double(i) * 0.07)   // 初爻先动，逐爻向上
             }
-            Text(v.map { L(Zhouyi.lineValueName[$0]!) + ($0 == 9 ? " ○" : $0 == 6 ? " ×" : "") } ?? "")
-                .font(.system(size: 13, weight: .bold))
-                .foregroundStyle(color)
-                .fixedSize()
-                .frame(minWidth: 74, alignment: .leading)
-                .gridColumnAlignment(.leading)
+            ZStack(alignment: .leading) {
+                valueWidth
+                Text(v.map(valueText) ?? "")
+                    .font(.system(size: 13, weight: .bold))
+                    .foregroundStyle(color)
+                    .fixedSize()
+            }
+            .frame(minWidth: 74, alignment: .leading)
+            .gridColumnAlignment(.leading)
         }
+    }
+
+    /// 爻值文字，动爻带 ○ / ×
+    private func valueText(_ v: Int) -> String {
+        L(Zhouyi.lineValueName[v]!) + (v == 9 ? " ○" : v == 6 ? " ×" : "")
+    }
+
+    /// 四种爻值隐叠占位：两侧列按当前语言最宽者定宽，爻值出现时爻画不挪
+    private var valueWidth: some View {
+        ZStack {
+            ForEach([6, 7, 8, 9], id: \.self) { Text(valueText($0)).font(.system(size: 13, weight: .bold)).fixedSize() }
+        }
+        .hidden()
     }
 
     private func toss() {
