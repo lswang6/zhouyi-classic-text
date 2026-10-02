@@ -72,6 +72,7 @@
 - SwiftData + CloudKit（私有库），容器 `iCloud.com.lswang.zhouyi`；设置页开关（默认开，跟随系统 iCloud 状态）。
 - 模型改动：`Record` 所有属性给默认值（CloudKit 要求），无唯一约束；轻量迁移，旧数据保留。
 - 验收：两台模拟器/设备同一 Apple ID 互见记录；未登录 iCloud 时本地照常。
+- **上架前必做**：用登录 iCloud 的真机/模拟器跑一次（生成开发环境 schema），再到 CloudKit Console → iCloud.com.lswang.zhouyi → Schema → Deploy Schema Changes to Production；否则正式版同步静默失效。归档后核对内嵌 entitlements 的 aps-environment 为 production。
 
 ### S12 小组件（Widget）
 - 新 WidgetKit 扩展：今日一卦（小/中尺寸，卦画 + 卦名 + 卦辞首句），点按打开该卦详情（深链）。
