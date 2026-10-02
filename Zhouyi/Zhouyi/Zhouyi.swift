@@ -20,6 +20,13 @@ struct Hexagram {
     let yao: [String]       // 初→上 六爻爻辞
     let up: Trigram, lo: Trigram
     let bits: [Int]         // 初→上，1=阳
+
+    /// 互卦：二三四爻为下卦，三四五爻为上卦
+    var hu: Hexagram { Zhouyi.hexagram(bits: Array(bits[1...3] + bits[2...4])) }
+    /// 错卦：六爻皆变
+    var cuo: Hexagram { Zhouyi.hexagram(bits: bits.map { 1 - $0 }) }
+    /// 综卦：六爻倒置
+    var zong: Hexagram { Zhouyi.hexagram(bits: bits.reversed()) }
 }
 
 struct Analysis {
@@ -28,6 +35,13 @@ struct Analysis {
     let moving: [Int]       // 动爻下标，升序
     let ben: Hexagram
     let bian: Hexagram?
+}
+
+/// 梅花体用：动爻所在经卦为用，另一经卦为体。始/中/终 = 本卦用 / 互卦 / 变卦用
+struct TiYong {
+    enum Relation: String { case biHe = "比和", yongShengTi = "用生体", tiShengYong = "体生用", yongKeTi = "用克体", tiKeYong = "体克用" }
+    let ti: Trigram, yong: Trigram, relation: Relation
+    let hu: Hexagram, bianYong: Trigram
 }
 
 struct FocusItem: Hashable {
@@ -59,10 +73,11 @@ struct TimeCast {
 }
 
 enum CastMethod: String, CaseIterable {
-    case coin, number, time
+    case coin, number, time, yarrow
     var label: String {
         switch self {
         case .coin: L("铜钱摇卦")
+        case .yarrow: L("大衍筮法")
         case .number: L("数字起卦")
         case .time: L("时间起卦")
         }
@@ -145,7 +160,9 @@ enum Zhouyi {
         case 0: return Focus(rule: L("六爻安静，以本卦卦辞为断。"), items: [C(ben, true)])
         case 1: return Focus(rule: L("一爻动，以本卦动爻爻辞为断。"), items: [Y(ben, mov[0], true)])
         case 2: return Focus(rule: L("二爻动，以本卦两动爻爻辞为断，以上爻为主。"), items: [Y(ben, mov[1], true), Y(ben, mov[0])])
-        case 3: return Focus(rule: L("三爻动，以本卦与变卦卦辞为断，本卦为主。"), items: [C(ben, true), C(a.bian!)])
+        case 3: return Focus(rule: L("三爻动，以本卦与变卦卦辞为断，本卦为贞（主），变卦为悔。"), items: [
+            FocusItem(tag: L("贞 · %@卦 卦辞", ben.name), text: ben.ci, main: true),
+            FocusItem(tag: L("悔 · %@卦 卦辞", a.bian!.name), text: a.bian!.ci, main: false)])
         case 4: return Focus(rule: L("四爻动，以变卦两静爻爻辞为断，以下爻为主。"), items: [Y(a.bian!, still[0], true), Y(a.bian!, still[1])])
         case 5: return Focus(rule: L("五爻动，以变卦静爻爻辞为断。"), items: [Y(a.bian!, still[0], true)])
         default:
@@ -153,6 +170,32 @@ enum Zhouyi {
             if ben.n == 2 { return Focus(rule: L("六爻皆动，坤卦以用六为断。"), items: [FocusItem(tag: L("%1$@ · %2$@卦", L("用六"), ben.name), text: L("yongliu.text", table: "Classical", default: "利永贞。"), main: true)]) }
             return Focus(rule: L("六爻皆动，以变卦卦辞为断。"), items: [C(a.bian!, true)])
         }
+    }
+
+    /// 梅花体用，仅一爻动时成立。五行按相生序排列，克即隔一位
+    static func tiYong(_ a: Analysis) -> TiYong? {
+        guard a.moving.count == 1, let bian = a.bian else { return nil }
+        let upper = a.moving[0] >= 3
+        let ti = upper ? a.ben.lo : a.ben.up, yong = upper ? a.ben.up : a.ben.lo
+        let wx = ["木", "火", "土", "金", "水"]
+        let d = (wx.firstIndex(of: yong.wx)! - wx.firstIndex(of: ti.wx)! + 5) % 5
+        let rel: TiYong.Relation = [.biHe, .tiShengYong, .tiKeYong, .yongKeTi, .yongShengTi][d]
+        return TiYong(ti: ti, yong: yong, relation: rel, hu: a.ben.hu, bianYong: upper ? bian.up : bian.lo)
+    }
+
+    /// 大衍筮法一爻：老阴 1/16、少阳 5/16、少阴 7/16、老阳 3/16
+    static func yarrowLine(using rng: inout some RandomNumberGenerator) -> Int {
+        switch rng.next() & 15 {   // 16 整除 2^64，取低 4 位即均匀
+        case 0: 6
+        case 1...5: 7
+        case 6...12: 8
+        default: 9
+        }
+    }
+
+    static func yarrowLine() -> Int {
+        var g = SystemRandomNumberGenerator()
+        return yarrowLine(using: &g)
     }
 
     /// 由先天数上卦、下卦与动爻（1...6）生成六爻值
@@ -168,7 +211,8 @@ enum Zhouyi {
     }
 
     /// 时间起卦（梅花易数）：年支 + 农历月 + 农历日 → 上卦；再加时支 → 下卦；总和 % 6 → 动爻。
-    /// 农历以北京时间换算当地日期；闰月按本月数；23 点起为子时，日期计入次日。
+    /// 日期、时辰取设备当地时钟；以当地公历日正午按北京时间查农历（闰月按本月数）。
+    /// 年支随农历年，春节换年而非立春（梅花旧例）；23 点起为子时，日期计入次日。
     static func timeCast(_ date: Date, calendar local: Calendar = .current) -> TimeCast {
         var g = Calendar(identifier: .gregorian)   // 设备日历可能是和历/佛历等，年月日须按公历取
         g.timeZone = local.timeZone

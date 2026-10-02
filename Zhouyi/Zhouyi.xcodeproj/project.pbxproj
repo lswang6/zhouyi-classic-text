@@ -10,6 +10,7 @@
 		006EEE1CB49314B2B3E663A0 /* coin-rattle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 25622BCEDB5C4AD9FC9A41AE /* coin-rattle.wav */; };
 		1C491CC78885D21FB287E46F /* HexagramData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7DBCE980E5BABB2B44F513 /* HexagramData.swift */; };
 		1ED27B3DEB4CB64B24BE4FAE /* ZhouyiSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B56D6BF465E833A106772E4D /* ZhouyiSerif-Regular.ttf */; };
+		1FC80D303754C6186B604BE6 /* NaJia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EF5881507286F83953493 /* NaJia.swift */; };
 		33353B0D9AD60AD335E147FD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71581B6AA8A67F25AED1B48B /* HomeView.swift */; };
 		353F3F97AA7A3E2358D5DE16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D15A2152DA5825DC2668AC04 /* InfoPlist.strings */; };
 		3CD4A9B260718621A6178B76 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A786C25708E393EB65D49B6 /* Localization.swift */; };
@@ -21,6 +22,8 @@
 		63A13F5DED01B6BAEB58054E /* ZhouyiSerif-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733A8083573BA3CD8E866315 /* ZhouyiSerif-SemiBold.ttf */; };
 		6BF3F18EFF837272B23490D1 /* splash-dark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7102D527992C73B6A1E6E969 /* splash-dark.mp4 */; };
 		70BB624A205948740777DACF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E6B52EC2111BB1E06602195 /* Localizable.strings */; };
+		7522C48FA36C5E76D6BD7DE4 /* Commentary.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCD4F6DF7E62FD47B822EFD3 /* Commentary.strings */; };
+		7D7FEBFA64BCE5A97094E132 /* Tyme4Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 40B06EF1178A5B2E28A7B9D8 /* Tyme4Swift */; };
 		879C7005501DB4A6DF14CD37 /* Hexagrams.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D4CBA578D93BDD17980139 /* Hexagrams.strings */; };
 		99032FA82693042730498EF1 /* ZhouyiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18BC73A3E8BF93328A1A9C5 /* ZhouyiApp.swift */; };
 		9D6BB6C4DAF7CB91ADF35392 /* ZhouyiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B23FE5B1B5F219344B22C /* ZhouyiTests.swift */; };
@@ -28,8 +31,10 @@
 		AA11695B023E034377D447FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D884BF04A654F757260385A6 /* Assets.xcassets */; };
 		D5023891D6486F2D6D9D25D6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779013E926D7B433A63F94F2 /* Theme.swift */; };
 		D9E31ABDB9A5C352ED711F0F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7675BA107D3BE4DEA18F4F /* HistoryView.swift */; };
+		EEDC892954040A3F526D21BD /* NaJiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC760C43422C61D8B8F78D /* NaJiaTests.swift */; };
 		F27931D8ADA2DA4BAECA31D2 /* Classical.strings in Resources */ = {isa = PBXBuildFile; fileRef = A69C3DF80DC72569508291A7 /* Classical.strings */; };
 		F4A54BC511A389D9321406E9 /* CastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC4E23643650F8E5371F08 /* CastView.swift */; };
+		F59799BD271C75DC56B9A443 /* Commentary.strings in Resources */ = {isa = PBXBuildFile; fileRef = 943D2328B3084280F508C832 /* Commentary.strings */; };
 		F608D8CA2669EDF352DF4C62 /* splash-light.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 81F489E0CBE76C195A20FE51 /* splash-light.mp4 */; };
 		FFCF450654FD068C3EC3443B /* KnowledgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBF60E136E29F1F16276AC6 /* KnowledgeView.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +53,7 @@
 		017D253B8FAEB7292093D455 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Knowledge.strings"; sourceTree = "<group>"; };
 		11D1DB07798E763CA965F5E1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		25622BCEDB5C4AD9FC9A41AE /* coin-rattle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "coin-rattle.wav"; sourceTree = "<group>"; };
+		295EF5881507286F83953493 /* NaJia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaJia.swift; sourceTree = "<group>"; };
 		2A7E7444FAD404BBBBB473A4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C0C4271D3BA7D2003D33933 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CF1764C9AF128A0C96D85FE /* ZhouyiTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ZhouyiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +88,7 @@
 		8C9EEDB9EE6C1EF7C5DE9713 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Knowledge.strings; sourceTree = "<group>"; };
 		91B50509E6705139FB72EE18 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9216D228F2039D965770C821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		943D2328B3084280F508C832 /* Commentary.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Commentary.strings; path = "zh-Hans.lproj/Commentary.strings"; sourceTree = "<group>"; };
 		95022D188F83928296FABE3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Hexagrams.strings; sourceTree = "<group>"; };
 		95B4CDBBCEA2FDCB34996F96 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		979031155ACD357A73AB1669 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Knowledge.strings; sourceTree = "<group>"; };
@@ -97,11 +104,13 @@
 		B56D6BF465E833A106772E4D /* ZhouyiSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZhouyiSerif-Regular.ttf"; sourceTree = "<group>"; };
 		B7E0116DD8EE082A752524F2 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Knowledge.strings; sourceTree = "<group>"; };
 		CBE5CEBD9F852BD9381629B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Hexagrams.strings; sourceTree = "<group>"; };
+		CCD4F6DF7E62FD47B822EFD3 /* Commentary.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Commentary.strings; path = "zh-Hant.lproj/Commentary.strings"; sourceTree = "<group>"; };
 		CD7DBCE980E5BABB2B44F513 /* HexagramData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagramData.swift; sourceTree = "<group>"; };
 		D5F978A03EC83CC2271A1BD8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6142C2075FFE19C84B4DF3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D860C416A0DAF004C6F91FA6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D884BF04A654F757260385A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8FC760C43422C61D8B8F78D /* NaJiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaJiaTests.swift; sourceTree = "<group>"; };
 		EC08857EC998D1FFBC29A78C /* Zhouyi.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Zhouyi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC73473111023BF9A2B9A44A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Knowledge.strings; sourceTree = "<group>"; };
 		F019EB34EE010EAAFA27D757 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Knowledge.strings; sourceTree = "<group>"; };
@@ -113,6 +122,17 @@
 		FD65FD6192372A5AA7832F98 /* coin-drop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "coin-drop.wav"; sourceTree = "<group>"; };
 		FD7675BA107D3BE4DEA18F4F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1632D575D83FEFB31731BABE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D7FEBFA64BCE5A97094E132 /* Tyme4Swift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0B097BA3AE23767DDAD33781 = {
@@ -132,6 +152,8 @@
 				A69C3DF80DC72569508291A7 /* Classical.strings */,
 				FD65FD6192372A5AA7832F98 /* coin-drop.wav */,
 				25622BCEDB5C4AD9FC9A41AE /* coin-rattle.wav */,
+				943D2328B3084280F508C832 /* Commentary.strings */,
+				CCD4F6DF7E62FD47B822EFD3 /* Commentary.strings */,
 				CD7DBCE980E5BABB2B44F513 /* HexagramData.swift */,
 				FD7675BA107D3BE4DEA18F4F /* HistoryView.swift */,
 				71581B6AA8A67F25AED1B48B /* HomeView.swift */,
@@ -139,6 +161,7 @@
 				4C29B856D9ED57E089030B50 /* Ink.swift */,
 				FBBF60E136E29F1F16276AC6 /* KnowledgeView.swift */,
 				8A786C25708E393EB65D49B6 /* Localization.swift */,
+				295EF5881507286F83953493 /* NaJia.swift */,
 				A961B21C3E84E020461D866D /* ReadingView.swift */,
 				7B88F638A4E5E4C7C120ECB1 /* Record.swift */,
 				7102D527992C73B6A1E6E969 /* splash-dark.mp4 */,
@@ -159,6 +182,7 @@
 		E3C095028B5EE470B06E2C12 /* ZhouyiTests */ = {
 			isa = PBXGroup;
 			children = (
+				E8FC760C43422C61D8B8F78D /* NaJiaTests.swift */,
 				459B23FE5B1B5F219344B22C /* ZhouyiTests.swift */,
 			);
 			path = ZhouyiTests;
@@ -182,6 +206,7 @@
 			buildPhases = (
 				A4602EFA515A61130DE7CB51 /* Sources */,
 				BF471B7A9871EB3B312E48E2 /* Resources */,
+				1632D575D83FEFB31731BABE /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +214,7 @@
 			);
 			name = Zhouyi;
 			packageProductDependencies = (
+				40B06EF1178A5B2E28A7B9D8 /* Tyme4Swift */,
 			);
 			productName = Zhouyi;
 			productReference = EC08857EC998D1FFBC29A78C /* Zhouyi.app */;
@@ -250,6 +276,9 @@
 			);
 			mainGroup = 0B097BA3AE23767DDAD33781;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B2CBD0CC1F16AC35B5CB3A51 /* XCRemoteSwiftPackageReference "tyme4swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F2FDACBBA291C46C088838EF /* Products */;
 			projectDirPath = "";
@@ -268,6 +297,8 @@
 			files = (
 				AA11695B023E034377D447FC /* Assets.xcassets in Resources */,
 				F27931D8ADA2DA4BAECA31D2 /* Classical.strings in Resources */,
+				F59799BD271C75DC56B9A443 /* Commentary.strings in Resources */,
+				7522C48FA36C5E76D6BD7DE4 /* Commentary.strings in Resources */,
 				879C7005501DB4A6DF14CD37 /* Hexagrams.strings in Resources */,
 				353F3F97AA7A3E2358D5DE16 /* InfoPlist.strings in Resources */,
 				A3E067103CB2C04C250F52A0 /* Knowledge.strings in Resources */,
@@ -295,6 +326,7 @@
 				5C76C673EF269CC137FDDEE5 /* Ink.swift in Sources */,
 				FFCF450654FD068C3EC3443B /* KnowledgeView.swift in Sources */,
 				3CD4A9B260718621A6178B76 /* Localization.swift in Sources */,
+				1FC80D303754C6186B604BE6 /* NaJia.swift in Sources */,
 				58E435CE28B26F8CEDEE8B83 /* ReadingView.swift in Sources */,
 				40369D047F4FB5B1EC34CE89 /* Record.swift in Sources */,
 				D5023891D6486F2D6D9D25D6 /* Theme.swift in Sources */,
@@ -307,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEDC892954040A3F526D21BD /* NaJiaTests.swift in Sources */,
 				9D6BB6C4DAF7CB91ADF35392 /* ZhouyiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +663,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B2CBD0CC1F16AC35B5CB3A51 /* XCRemoteSwiftPackageReference "tyme4swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/6tail/tyme4swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		40B06EF1178A5B2E28A7B9D8 /* Tyme4Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2CBD0CC1F16AC35B5CB3A51 /* XCRemoteSwiftPackageReference "tyme4swift" */;
+			productName = Tyme4Swift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 38B49F193449E7C1E4BADD94 /* Project object */;
 }

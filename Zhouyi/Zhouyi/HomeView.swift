@@ -6,6 +6,7 @@ struct HomeView: View {
     @Environment(AppState.self) private var app
     @Query(sort: \Record.ts, order: .reverse) private var records: [Record]
     @State private var method: CastMethod = .time
+    @AppStorage("shakeMethod") private var shakeMethod: CastMethod = .coin   // 摇卦卡内：铜钱 / 蓍草
     @State private var nums = ["", "", ""]
 
     private var numberCast: TriCast? {
@@ -39,7 +40,7 @@ struct HomeView: View {
 
                 methodSection
 
-                PillButton(title: method == .coin ? L("开始摇卦") : L("起卦"),
+                PillButton(title: method == .coin ? L("开始摇卦") : method == .yarrow ? L("开始揲蓍") : L("起卦"),
                            disabled: method == .number && numberCast == nil, action: start)
 
                 if let r = records.first {
@@ -114,18 +115,32 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(L("起卦方式")).font(.system(size: 16, weight: .heavy))
             HStack(spacing: 8) {
-                methodCard(.coin, L("铜钱"), L("三钱六掷，\n逐爻成卦"))
+                methodCard(shakeMethod, L("摇卦"), shakeMethod == .yarrow ? L("四营成易，\n十有八变") : L("三钱六掷，\n逐爻成卦"))
                 methodCard(.number, L("数字"), L("三个数\n定卦与动爻"))
                 methodCard(.time, L("时间"), L("以此刻\n年月日时起卦"))
             }
             .fixedSize(horizontal: false, vertical: true)
             Group {
                 switch method {
-                case .coin:
-                    Text(L("三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。"))
+                case .coin, .yarrow:
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack(spacing: 8) {
+                            ForEach([(CastMethod.coin, L("铜钱")), (.yarrow, L("蓍草"))], id: \.0) { m, l in
+                                ChipButton(label: l, selected: method == m) { withAnimation(.spectrum) { method = m; shakeMethod = m } }
+                            }
+                        }
+                        Group {
+                            if method == .coin {
+                                Text(L("三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。"))
+                            } else {
+                                Text(L("大衍之数五十，其用四十九：分二、挂一、揲四、归奇，四营成易，三变成一爻，十有八变而成卦。"))
+                                    + Text(verbatim: "\n") + Text(L("老阳 : 老阴 = 3 : 1，铜钱为 1 : 1。"))
+                            }
+                        }
                         .font(.system(size: 13))
                         .foregroundStyle(Color.subdued)
                         .lineSpacing(4)
+                    }
                 case .number: numberPanel
                 case .time: timePanel
                 }
@@ -192,6 +207,9 @@ struct HomeView: View {
                 Text(L("以农历年支、月、日与时支数起卦。闰月按本月数；23 点后为子时，按次日计。"))
                     .font(.system(size: 11))
                     .foregroundStyle(Color.subdued)
+                Text(L("年支按农历年（春节换年）· 23 点起为次日子时 · 按本机时区"))
+                    .font(.system(size: 11))
+                    .foregroundStyle(Color.subdued)
                 // 只取时辰：两小时内结果不变，属传统本意
                 let from = (2 * h + 21) % 24
                 Text(L("同一时辰内（%@）起卦结果相同，一事不二占。", String(format: "%02d:00–%02d:00", from, (from + 2) % 24)))
@@ -229,8 +247,8 @@ struct HomeView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         let cast: TriCast
         switch method {
-        case .coin:
-            app.homePath.append(.cast)
+        case .coin, .yarrow:
+            app.homePath.append(.cast(method))
             return
         case .number:
             guard let c = numberCast else { return }

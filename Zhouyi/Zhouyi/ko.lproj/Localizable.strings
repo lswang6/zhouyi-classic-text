@@ -124,7 +124,9 @@
 "六爻安静，以本卦卦辞为断。" = "동효가 없으면 본괘의 괘사로 판단합니다.";
 "一爻动，以本卦动爻爻辞为断。" = "동효가 하나이면 본괘 동효의 효사로 판단합니다.";
 "二爻动，以本卦两动爻爻辞为断，以上爻为主。" = "동효가 둘이면 본괘 두 동효의 효사로 판단하되, 위쪽 효를 주로 봅니다.";
-"三爻动，以本卦与变卦卦辞为断，本卦为主。" = "동효가 셋이면 본괘와 변괘의 괘사로 판단하되, 본괘를 주로 봅니다.";
+"三爻动，以本卦与变卦卦辞为断，本卦为贞（主），变卦为悔。" = "동효가 셋이면 본괘와 변괘의 괘사로 판단하되, 본괘를 정(주), 변괘를 회로 봅니다.";
+"贞 · %@卦 卦辞" = "정 · %@괘 괘사";
+"悔 · %@卦 卦辞" = "회 · %@괘 괘사";
 "四爻动，以变卦两静爻爻辞为断，以下爻为主。" = "동효가 넷이면 변괘의 두 정효 효사로 판단하되, 아래쪽 효를 주로 봅니다.";
 "五爻动，以变卦静爻爻辞为断。" = "동효가 다섯이면 변괘 정효의 효사로 판단합니다.";
 "六爻皆动，乾卦以用九为断。" = "여섯 효가 모두 동하면 건괘는 용구로 판단합니다.";
@@ -177,3 +179,55 @@
 "今日一卦" = "오늘의 괘";
 "易学专栏" = "역학 칼럼";
 "六十四卦" = "육십사괘";
+
+/* 解卦：传 · 互错综 · 体用 · 分享图片 */
+"传" = "Commentary"; /* i18n-todo */
+"彖曰" = "Tuan"; /* i18n-todo */
+"象曰" = "Image"; /* i18n-todo */
+"文言" = "Wenyan"; /* i18n-todo */
+"互卦" = "Nuclear"; /* i18n-todo */
+"错卦" = "Opposite"; /* i18n-todo */
+"综卦" = "Inverse"; /* i18n-todo */
+"体用" = "Body and Use"; /* i18n-todo */
+"体卦 %1$@（%2$@）· 用卦 %3$@（%4$@）" = "Body %1$@ (%2$@) · Use %3$@ (%4$@)"; /* i18n-todo */
+"始 %1$@（%2$@）→ 中 %3$@（%4$@）→ 终 %5$@（%6$@）" = "Start %1$@ (%2$@) → Middle %3$@ (%4$@) → End %5$@ (%6$@)"; /* i18n-todo */
+"比和" = "In harmony"; /* i18n-todo */
+"用生体" = "Use feeds Body"; /* i18n-todo */
+"体生用" = "Body feeds Use"; /* i18n-todo */
+"用克体" = "Use checks Body"; /* i18n-todo */
+"体克用" = "Body checks Use"; /* i18n-todo */
+"体用同气" = "Body and Use share one element"; /* i18n-todo */
+"外缘助我" = "Circumstances support you"; /* i18n-todo */
+"我耗于外" = "You spend yourself outward"; /* i18n-todo */
+"外势制我" = "Circumstances constrain you"; /* i18n-todo */
+"我能制事" = "You can master the matter"; /* i18n-todo */
+"木" = "Wood"; /* i18n-todo */
+"火" = "Fire"; /* i18n-todo */
+"土" = "Earth"; /* i18n-todo */
+"金" = "Metal"; /* i18n-todo */
+"水" = "Water"; /* i18n-todo */
+"分享文字" = "Share as Text"; /* i18n-todo */
+"分享图片" = "Share as Image"; /* i18n-todo */
+
+/* 二期：大衍筮法、口径说明、记录导出、关于与致谢 */
+"大衍筮法" = "Yarrow Stalks"; /* i18n-todo */
+"开始揲蓍" = "Begin Counting Stalks"; /* i18n-todo */
+"四营成易，\n十有八变" = "Four steps,\neighteen changes"; /* i18n-todo */
+"蓍草" = "Yarrow"; /* i18n-todo */
+"大衍之数五十，其用四十九：分二、挂一、揲四、归奇，四营成易，三变成一爻，十有八变而成卦。" = "Of fifty stalks, forty-nine are used: divide in two, set one aside, count off by fours, lay aside the remainder. These four steps make one change; three changes make a line, and eighteen changes make the hexagram."; /* i18n-todo */
+"老阳 : 老阴 = 3 : 1，铜钱为 1 : 1。" = "Old yang : old yin = 3 : 1 (coins give 1 : 1)."; /* i18n-todo */
+"年支按农历年（春节换年）· 23 点起为次日子时 · 按本机时区" = "Year branch follows the lunar year (changes at Lunar New Year) · from 23:00 counts as the next day's Zi hour · device time zone"; /* i18n-todo */
+"三变得 %1$d · %2$@" = "Three changes give %1$d · %2$@"; /* i18n-todo */
+"揲蓍" = "Count Stalks"; /* i18n-todo */
+"点按揲蓍，或直接摇动手机" = "Tap to count the stalks, or shake your phone"; /* i18n-todo */
+"导出记录" = "Export Records"; /* i18n-todo */
+"导出为 JSON" = "Export as JSON"; /* i18n-todo */
+"导出为文本" = "Export as Text"; /* i18n-todo */
+"关于与致谢" = "About & Acknowledgements"; /* i18n-todo */
+"版本" = "Version"; /* i18n-todo */
+"开源许可" = "Open-Source License"; /* i18n-todo */
+"字体" = "Font"; /* i18n-todo */
+"经文与传文" = "Classic & Commentaries"; /* i18n-todo */
+"《周易》通行本（Wikisource 公有领域原文；freizl/yijing, MIT）" = "Received text of the Zhouyi (public-domain original via Wikisource; freizl/yijing, MIT)"; /* i18n-todo */
+"历法" = "Calendar"; /* i18n-todo */
+"纳甲对校" = "Na Jia Cross-check"; /* i18n-todo */

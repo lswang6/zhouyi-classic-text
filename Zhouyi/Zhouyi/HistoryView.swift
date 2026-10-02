@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 
 /// 04 卜卦记录
 struct HistoryView: View {
@@ -41,6 +42,8 @@ struct HistoryView: View {
                     pageTitle(L("卜卦记录"))
                     Spacer()
                     Text(L("共 %d 卦", records.count)).font(.system(size: 13)).foregroundStyle(Color.subdued)
+                    exportMenu
+                        .alignmentGuide(.firstTextBaseline) { $0[VerticalAlignment.center] + 5 }
                     SettingsButton()
                         .alignmentGuide(.firstTextBaseline) { $0[VerticalAlignment.center] + 5 }
                 }
@@ -95,6 +98,26 @@ struct HistoryView: View {
         .onChange(of: records.count) { if filter != hf { hf = "all" } }
     }
 
+    /// 导出全部记录：JSON 与纯文本，经系统分享面板。先取值快照，导出闭包在后台线程不碰 @Model
+    private var exportMenu: some View {
+        // ponytail: 每次重绘都取快照（逐条排卦），记录上千条若觉卡顿再改为点按时生成
+        let rows = records.map(RecordsExport.Row.init)
+        return Menu {
+            ShareLink(item: RecordsExport(rows: rows, json: true), preview: SharePreview(L("导出为 JSON"))) {
+                Label(L("导出为 JSON"), systemImage: "curlybraces")
+            }
+            ShareLink(item: RecordsExport(rows: rows, json: false), preview: SharePreview(L("导出为文本"))) {
+                Label(L("导出为文本"), systemImage: "doc.plaintext")
+            }
+        } label: {
+            Image(systemName: "square.and.arrow.up")
+                .font(.system(size: 20))
+                .foregroundStyle(records.isEmpty ? Color.gray500 : Color.text)
+        }
+        .disabled(records.isEmpty)
+        .accessibilityLabel(L("导出记录"))
+    }
+
     private func row(_ r: Record) -> some View {
         HStack(alignment: .top, spacing: 14) {
             HexGlyph(bits: r.analysis.bits, lines: r.lines)
@@ -126,6 +149,56 @@ struct HistoryView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.base, in: RoundedRectangle(cornerRadius: 10))
         .contentShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
+/// 记录导出文件。存储字段（类别、应验）原样为中文键；卦名取简体全名，文本版按当前语言
+private struct RecordsExport: Transferable {
+    struct Row: Encodable {
+        let ts: Date, q: String, cat: String, method: String, lines: [Int], fav: Bool, note: String, verify: String
+        let ben: String, bian: String?
+        let text: String
+
+        enum CodingKeys: String, CodingKey { case ts, q, cat, method, lines, fav, note, verify, ben, bian }
+
+        @MainActor init(_ r: Record) {
+            let a = r.analysis
+            ts = r.ts; q = r.q; cat = r.cat; method = r.method; lines = r.lines; fav = r.fav; note = r.note; verify = r.verify
+            ben = Zhouyi.texts[a.ben.n - 1][1]
+            bian = a.bian.map { Zhouyi.texts[$0.n - 1][1] }
+            let f = DateFormatter()
+            f.locale = Localizer.shared.locale
+            f.calendar = Calendar(identifier: .gregorian)
+            f.dateStyle = .medium
+            f.timeStyle = .short
+            text = [f.string(from: r.ts) + " · " + (CastMethod(rawValue: r.method)?.label ?? r.method) + " · " + L(r.cat) + (r.fav ? " ★" : ""),
+                    r.question,
+                    r.title + " · " + r.lines.map(String.init).joined(separator: " ") + " · " + L(r.verify)]
+                .joined(separator: "\n") + (r.note.isEmpty ? "" : "\n" + L("备注：%@", r.note))
+        }
+    }
+
+    let rows: [Row]
+    let json: Bool
+
+    static var transferRepresentation: some TransferRepresentation {
+        FileRepresentation(exportedContentType: .json) { try $0.file() }.exportingCondition { $0.json }
+        FileRepresentation(exportedContentType: .plainText) { try $0.file() }.exportingCondition { !$0.json }
+    }
+
+    private func file() throws -> SentTransferredFile {
+        let data: Data
+        if json {
+            let e = JSONEncoder()
+            e.dateEncodingStrategy = .iso8601
+            e.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+            data = try e.encode(rows)
+        } else {
+            data = Data(rows.map(\.text).joined(separator: "\n\n").utf8)
+        }
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("zhouyi-records." + (json ? "json" : "txt"))
+        try data.write(to: url, options: .atomic)
+        return SentTransferredFile(url)
     }
 }
 

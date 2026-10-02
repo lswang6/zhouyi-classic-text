@@ -22,7 +22,7 @@ struct ZhouyiApp: App {
 }
 
 enum Route: Hashable {
-    case cast
+    case cast(CastMethod)   // .coin / .yarrow
     case reading(Record)
     case article(String)
     case hexagram(Int)
@@ -103,7 +103,7 @@ struct RootView: View {
     @ViewBuilder
     private func destination(_ route: Route) -> some View {
         switch route {
-        case .cast: CastView().toolbar(.hidden, for: .tabBar)
+        case .cast(let m): CastView(method: m).toolbar(.hidden, for: .tabBar)
         case .reading(let r): ReadingView(record: r).toolbar(.hidden, for: .tabBar)
         case .article(let id): ArticleView(id: id).toolbar(.hidden, for: .tabBar)
         case .hexagram(let n): HexagramView(n: n).toolbar(.hidden, for: .tabBar)

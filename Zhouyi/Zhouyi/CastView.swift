@@ -2,8 +2,9 @@ import SwiftUI
 import SwiftData
 import AVFoundation
 
-/// 02 摇卦：三钱法，自初爻起逐爻掷出
+/// 02 摇卦：三钱法或大衍筮法，自初爻起逐爻得出；未成卦的爻存为草稿，下次进入可续
 struct CastView: View {
+    var method: CastMethod = .coin
     @Environment(AppState.self) private var app
     @Environment(\.modelContext) private var modelContext
     @Environment(\.colorScheme) private var scheme
@@ -49,17 +50,21 @@ struct CastView: View {
             Spacer(minLength: 20)
 
             HStack(spacing: 22) {
-                ForEach(0..<3, id: \.self) { i in
-                    VStack(spacing: 8) {
-                        Coin(face: coins[i])
-                            .rotation3DEffect(.degrees(rot), axis: (0, 1, 0))
-                        Text(coins[i] == 3 ? L("背 · 3") : L("字 · 2"))
-                            .font(.system(size: 12, weight: .medium))
-                            .foregroundStyle(Color.subdued)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.8)
+                if method == .yarrow {
+                    StalkBundle(split: busy && !formed).frame(height: 104)   // 与铜钱连说明同高，切换方法时上方不挪
+                } else {
+                    ForEach(0..<3, id: \.self) { i in
+                        VStack(spacing: 8) {
+                            Coin(face: coins[i])
+                                .rotation3DEffect(.degrees(rot), axis: (0, 1, 0))
+                            Text(coins[i] == 3 ? L("背 · 3") : L("字 · 2"))
+                                .font(.system(size: 12, weight: .medium))
+                                .foregroundStyle(Color.subdued)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                        }
+                        .frame(width: 100)   // 定宽：正反面说明长短不一（如德语）时铜钱不左右挪
                     }
-                    .frame(width: 100)   // 定宽：正反面说明长短不一（如德语）时铜钱不左右挪
                 }
             }
             .keyframeAnimator(initialValue: 0.0, trigger: shakeCount) { view, t in
@@ -72,7 +77,8 @@ struct CastView: View {
 
             Group {
                 if let s = lastSum {
-                    Text(L("三钱之和 %1$d · %2$@", s, L(Zhouyi.lineValueName[s]!)) + ((s == 6 || s == 9) ? L("（动爻）") : ""))
+                    let name = L(Zhouyi.lineValueName[s]!)
+                    Text((method == .yarrow ? L("三变得 %1$d · %2$@", s, name) : L("三钱之和 %1$d · %2$@", s, name)) + ((s == 6 || s == 9) ? L("（动爻）") : ""))
                 } else {
                     Text(busy ? "…" : "")
                 }
@@ -85,9 +91,9 @@ struct CastView: View {
             // 两态叠放、始终占位，取两者较高者，成卦切换时上方铜钱不跳动
             ZStack(alignment: .top) {
                 VStack(spacing: 10) {
-                    PillButton(title: L("掷钱"), disabled: busy) { toss() }
+                    PillButton(title: method == .yarrow ? L("揲蓍") : L("掷钱"), disabled: busy) { toss() }
                     PillButton(title: L("摇一摇"), accent: false, large: false, disabled: busy) { shake() }
-                    Text(L("点按掷钱，或直接摇动手机"))
+                    Text(method == .yarrow ? L("点按揲蓍，或直接摇动手机") : L("点按掷钱，或直接摇动手机"))
                         .font(.system(size: 12))
                         .foregroundStyle(Color.subdued)
                         .frame(maxWidth: .infinity)
@@ -138,7 +144,7 @@ struct CastView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button(formed ? L("完成") : L("取消")) { app.homePath = [] }   // 已入库，不再是“取消”
+                Button(formed ? L("完成") : L("取消")) { CastDraft.clear(); app.homePath = [] }   // 已入库，不再是“取消”
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Text(verbatim: "\(cast.count) / 6")
@@ -147,7 +153,16 @@ struct CastView: View {
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .deviceDidShake)) { _ in shake() }
-        .onAppear { gone = false }
+        .onAppear {
+            gone = false
+            // 草稿续摇：同一方法，且首页未另填所问（冷启动后 q 为空）才续，免得覆盖新问的事
+            guard cast.isEmpty, let d = CastDraft.load() else { return }
+            let q = app.q.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard d.method == method.rawValue, q.isEmpty || q == d.q else { return CastDraft.clear() }
+            app.q = d.q
+            app.cat = d.cat
+            cast = d.lines
+        }
         .onDisappear { gone = true }
         .sensoryFeedback(.impact(flexibility: .rigid, intensity: 0.5), trigger: rattle)
         .sensoryFeedback(.impact(weight: .heavy), trigger: landed)
@@ -211,7 +226,7 @@ struct CastView: View {
     private func toss() {
         guard !busy, cast.count < 6 else { return }
         let next = (0..<3).map { _ in Bool.random() ? 3 : 2 }
-        let sum = next.reduce(0, +)
+        let sum = method == .yarrow ? Zhouyi.yarrowLine() : next.reduce(0, +)
         busy = true
         lastSum = nil
         withAnimation(.timingCurve(0.45, 0, 0.4, 1, duration: 0.65)) { rot += 720 }
@@ -219,16 +234,21 @@ struct CastView: View {
             try? await Task.sleep(for: .milliseconds(320))
             coins = next
             try? await Task.sleep(for: .milliseconds(280))
-            CoinSound.play(.drop)
+            if method == .coin { CoinSound.play(.drop) }
             landed += 1
             try? await Task.sleep(for: .milliseconds(80))
             guard !gone, cast.count < 6 else { busy = false; return }
             withAnimation(Self.curve) { cast.append(sum) }
             lastSum = sum
-            guard cast.count == 6 else { busy = false; return }
-            let r = Record(q: app.q, cat: app.cat, method: .coin, lines: cast)
+            guard cast.count == 6 else {
+                CastDraft(method: method.rawValue, q: app.q, cat: app.cat, lines: cast).save()
+                busy = false
+                return
+            }
+            let r = Record(q: app.q, cat: app.cat, method: method, lines: cast)
             modelContext.insert(r)
             try? modelContext.save()
+            CastDraft.clear()
             record = r
             // 成卦：稍停，六爻一波，再揭示卦名
             try? await Task.sleep(for: .milliseconds(350))
@@ -244,7 +264,7 @@ struct CastView: View {
         shaking = true
         busy = true
         shakeCount += 1
-        CoinSound.play(.rattle)
+        if method == .coin { CoinSound.play(.rattle) }
         Task { @MainActor in
             for _ in 0..<6 {   // 与摇动关键帧同拍，每 150ms 碰一下
                 try? await Task.sleep(for: .milliseconds(150))
@@ -254,6 +274,49 @@ struct CastView: View {
             busy = false
             guard !gone else { return }
             toss()
+        }
+    }
+}
+
+/// 未成卦的摇卦草稿（UserDefaults，不入 SwiftData）
+private struct CastDraft: Codable {
+    var method: String
+    var q: String
+    var cat: String
+    var lines: [Int]
+
+    private static let key = "castDraft"
+    static func load() -> CastDraft? {
+        UserDefaults.standard.data(forKey: key).flatMap { try? JSONDecoder().decode(CastDraft.self, from: $0) }
+            .flatMap { (1..<6).contains($0.lines.count) ? $0 : nil }
+    }
+    func save() { UserDefaults.standard.set(try? JSONEncoder().encode(self), forKey: Self.key) }
+    static func clear() { UserDefaults.standard.removeObject(forKey: key) }
+}
+
+/// 蓍草一束：墨线数茎，揲时分而为二再合
+private struct StalkBundle: View {
+    let split: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        HStack(spacing: split ? 28 : 5) {
+            half(0)
+            half(1)
+        }
+        .animation(reduceMotion ? nil : .spring(duration: 0.35), value: split)
+        .accessibilityHidden(true)
+    }
+
+    private func half(_ side: Int) -> some View {
+        HStack(spacing: 5) {
+            ForEach(0..<6, id: \.self) { i in
+                let k = side * 6 + i
+                Capsule()
+                    .fill(Color.line.opacity(0.55 + Double(k % 3) * 0.15))
+                    .frame(width: 2.5, height: 84 + CGFloat((k * 7) % 5) * 4)
+                    .rotationEffect(.degrees(Double(k - 6) * 1.6 + 0.8), anchor: .bottom)   // 束于下端，上端略散
+            }
         }
     }
 }

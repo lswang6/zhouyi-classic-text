@@ -106,6 +106,20 @@ struct SettingsView: View {
                         .listRowBackground(Color.base)
                     }
                 }
+                Section(L("关于与致谢")) {
+                    let info = Bundle.main.infoDictionary
+                    credit(L("版本"), "\(info?["CFBundleShortVersionString"] as? String ?? "") (\(info?["CFBundleVersion"] as? String ?? ""))")
+                    VStack(alignment: .leading, spacing: 2) {
+                        credit(L("开源许可"), "MIT")
+                        Link("github.com/lswang6/zhouyi-Ching-Oracle", destination: URL(string: "https://github.com/lswang6/zhouyi-Ching-Oracle")!)
+                            .font(.system(size: 13))
+                    }
+                    .listRowBackground(Color.base)
+                    credit(L("字体"), "Noto Serif CJK（SIL OFL 1.1）")
+                    credit(L("经文与传文"), L("《周易》通行本（Wikisource 公有领域原文；freizl/yijing, MIT）"))
+                    credit(L("历法"), "6tail/tyme4swift (MIT)")
+                    credit(L("纳甲对校"), "bopo/najia (MIT)")
+                }
             }
             .scrollContentBackground(.hidden)
             .paperBackground()
@@ -122,6 +136,15 @@ struct SettingsView: View {
         // sheet 另起 UIKit 呈现，不继承 RootView 的方向，须在此重设
         .environment(\.locale, loc.locale)
         .environment(\.layoutDirection, loc.isRTL ? .rightToLeft : .leftToRight)
+    }
+
+    /// 致谢一行：上为名目，下为出处
+    private func credit(_ title: String, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title).font(.system(size: 12, weight: .medium)).foregroundStyle(Color.subdued)
+            Text(verbatim: value).font(.system(size: 15)).foregroundStyle(Color.text)
+        }
+        .listRowBackground(Color.base)
     }
 }
 

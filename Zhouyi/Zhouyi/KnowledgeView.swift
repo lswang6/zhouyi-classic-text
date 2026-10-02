@@ -3,7 +3,7 @@ import SwiftUI
 /// 04 易学：今日一卦、易学专栏、六十四卦
 struct KnowledgeView: View {
     /// 专栏篇目，键 kb.<id>.title / .sub / .body（Knowledge 表），配图 kb-<id>
-    static let ids = ["origins", "yinyang", "bagua", "sixtyfour", "yao", "change", "methods", "rules", "tenwings"]
+    static let ids = ["origins", "yinyang", "bagua", "sixtyfour", "yao", "change", "methods", "dayan", "rules", "tiyong", "najia", "tenwings"]
 
     /// 今日一卦：按本地日历日序，每天依文王卦序走一卦
     static func todayN(_ d: Date = .now) -> Int {
@@ -188,10 +188,13 @@ struct HexagramView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 GuaImage(n: n)
-                HStack(spacing: 20) {
-                    HexGlyph(bits: h.bits, width: 72, lineHeight: 8, gap: 7, split: 10, radius: 2)
-                    HexTitle(h: h, size: 24)
-                    Spacer(minLength: 0)
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(spacing: 20) {
+                        HexGlyph(bits: h.bits, width: 72, lineHeight: 8, gap: 7, split: 10, radius: 2)
+                        HexTitle(h: h, size: 24)
+                        Spacer(minLength: 0)
+                    }
+                    HexRelations(h: h)
                 }
                 .card(shadow: true)
 
@@ -209,12 +212,17 @@ struct HexagramView: View {
                                     Text(Zhouyi.lineName(i, yang: h.bits[i] == 1))
                                         .font(.system(size: 14, weight: .heavy)).foregroundStyle(Color.line)
                                         .frame(width: 44, alignment: .leading)
-                                    Text(h.yao[i]).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        Text(h.yao[i]).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                                        let k = "hex.\(n).xiao.\(i)", xiao = L(k, table: "Commentary")
+                                        if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                         }
                     }
+                    block(L("传")) { ZhuanView(n: n) }
                 }
             }
             .padding(.top, 8)
@@ -232,6 +240,57 @@ struct HexagramView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title).font(.system(size: 13, weight: .bold)).foregroundStyle(Color.subdued)
             content()
+        }
+    }
+}
+
+/// 互 · 错 · 综：各一小卦画 + 卦名，点按进入该卦详情
+struct HexRelations: View {
+    let h: Hexagram
+
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach([(L("互卦"), h.hu), (L("错卦"), h.cuo), (L("综卦"), h.zong)], id: \.0) { label, x in
+                NavigationLink(value: Route.hexagram(x.n)) {
+                    HStack(spacing: 8) {
+                        HexGlyph(bits: x.bits, width: 18, lineHeight: 2, gap: 2, split: 4)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(label).font(.system(size: 11, weight: .bold)).foregroundStyle(Color.subdued)
+                            Text(x.name)
+                                .font(Localizer.shared.isChinese ? .serif(15, semibold: true) : .system(size: 12, weight: .semibold))
+                                .foregroundStyle(Color.text)
+                                .lineLimit(1).minimumScaleFactor(0.7)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 10)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.gray75, in: RoundedRectangle(cornerRadius: 10))
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+}
+
+/// 传：彖、大象、文言（仅乾坤）。表中缺的段不显示
+struct ZhuanView: View {
+    let n: Int
+
+    var body: some View {
+        let parts = [(L("彖曰"), "hex.\(n).tuan"), (L("象曰"), "hex.\(n).daxiang"), (L("文言"), "wenyan.\(n)")]
+            .map { ($0.0, L($0.1, table: "Commentary"), $0.1) }
+            .filter { $0.1 != $0.2 }   // 缺键时 L 返回键名
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(parts, id: \.0) { label, text, _ in
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(label).font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                    Text(text).font(.serif(16)).lineSpacing(3).foregroundStyle(Color.text)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
         }
     }
 }

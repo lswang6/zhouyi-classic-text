@@ -78,10 +78,10 @@ private func focus(_ lines: [Int]) -> Focus { Zhouyi.focus(Zhouyi.analyze(lines)
     pinChinese()
     // 乾下三爻动 → 天地否
     let f = focus([9, 9, 9, 7, 7, 7])
-    #expect(f.rule == "三爻动，以本卦与变卦卦辞为断，本卦为主。")
+    #expect(f.rule == "三爻动，以本卦与变卦卦辞为断，本卦为贞（主），变卦为悔。")
     #expect(f.items == [
-        FocusItem(tag: "乾卦 卦辞", text: "元亨利贞。", main: true),
-        FocusItem(tag: "否卦 卦辞", text: "否之匪人，不利君子贞，大往小来。", main: false),
+        FocusItem(tag: "贞 · 乾卦 卦辞", text: "元亨利贞。", main: true),
+        FocusItem(tag: "悔 · 否卦 卦辞", text: "否之匪人，不利君子贞，大往小来。", main: false),
     ])
 }
 
@@ -118,6 +118,48 @@ private func focus(_ lines: [Int]) -> Focus { Zhouyi.focus(Zhouyi.analyze(lines)
     let o = focus([9, 6, 9, 6, 9, 6])
     #expect(o.rule == "六爻皆动，以变卦卦辞为断。")
     #expect(o.items == [FocusItem(tag: "未济卦 卦辞", text: "亨，小狐汔济，濡其尾，无攸利。", main: true)])
+}
+
+@Test func derivedHexagrams() {
+    for n in 1...64 {
+        let h = Zhouyi.hexagram(n: n)
+        #expect(h.cuo.cuo.n == n && h.zong.zong.n == n)
+    }
+    let hu = { Zhouyi.hexagram(n: $0).hu.n }
+    #expect(hu(1) == 1 && hu(2) == 2 && hu(3) == 23 && hu(4) == 24 && hu(63) == 64 && hu(64) == 63)
+    let zong = { Zhouyi.hexagram(n: $0).zong.n }
+    #expect(zong(3) == 4 && zong(4) == 3 && zong(11) == 12 && zong(12) == 11)
+    let cuo = { Zhouyi.hexagram(n: $0).cuo.n }
+    #expect(cuo(1) == 2 && cuo(2) == 1 && cuo(29) == 30 && cuo(30) == 29)
+}
+
+@Test func tiYong() {
+    let rel = { Zhouyi.tiYong(Zhouyi.analyze($0))?.relation }
+    #expect(rel([9, 7, 7, 7, 7, 7]) == .biHe)          // 乾金 / 乾金
+    #expect(rel([9, 8, 8, 7, 8, 7]) == .yongShengTi)   // 用震木 生 体离火
+    #expect(rel([7, 8, 8, 9, 8, 7]) == .tiShengYong)   // 体震木 生 用离火
+    #expect(rel([7, 8, 8, 8, 8, 6]) == .tiKeYong)      // 体震木 克 用坤土
+    #expect(rel([9, 8, 8, 8, 8, 8]) == .yongKeTi)      // 用震木 克 体坤土
+    #expect(rel([7, 7, 7, 7, 7, 7]) == nil && rel([9, 9, 7, 7, 7, 7]) == nil)
+
+    // 噬嗑初爻动：用震 体离，互卦蹇，变卦晋之用为坤
+    let t = Zhouyi.tiYong(Zhouyi.analyze([9, 8, 8, 7, 8, 7]))!
+    #expect(t.yong.k == "震" && t.ti.k == "离" && t.hu.n == 39 && t.bianYong.k == "坤")
+}
+
+private struct FixedRNG: RandomNumberGenerator {
+    var k: UInt64
+    mutating func next() -> UInt64 { k }
+}
+
+@Test func yarrowWeights() {
+    var counts: [Int: Int] = [:]
+    for k in 0..<16 {
+        var g = FixedRNG(k: UInt64(k))
+        counts[Zhouyi.yarrowLine(using: &g), default: 0] += 1
+    }
+    #expect(counts == [6: 1, 7: 5, 8: 7, 9: 3])
+    #expect((0..<100).allSatisfy { _ in (6...9).contains(Zhouyi.yarrowLine()) })
 }
 
 @Test func lineNames() {
@@ -181,6 +223,11 @@ private func cast(_ y: Int, _ m: Int, _ d: Int, _ h: Int, _ mi: Int = 0) -> Time
 
     let early = cast(2026, 9, 28, 0, 30)
     #expect(early.day == 18 && early.hourBranch == 1)
+
+    let before = cast(2026, 9, 28, 22, 59)
+    #expect(before.day == 18 && before.hourBranch == 12)
+    let at = cast(2026, 9, 28, 23, 0)
+    #expect(at.day == 19 && at.hourBranch == 1)
 }
 
 @Test func timeCastLeapAndNewYear() {
@@ -188,6 +235,11 @@ private func cast(_ y: Int, _ m: Int, _ d: Int, _ h: Int, _ mi: Int = 0) -> Time
     let leap = cast(2025, 7, 25, 10)
     #expect(leap.isLeapMonth && leap.month == 6 && leap.day == 1 && leap.yearBranch == 6)
     #expect(leap.lunarText == "闰六月初一")
+
+    // 立春（2/4）后、春节（2/17）前：年支仍随农历乙巳年。巳6+腊月12+十八=36，午7 → 43
+    let lichun = cast(2026, 2, 5, 12)
+    #expect(lichun.yearBranch == 6 && lichun.month == 12 && lichun.day == 18 && lichun.hourBranch == 7)
+    #expect(lichun.cast == TriCast(up: 4, lo: 3, mv: 1))
 
     let eve = cast(2026, 2, 16, 12)
     #expect(eve.yearBranch == 6 && eve.month == 12 && eve.day == 29)
@@ -303,6 +355,7 @@ private let sources: [(name: String, text: String)] = {
 @Test func dynamicKeysInManifest() {
     let keys = Record.categories + Record.verifyOptions + Zhouyi.branches + Zhouyi.positions
         + Array(Zhouyi.lineValueName.values) + Zhouyi.lunarMonths + ["闰", "用九", "用六"]
+        + ["比和", "用生体", "体生用", "用克体", "体克用"] + ["木", "火", "土", "金", "水"]   // TiYong.Relation、Trigram.wx
     for k in keys { #expect(manifest[k] != nil, "\(k)") }
 }
 
@@ -322,7 +375,7 @@ private let sources: [(name: String, text: String)] = {
 
 /// 界面文件里不应再有未经 L() 的中文字面量。卦文、卦理数据表与存储键所在文件不查
 @Test func noBareChineseLiterals() {
-    let skipFiles: Set = ["HexagramData.swift", "Zhouyi.swift", "Record.swift"]
+    let skipFiles: Set = ["HexagramData.swift", "Zhouyi.swift", "NaJia.swift", "Record.swift"]
     let allowed = [
         "\"简体中文\"", "\"繁體中文\"", "\"日本語\"",     // 语言自称名
         "Text(verbatim: \"通\")", "Text(verbatim: \"寶\")",                  // 铜钱钱文

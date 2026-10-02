@@ -8,6 +8,7 @@ struct ReadingView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var tab = "bh"
     @State private var confirmDelete = false
+    @State private var shareImage: Image?
     @Namespace private var tabNS
 
     var body: some View {
@@ -30,17 +31,9 @@ struct ReadingView: View {
                     Text(record.meta).font(.system(size: 13)).foregroundStyle(Color.subdued)
                 }
 
-                HStack(alignment: .top, spacing: 12) {
-                    column(L("本卦"), a.ben, lines: record.lines)
-                    if let bian = a.bian {
-                        Image(systemName: "arrow.forward")
-                            .accessibilityHidden(true)
-                            .font(.system(size: 20))
-                            .foregroundStyle(Color.gray500)
-                            .frame(maxHeight: .infinity)
-                            .padding(.bottom, 40)
-                        column(L("变卦"), bian, lines: nil)
-                    }
+                VStack(spacing: 16) {
+                    guaPair(a)
+                    HexRelations(h: a.ben)
                 }
                 .padding(.vertical, 20)
                 .padding(.horizontal, 16)
@@ -55,6 +48,10 @@ struct ReadingView: View {
                 }
 
                 // 非中文只有白话解卦
+                if let ty = Zhouyi.tiYong(a), [CastMethod.number.rawValue, CastMethod.time.rawValue].contains(record.method) {
+                    tiYongCard(ty, upper: a.moving[0] >= 3)
+                }
+
                 if zh {
                     focusCard(f)
                     tabBar
@@ -72,6 +69,11 @@ struct ReadingView: View {
         .softTopEdge()
         .paperBackground()
         .scrollDismissesKeyboard(.interactively)
+        .task {
+            let r = ImageRenderer(content: shareCard(a, f, zh: zh))
+            r.scale = 3
+            shareImage = r.uiImage.map(Image.init(uiImage:))
+        }
         .navigationTitle(L("解卦"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbarRole(.editor)   // 返回键不带文字：系统界面跟系统语言，不跟应用内选择
@@ -87,7 +89,16 @@ struct ReadingView: View {
                 }
                 .accessibilityLabel(L("收藏"))
                 .accessibilityAddTraits(record.fav ? .isSelected : [])
-                ShareLink(item: shareText(a, f, zh: zh), subject: Text(record.title)) {
+                Menu {
+                    ShareLink(item: shareText(a, f, zh: zh), subject: Text(record.title)) {
+                        Label(L("分享文字"), systemImage: "text.alignleft")
+                    }
+                    if let img = shareImage {
+                        ShareLink(item: img, preview: SharePreview(record.title, image: img)) {
+                            Label(L("分享图片"), systemImage: "photo")
+                        }
+                    }
+                } label: {
                     Image(systemName: "square.and.arrow.up").foregroundStyle(Color.text)
                 }
                 .tint(Color.text)   // 与星标同为墨色
@@ -101,6 +112,75 @@ struct ReadingView: View {
         guard zh else { return head + pair(a).map { "\($0.0)\n\($0.1.bh)" }.joined(separator: "\n\n") }
         return head + L("断卦要点：%@", f.rule) + "\n"
             + f.items.map { "【\($0.tag)】\($0.text)" }.joined(separator: "\n")
+    }
+
+    /// 本卦 → 变卦
+    private func guaPair(_ a: Analysis) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            column(L("本卦"), a.ben, lines: record.lines)
+            if let bian = a.bian {
+                Image(systemName: "arrow.forward")
+                    .accessibilityHidden(true)
+                    .font(.system(size: 20))
+                    .foregroundStyle(Color.gray500)
+                    .frame(maxHeight: .infinity)
+                    .padding(.bottom, 40)
+                column(L("变卦"), bian, lines: nil)
+            }
+        }
+    }
+
+    /// 分享图：所问、卦象、断卦要点主条（非中文为本卦白话）、应用名。固定浅色
+    private func shareCard(_ a: Analysis, _ f: Focus, zh: Bool) -> some View {
+        let main = f.items.first { $0.main }
+        return VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(L("所问")).font(.system(size: 12, weight: .medium)).foregroundStyle(Color.subdued)
+                Text(record.question).font(.system(size: 20, weight: .heavy)).foregroundStyle(Color.text)
+            }
+            guaPair(a).padding(.vertical, 16).card(padding: 0)
+            if zh, let main {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(f.rule).font(.system(size: 13)).foregroundStyle(Color.subdued)
+                    Text(main.tag).font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                    Text(main.text).font(.serif(18, semibold: true)).lineSpacing(2).foregroundStyle(Color.text)
+                }
+            } else {
+                Text(a.ben.bh).font(.system(size: 15)).lineSpacing(3).foregroundStyle(Color.text)
+            }
+            Text(L("CFBundleDisplayName", table: "InfoPlist"))
+                .font(.system(size: 12, weight: .medium)).foregroundStyle(Color.subdued)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+        .padding(24)
+        .frame(width: 390)
+        .background(Color.layer1)
+        .environment(\.colorScheme, .light)
+    }
+
+    /// 梅花体用：体用五行关系，始（本卦用）→ 中（互卦）→ 终（变卦用）
+    private func tiYongCard(_ ty: TiYong, upper: Bool) -> some View {
+        let note = switch ty.relation {
+        case .biHe: L("体用同气")
+        case .yongShengTi: L("外缘助我")
+        case .tiShengYong: L("我耗于外")
+        case .yongKeTi: L("外势制我")
+        case .tiKeYong: L("我能制事")
+        }
+        let hu = upper ? ty.hu.up : ty.hu.lo
+        return VStack(alignment: .leading, spacing: 8) {
+            Text(L("体用")).font(.system(size: 16, weight: .heavy)).foregroundStyle(Color.text)
+            Text(L("体卦 %1$@（%2$@）· 用卦 %3$@（%4$@）", ty.ti.label, L(ty.ti.wx), ty.yong.label, L(ty.yong.wx)))
+                .font(.system(size: 14)).foregroundStyle(Color.text)
+            HStack(spacing: 8) {
+                Badge(text: L(ty.relation.rawValue), variant: .neutral)
+                Text(note).font(.system(size: 14)).foregroundStyle(Color.subdued)
+            }
+            Text(L("始 %1$@（%2$@）→ 中 %3$@（%4$@）→ 终 %5$@（%6$@）", ty.yong.label, L(ty.yong.wx), hu.label, L(hu.wx), ty.bianYong.label, L(ty.bianYong.wx)))
+                .font(.system(size: 13)).foregroundStyle(Color.subdued)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .card()
     }
 
     private func column(_ label: String, _ h: Hexagram, lines: [Int]?) -> some View {
@@ -176,7 +256,7 @@ struct ReadingView: View {
     /// 指示条不挂在任何标签内（否则该标签的点按/无障碍区域被撑高），而是跟随所选标签的 frame
     private var tabBar: some View {
         HStack(spacing: 24) {
-            ForEach([("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞"))], id: \.0) { key, label in
+            ForEach([("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞")), ("zhuan", L("传"))], id: \.0) { key, label in
                 let on = tab == key
                 Button { withAnimation(.spectrum) { tab = key } } label: {
                     Text(label)
@@ -237,6 +317,8 @@ struct ReadingView: View {
                             .frame(width: 44, alignment: .leading)
                         VStack(alignment: .leading, spacing: 6) {
                             Text(a.ben.yao[i]).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
+                            let k = "hex.\(a.ben.n).xiao.\(i)", xiao = L(k, table: "Commentary")
+                            if xiao != k { Text(xiao).font(.serif(14)).lineSpacing(2).foregroundStyle(Color.subdued) }
                             if moving { Badge(text: a.lines[i] == 9 ? L("动爻 · 老阳") : L("动爻 · 老阴"), subtle: true) }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -248,6 +330,15 @@ struct ReadingView: View {
             }
         case "bh":
             plain(a)
+        case "zhuan":
+            VStack(alignment: .leading, spacing: 16) {
+                ForEach(pair(a), id: \.0) { t, h in
+                    VStack(alignment: .leading, spacing: 6) {
+                        tag(t)
+                        ZhuanView(n: h.n)
+                    }
+                }
+            }
         default:
             VStack(alignment: .leading, spacing: 16) {
                 ForEach(pair(a), id: \.0) { t, h in
