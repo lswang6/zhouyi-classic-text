@@ -41,7 +41,7 @@ struct HistoryView: View {
                 HStack(alignment: .firstTextBaseline) {
                     pageTitle(L("卜卦记录"))
                     Spacer()
-                    Text(L("共 %d 卦", records.count)).font(.system(size: 13)).foregroundStyle(Color.subdued)
+                    Text(L("共 %d 卦", records.count)).font(.scaled(13)).foregroundStyle(Color.subdued)
                     exportMenu
                         .alignmentGuide(.firstTextBaseline) { $0[VerticalAlignment.center] + 5 }
                     SettingsButton()
@@ -73,14 +73,14 @@ struct HistoryView: View {
                                     .frame(maxWidth: 220)
                                     .clipShape(RoundedRectangle(cornerRadius: 12))
                             }
-                            Text(L("还没有卜卦记录")).font(.system(size: 16, weight: .heavy)).foregroundStyle(Color.text)
+                            Text(L("还没有卜卦记录")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 48)
                     } else if list.isEmpty {
                         VStack(spacing: 6) {
-                            Text(L("没有找到相关记录")).font(.system(size: 16, weight: .heavy)).foregroundStyle(Color.text)
-                            Text(L("换个关键词或筛选条件试试")).font(.system(size: 13)).foregroundStyle(Color.subdued)
+                            Text(L("没有找到相关记录")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
+                            Text(L("换个关键词或筛选条件试试")).font(.scaled(13)).foregroundStyle(Color.subdued)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 48)
@@ -111,7 +111,7 @@ struct HistoryView: View {
             }
         } label: {
             Image(systemName: "square.and.arrow.up")
-                .font(.system(size: 20))
+                .font(.scaled(20))
                 .foregroundStyle(records.isEmpty ? Color.gray500 : Color.text)
         }
         .disabled(records.isEmpty)
@@ -125,22 +125,22 @@ struct HistoryView: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
                     Text(r.title)
-                        .font(.system(size: 15, weight: .bold))
+                        .font(.scaled(15, .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     if r.fav {
-                        Image(systemName: "star.fill").font(.system(size: 14)).foregroundStyle(Color.notice)
+                        Image(systemName: "star.fill").font(.scaled(14)).foregroundStyle(Color.notice)
                             .accessibilityLabel(L("收藏"))
                     }
                 }
-                Text(r.question).font(.system(size: 14)).lineSpacing(2)
+                Text(r.question).font(.scaled(14)).lineSpacing(2)
                 HStack(spacing: 8) {
-                    Text(r.meta).font(.system(size: 12)).foregroundStyle(Color.subdued)
+                    Text(r.meta).font(.scaled(12)).foregroundStyle(Color.subdued)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Badge(text: L(r.verify), variant: verifyVariant(r.verify), subtle: true)
                 }
                 .padding(.top, 2)
                 if !r.note.isEmpty {
-                    Text(L("备注：%@", r.note)).font(.system(size: 12)).lineSpacing(2).foregroundStyle(Color.subdued)
+                    Text(L("备注：%@", r.note)).font(.scaled(12)).lineSpacing(2).foregroundStyle(Color.subdued)
                 }
             }
             .foregroundStyle(Color.text)
@@ -209,10 +209,10 @@ private struct SearchField: View {
 
     var body: some View {
         HStack(spacing: 8) {
-            Image(systemName: "magnifyingglass").font(.system(size: 15)).foregroundStyle(Color.subdued)
+            Image(systemName: "magnifyingglass").font(.scaled(15)).foregroundStyle(Color.subdued)
                 .accessibilityHidden(true)
             TextField(L("搜索所问之事或卦名"), text: $text)
-                .font(.system(size: 15))
+                .font(.scaled(15))
                 .submitLabel(.search)
                 .focused($focused)
             if !text.isEmpty {
@@ -224,7 +224,7 @@ private struct SearchField: View {
             }
         }
         .padding(.horizontal, 12)
-        .frame(height: 36)
+        .frame(minHeight: 36)
         .background(Color.base, in: Capsule())
         .overlay(Capsule().strokeBorder(focused ? Color.accentVisual : Color.gray300, lineWidth: 2))
         .animation(.spectrum, value: focused)

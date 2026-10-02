@@ -31,15 +31,6 @@ struct Provider: TimelineProvider {
     }
 }
 
-/// 同 KnowledgeView.todayN：2000-01-01 起按日数循文王卦序
-/// ponytail: 两处各一份，待移入 Zhouyi.swift 共用
-func todayN(_ d: Date) -> Int {
-    let cal = Calendar.current
-    let ref = cal.date(from: DateComponents(year: 2000, month: 1, day: 1))!
-    let days = cal.dateComponents([.day], from: ref, to: cal.startOfDay(for: d)).day ?? 0
-    return ((days % 64) + 64) % 64 + 1
-}
-
 struct TodayView: View {
     let entry: Entry
     @Environment(\.widgetFamily) private var family
@@ -47,7 +38,7 @@ struct TodayView: View {
     var body: some View {
         let loc = Localizer.shared
         let zh = loc.isChinese
-        let h = Zhouyi.hexagram(n: todayN(entry.date))
+        let h = Zhouyi.hexagram(n: Zhouyi.todayN(entry.date))
         // 中文取卦辞首句，其他语言取白话要旨
         let line = zh ? String(h.ci.prefix { $0 != "。" }) : h.bh
         let small = family == .systemSmall

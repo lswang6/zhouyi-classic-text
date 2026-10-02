@@ -74,7 +74,7 @@ struct SettingsView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         credit(L("开源许可"), "MIT")
                         Link("github.com/lswang6/zhouyi-Ching-Oracle", destination: URL(string: "https://github.com/lswang6/zhouyi-Ching-Oracle")!)
-                            .font(.system(size: 13))
+                            .font(.scaled(13))
                     }
                     .listRowBackground(Color.base)
                     credit(L("字体"), "Noto Serif CJK（SIL OFL 1.1）")
@@ -103,8 +103,8 @@ struct SettingsView: View {
     /// 致谢一行：上为名目，下为出处
     private func credit(_ title: String, _ value: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(title).font(.system(size: 12, weight: .medium)).foregroundStyle(Color.subdued)
-            Text(verbatim: value).font(.system(size: 15)).foregroundStyle(Color.text)
+            Text(title).font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
+            Text(verbatim: value).font(.scaled(15)).foregroundStyle(Color.text)
         }
         .listRowBackground(Color.base)
     }
@@ -117,7 +117,7 @@ struct SettingsButton: View {
     var body: some View {
         Button { app.showSettings = true } label: {
             Image(systemName: "gearshape")
-                .font(.system(size: 20))
+                .font(.scaled(20))
                 .foregroundStyle(Color.text)
         }
         .buttonStyle(.plain)

@@ -19,7 +19,7 @@ struct SealStamp: View {
                 Text(verbatim: "成")
                 Text(verbatim: "卦")
             }
-            .font(.serif(size * 0.36, semibold: true))
+            .font(.custom("ZhouyiSerif-SemiBold", fixedSize: size * 0.36))   // 印框定宽，不随动态字体
             .scaleEffect(x: 1, y: 1.25)   // 印文略长
             .foregroundStyle(Color.onAccent)
             .shadow(color: .onAccent, radius: 0, x: 0.4)   // 子集只有 SemiBold，小字号下偏细：左右各叠一层描粗

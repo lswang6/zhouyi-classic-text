@@ -4,6 +4,7 @@ import SwiftData
 /// 01 卜一卦
 struct HomeView: View {
     @Environment(AppState.self) private var app
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Query(sort: \Record.ts, order: .reverse) private var records: [Record]
     @State private var method: CastMethod = .time
     @AppStorage("shakeMethod") private var shakeMethod: CastMethod = .coin   // 摇卦卡内：铜钱 / 蓍草
@@ -29,7 +30,7 @@ struct HomeView: View {
                     SpectrumField(label: L("所问之事"), placeholder: L("例如：这次换工作是否合适？"), text: $app.q)
                     VStack(alignment: .leading, spacing: 8) {
                         Text(L("类别"))
-                            .font(.system(size: 12, weight: .medium))
+                            .font(.scaled(12, .medium))
                             .foregroundStyle(Color.subdued)
                         FlowLayout(spacing: 8) {
                             ForEach(Record.categories, id: \.self) { c in
@@ -47,23 +48,23 @@ struct HomeView: View {
 
                 if let r = records.first {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(L("最近一卦")).font(.system(size: 16, weight: .heavy))
+                        Text(L("最近一卦")).font(.scaled(16, .heavy))
                         Button { app.open(r) } label: {
                             HStack(spacing: 14) {
                                 HexGlyph(bits: r.analysis.bits, lines: r.lines)
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(r.title)
-                                        .font(.system(size: 15, weight: .bold))
+                                        .font(.scaled(15, .bold))
                                         .foregroundStyle(Color.text)
                                     Text(r.question)
-                                        .font(.system(size: 13))
+                                        .font(.scaled(13))
                                         .foregroundStyle(Color.subdued)
                                         .lineLimit(1)
                                 }
                                 Spacer()
                                 Image(systemName: "chevron.forward")
                                     .accessibilityHidden(true)
-                                    .font(.system(size: 15))
+                                    .font(.scaled(15))
                                     .foregroundStyle(Color.gray600)
                             }
                             .padding(14)
@@ -88,7 +89,7 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Text(Self.dateText(.now))
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.scaled(13, .medium))
                     .foregroundStyle(Color.subdued)
                 Spacer()
                 SettingsButton()
@@ -96,7 +97,7 @@ struct HomeView: View {
             HomeBanner()
             pageTitle(L("卜一卦"))
             Text(L("静心凝神，一事一占。心中默念所问之事，再开始起卦。"))
-                .font(.system(size: 15))
+                .font(.scaled(15))
                 .foregroundStyle(Color.subdued)
                 .lineSpacing(4)
         }
@@ -115,8 +116,9 @@ struct HomeView: View {
 
     private var methodSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(L("起卦方式")).font(.system(size: 16, weight: .heavy))
-            HStack(spacing: 8) {
+            Text(L("起卦方式")).font(.scaled(16, .heavy))
+            // 辅助功能大字号时三卡竖排，免窄卡逐字折行
+            (dynamicTypeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))) {
                 methodCard(shakeMethod, L("摇卦"), shakeMethod == .yarrow ? L("四营成易，\n十有八变") : L("三钱六掷，\n逐爻成卦"))
                 methodCard(.number, L("数字"), L("三个数\n定卦与动爻"))
                 methodCard(.time, L("时间"), L("以此刻\n年月日时起卦"))
@@ -139,7 +141,7 @@ struct HomeView: View {
                                     + Text(verbatim: "\n") + Text(L("老阳 : 老阴 = 3 : 1，铜钱为 1 : 1。"))
                             }
                         }
-                        .font(.system(size: 13))
+                        .font(.scaled(13))
                         .foregroundStyle(Color.subdued)
                         .lineSpacing(4)
                     }
@@ -156,11 +158,11 @@ struct HomeView: View {
         return Button { withAnimation(.spectrum) { method = m } } label: {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
-                    .font(.system(size: 15, weight: .bold))
+                    .font(.scaled(15, .bold))
                     .foregroundStyle(selected ? Color.accentText : Color.text)
                     .minimumScaleFactor(0.8)
                 Text(sub)
-                    .font(.system(size: 12))
+                    .font(.scaled(12))
                     .foregroundStyle(Color.subdued)
                     .lineSpacing(2)
                     .minimumScaleFactor(0.85)   // 长词（德语等）略缩，不截断
@@ -184,12 +186,12 @@ struct HomeView: View {
                 }
             }
             Text(L("凭直觉写下三个正整数。上、下卦取除以八的余数，动爻取除以六的余数。"))
-                .font(.system(size: 12))
+                .font(.scaled(12))
                 .foregroundStyle(Color.subdued)
                 .lineSpacing(2)
             if let c = numberCast {
                 HStack(spacing: 4) { Image(systemName: "arrow.forward").accessibilityHidden(true); Text(Zhouyi.triText(c)) }
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.scaled(14, .bold))
                     .foregroundStyle(Color.accentText)
             }
         }
@@ -208,15 +210,15 @@ struct HomeView: View {
                 row(L("下卦：再加时 = %d", tv.s2), tri(tv.s2, T[c.lo - 1]))
                 row(L("动爻：%d ÷ 6", tv.s2), Text(L("余 %1$d → %2$@爻", tv.s2 % 6, L(Zhouyi.positions[c.mv - 1]))))
                 Text(L("年支按农历年（春节换年）· 闰月按本月数 · 23 点起为次日子时 · 按本机时区"))
-                    .font(.system(size: 11))
+                    .font(.scaled(11))
                     .foregroundStyle(Color.subdued)
                 if let note = solar.note {
-                    Text(note).font(.system(size: 11)).foregroundStyle(Color.subdued)
+                    Text(note).font(.scaled(11)).foregroundStyle(Color.subdued)
                 }
                 // 只取时辰：两小时内结果不变，属传统本意
                 let from = (2 * h + 21) % 24
                 Text(L("同一时辰内（%@）起卦结果相同，一事不二占。", String(format: "%02d:00–%02d:00", from, (from + 2) % 24)))
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.scaled(11, .medium))
                     .foregroundStyle(Color.subdued)
             }
             .padding(.vertical, 12)
@@ -229,16 +231,16 @@ struct HomeView: View {
     /// “÷8 余 1 → 兑 ☱”：卦名与卦符以不换行空格相连，折行时不拆开
     private func tri(_ s: Int, _ t: Trigram) -> Text {
         Text(L("÷8 余 %1$d → %2$@", s % 8, t.label).trimmingCharacters(in: .whitespaces) + "\u{00A0}")
-            + Text(t.sym).font(.system(size: 17))
+            + Text(t.sym).font(.scaled(17))
     }
 
     private func row(_ k: String, _ v: Text) -> some View {
         HStack {
             // “= 37” 前后换不换行空格，折行时与前词同行，不落单
             Text(k.replacingOccurrences(of: " = ", with: "\u{00A0}=\u{00A0}"))
-                .font(.system(size: 13)).foregroundStyle(Color.subdued)
+                .font(.scaled(13)).foregroundStyle(Color.subdued)
             Spacer(minLength: 12)
-            v.font(.system(size: 13, weight: .bold)).multilineTextAlignment(.trailing)
+            v.font(.scaled(13, .bold)).multilineTextAlignment(.trailing)
                 .layoutPriority(1)   // 值列优先取宽，长标签折行，免值列参差折行
         }
         .frame(minHeight: 21)   // 卦符 17pt 撑高其行，各行取同高
@@ -277,7 +279,7 @@ struct FormingOverlay: View {
         let lines = record.lines
         VStack(spacing: 22) {
             Text(record.question)
-                .font(.system(size: 14))
+                .font(.scaled(14))
                 .foregroundStyle(Color.subdued)
                 .multilineTextAlignment(.center)
             VStack(spacing: 12) {
@@ -297,7 +299,7 @@ struct FormingOverlay: View {
             HStack(spacing: 8) {   // 印在卦名后，左侧等宽留白保持居中
                 Color.clear.frame(width: 30, height: 1)
                 Text(record.title)
-                    .font(Localizer.shared.isChinese ? .serif(20, semibold: true) : .system(size: 20, weight: .heavy))
+                    .font(Localizer.shared.isChinese ? .serif(20, semibold: true) : .scaled(20, .heavy))
                     .foregroundStyle(Color.text)
                     .multilineTextAlignment(.center)
                     .opacity(done ? 1 : 0)

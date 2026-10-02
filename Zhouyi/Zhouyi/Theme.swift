@@ -42,6 +42,11 @@ extension Font {
         .custom(semibold ? "ZhouyiSerif-SemiBold" : "ZhouyiSerif-Regular", size: size, relativeTo: textStyle(size))
     }
 
+    /// 系统字体随动态字体缩放：按 size 所近的文本样式（默认字号可差 1pt，如 14 → 15）
+    static func scaled(_ size: CGFloat, _ weight: Weight = .regular, design: Design = .default) -> Font {
+        .system(textStyle(size), design: design, weight: weight)
+    }
+
     /// 字号 → 默认字号与之最近的系统文本样式（缩放比例随之）
     static func textStyle(_ size: CGFloat) -> TextStyle {
         switch size {

@@ -237,6 +237,14 @@ enum Zhouyi {
 
     static let lunarMonths = ["正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "腊月"]
 
+    /// 今日一卦：2000-01-01 起按本地日历日序，每天依文王卦序走一卦（App 与小组件共用）
+    static func todayN(_ d: Date = .now) -> Int {
+        let cal = Calendar.current
+        let ref = cal.date(from: DateComponents(year: 2000, month: 1, day: 1))!
+        let days = cal.dateComponents([.day], from: ref, to: cal.startOfDay(for: d)).day ?? 0
+        return ((days % 64) + 64) % 64 + 1
+    }
+
     static func lunarMonthName(_ m: Int, leap: Bool) -> String {
         (leap ? L("闰") : "") + L(lunarMonths[m - 1])
     }

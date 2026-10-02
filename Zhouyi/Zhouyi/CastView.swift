@@ -30,7 +30,7 @@ struct CastView: View {
         VStack(spacing: 0) {
             Spacer(minLength: 6)   // 所问与六爻居于导航栏与铜钱之间，上下留白均分
             Text(q.isEmpty ? L("心中默念所问之事") : q)
-                .font(.system(size: 14))
+                .font(.scaled(14))
                 .foregroundStyle(Color.subdued)
                 .multilineTextAlignment(.center)
 
@@ -38,6 +38,7 @@ struct CastView: View {
                 ForEach((0..<6).reversed(), id: \.self) { slot($0) }
             }
             .frame(width: 334)   // 两侧列同宽，爻画列居中
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)   // 定宽 334：再大则两侧文字挤没爻画
             .backgroundPreferenceValue(LineBounds.self) { a in   // 墨晕只衬爻画一列，不含左右文字
                 GeometryReader { g in
                     if let r = a.map({ g[$0] }).reduce(nil, { $0?.union($1) ?? $1 }) {
@@ -83,7 +84,7 @@ struct CastView: View {
                     Text(busy ? "…" : "")
                 }
             }
-            .font(.system(size: 14, weight: .bold))
+            .font(.scaled(14, .bold))
             .foregroundStyle(Color.text)
             .frame(minHeight: 20)
             .padding(.top, 16)
@@ -94,7 +95,7 @@ struct CastView: View {
                     PillButton(title: method == .yarrow ? L("揲蓍") : L("掷钱"), disabled: busy) { toss() }
                     PillButton(title: L("摇一摇"), accent: false, large: false, disabled: busy) { shake() }
                     Text(method == .yarrow ? L("点按揲蓍，或直接摇动手机") : L("点按掷钱，或直接摇动手机"))
-                        .font(.system(size: 12))
+                        .font(.scaled(12))
                         .foregroundStyle(Color.subdued)
                         .frame(maxWidth: .infinity)
                 }
@@ -104,7 +105,7 @@ struct CastView: View {
                     HStack(spacing: 8) {   // 印在卦名后；左侧等宽留白使卦名仍居中，印只占宽不占高
                         Color.clear.frame(width: 30, height: 1)
                         Text(record?.title ?? " ")
-                            .font(.system(size: 20, weight: .heavy))
+                            .font(.scaled(20, .heavy))
                             .foregroundStyle(Color.text)
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
@@ -114,7 +115,7 @@ struct CastView: View {
                     .padding(.bottom, 8)   // 印比标题行高且微斜，下角距按钮仍留约 15
                     PillButton(title: L("查看解卦")) { if let record { app.open(record) } }
                     Text(L("卦已成，已保存到卜卦记录"))
-                        .font(.system(size: 13, weight: .bold))
+                        .font(.scaled(13, .bold))
                         .foregroundStyle(Color.accentText)
                         .frame(maxWidth: .infinity)
                 }
@@ -124,6 +125,7 @@ struct CastView: View {
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 28)
+        .dynamicTypeSize(...DynamicTypeSize.accessibility1)   // ponytail: 单屏不滚动，封顶防溢出；要全档位再改 ScrollView
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background {   // 衬一幅淡画：浅色日景，深色月夜（资源按外观自动切换）
             if UIImage(named: "cast-backdrop") != nil {
@@ -148,7 +150,7 @@ struct CastView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Text(verbatim: "\(cast.count) / 6")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.scaled(14, .bold))
                     .foregroundStyle(Color.subdued)
             }
         }
@@ -177,7 +179,7 @@ struct CastView: View {
             ZStack(alignment: .trailing) {   // 与爻值列同宽，标签贴近爻画
                 valueWidth
                 Text([L("初爻"), L("二爻"), L("三爻"), L("四爻"), L("五爻"), L("上爻")][i])
-                    .font(.system(size: 12, weight: .medium))
+                    .font(.scaled(12, .medium))
                     .foregroundStyle(Color.subdued)
                     .frame(minHeight: 18)
             }
@@ -201,7 +203,7 @@ struct CastView: View {
             ZStack(alignment: .leading) {
                 valueWidth
                 Text(v.map(valueText) ?? "")
-                    .font(.system(size: 13, weight: .bold))
+                    .font(.scaled(13, .bold))
                     .foregroundStyle(color)
                     .fixedSize()
             }
@@ -218,7 +220,7 @@ struct CastView: View {
     /// 四种爻值隐叠占位：两侧列按当前语言最宽者定宽，爻值出现时爻画不挪
     private var valueWidth: some View {
         ZStack {
-            ForEach([6, 7, 8, 9], id: \.self) { Text(valueText($0)).font(.system(size: 13, weight: .bold)).fixedSize() }
+            ForEach([6, 7, 8, 9], id: \.self) { Text(valueText($0)).font(.scaled(13, .bold)).fixedSize() }
         }
         .hidden()
     }

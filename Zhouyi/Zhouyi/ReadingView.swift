@@ -28,9 +28,9 @@ struct ReadingView: View {
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(L("所问")).font(.system(size: 12, weight: .medium)).foregroundStyle(Color.subdued)
-                    Text(record.question).font(.system(size: 22, weight: .heavy)).foregroundStyle(Color.text)
-                    Text(record.meta).font(.system(size: 13)).foregroundStyle(Color.subdued)
+                    Text(L("所问")).font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
+                    Text(record.question).font(.scaled(22, .heavy)).foregroundStyle(Color.text)
+                    Text(record.meta).font(.scaled(13)).foregroundStyle(Color.subdued)
                 }
 
                 VStack(spacing: 16) {
@@ -43,7 +43,7 @@ struct ReadingView: View {
 
                 if a.bian == nil {
                     Text(L("六爻安静，无变卦"))
-                        .font(.system(size: 12))
+                        .font(.scaled(12))
                         .foregroundStyle(Color.subdued)
                         .frame(maxWidth: .infinity)
                         .padding(.top, -6)
@@ -137,27 +137,28 @@ struct ReadingView: View {
         let main = f.items.first { $0.main }
         return VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(L("所问")).font(.system(size: 12, weight: .medium)).foregroundStyle(Color.subdued)
-                Text(record.question).font(.system(size: 20, weight: .heavy)).foregroundStyle(Color.text)
+                Text(L("所问")).font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
+                Text(record.question).font(.scaled(20, .heavy)).foregroundStyle(Color.text)
             }
             guaPair(a).padding(.vertical, 16).card(padding: 0)
             if zh, let main {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(f.rule).font(.system(size: 13)).foregroundStyle(Color.subdued)
-                    Text(main.tag).font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                    Text(f.rule).font(.scaled(13)).foregroundStyle(Color.subdued)
+                    Text(main.tag).font(.scaled(12, .bold)).foregroundStyle(Color.accentText)
                     Text(main.text).font(.serif(18, semibold: true)).lineSpacing(2).foregroundStyle(Color.text)
                 }
             } else {
-                Text(a.ben.bh).font(.system(size: 15)).lineSpacing(3).foregroundStyle(Color.text)
+                Text(a.ben.bh).font(.scaled(15)).lineSpacing(3).foregroundStyle(Color.text)
             }
             Text(L("CFBundleDisplayName", table: "InfoPlist"))
-                .font(.system(size: 12, weight: .medium)).foregroundStyle(Color.subdued)
+                .font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(24)
         .frame(width: 390)
         .background(Color.layer1)
         .environment(\.colorScheme, .light)
+        .environment(\.dynamicTypeSize, .large)   // ImageRenderer 不继承环境，分享图固定标准字号
     }
 
     /// 梅花体用：体用五行关系，始（本卦用）→ 中（互卦）→ 终（变卦用）
@@ -171,15 +172,15 @@ struct ReadingView: View {
         }
         let hu = upper ? ty.hu.up : ty.hu.lo
         return VStack(alignment: .leading, spacing: 8) {
-            Text(L("体用")).font(.system(size: 16, weight: .heavy)).foregroundStyle(Color.text)
+            Text(L("体用")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
             Text(L("体卦 %1$@（%2$@）· 用卦 %3$@（%4$@）", ty.ti.label, L(ty.ti.wx), ty.yong.label, L(ty.yong.wx)))
-                .font(.system(size: 14)).foregroundStyle(Color.text)
+                .font(.scaled(14)).foregroundStyle(Color.text)
             HStack(spacing: 8) {
                 Badge(text: L(ty.relation.rawValue), variant: .neutral)
-                Text(note).font(.system(size: 14)).foregroundStyle(Color.subdued)
+                Text(note).font(.scaled(14)).foregroundStyle(Color.subdued)
             }
             Text(L("始 %1$@（%2$@）→ 中 %3$@（%4$@）→ 终 %5$@（%6$@）", ty.yong.label, L(ty.yong.wx), hu.label, L(hu.wx), ty.bianYong.label, L(ty.bianYong.wx)))
-                .font(.system(size: 13)).foregroundStyle(Color.subdued)
+                .font(.scaled(13)).foregroundStyle(Color.subdued)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .card()
@@ -187,12 +188,12 @@ struct ReadingView: View {
 
     private func column(_ label: String, _ h: Hexagram, lines: [Int]?) -> some View {
         return VStack(spacing: 12) {
-            Text(label).font(.system(size: 12, weight: .bold)).foregroundStyle(Color.subdued)
+            Text(label).font(.scaled(12, .bold)).foregroundStyle(Color.subdued)
             HexGlyph(bits: h.bits, lines: lines, width: 88, lineHeight: 10, gap: 8, split: 12, radius: 2, showMarks: true)
             VStack(spacing: 2) {
                 name(h.full).foregroundStyle(Color.text)
                 Text(L("第%1$d卦 · 上%2$@下%3$@", h.n, h.up.label, h.lo.label))
-                    .font(.system(size: 12)).foregroundStyle(Color.subdued)
+                    .font(.scaled(12)).foregroundStyle(Color.subdued)
                     .multilineTextAlignment(.center)
             }
         }
@@ -224,18 +225,18 @@ struct ReadingView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(minWidth: 0, idealWidth: 0, maxWidth: .infinity)
         }
-        .font(.system(size: size, weight: .heavy))
+        .font(.scaled(size, .heavy))
     }
 
     private func focusCard(_ f: Focus) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(L("断卦要点")).font(.system(size: 16, weight: .heavy)).foregroundStyle(Color.text)
-            Text(f.rule).font(.system(size: 13)).foregroundStyle(Color.subdued)
+            Text(L("断卦要点")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
+            Text(f.rule).font(.scaled(13)).foregroundStyle(Color.subdued)
             ForEach(f.items, id: \.self) { item in
                 VStack(alignment: .leading, spacing: 6) {
                     HStack(spacing: 8) {
                         Text(item.tag)
-                            .font(.system(size: 12, weight: .bold))
+                            .font(.scaled(12, .bold))
                             .foregroundStyle(item.main ? Color.accentText : Color.subdued)
                         if item.main { Badge(text: L("主")) }
                     }
@@ -256,30 +257,33 @@ struct ReadingView: View {
     // MARK: 卦辞 / 爻辞 / 白话解读
 
     /// 指示条不挂在任何标签内（否则该标签的点按/无障碍区域被撑高），而是跟随所选标签的 frame
+    /// 大字号放不下五个标签时横向滚动
     private var tabBar: some View {
-        HStack(spacing: 24) {
-            ForEach([("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞")), ("zhuan", L("传")), ("najia", L("纳甲"))], id: \.0) { key, label in
-                let on = tab == key
-                Button { withAnimation(.spectrum) { tab = key } } label: {
-                    Text(label)
-                        .font(.system(size: 15, weight: on ? .semibold : .regular))
-                        .foregroundStyle(on ? Color.text : Color.subdued)
-                        .frame(maxHeight: .infinity)
-                        .contentShape(Rectangle())
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 24) {
+                ForEach([("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞")), ("zhuan", L("传")), ("najia", L("纳甲"))], id: \.0) { key, label in
+                    let on = tab == key
+                    Button { withAnimation(.spectrum) { tab = key } } label: {
+                        Text(label)
+                            .font(.scaled(15, on ? .semibold : .regular))
+                            .foregroundStyle(on ? Color.text : Color.subdued)
+                            .frame(minHeight: 44)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .matchedGeometryEffect(id: key, in: tabNS)
                 }
-                .buttonStyle(.plain)
-                .matchedGeometryEffect(id: key, in: tabNS)
+            }
+            .overlay {
+                Capsule().fill(Color.text).frame(height: 2)
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+                    .matchedGeometryEffect(id: tab, in: tabNS, isSource: false)
+                    .accessibilityHidden(true)
             }
         }
+        .scrollBounceBehavior(.basedOnSize)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .frame(height: 44)
-        .overlay(alignment: .bottom) { Rectangle().fill(Color.divider).frame(height: 1) }
-        .overlay {
-            Capsule().fill(Color.text).frame(height: 2)
-                .frame(maxHeight: .infinity, alignment: .bottom)
-                .matchedGeometryEffect(id: tab, in: tabNS, isSource: false)
-                .accessibilityHidden(true)
-        }
+        .background(alignment: .bottom) { Rectangle().fill(Color.divider).frame(height: 1) }
     }
 
     private func pair(_ a: Analysis) -> [(String, Hexagram)] {
@@ -287,7 +291,7 @@ struct ReadingView: View {
     }
 
     private func tag(_ s: String) -> some View {
-        Text(s).font(.system(size: 13, weight: .bold)).foregroundStyle(Color.subdued)
+        Text(s).font(.scaled(13, .bold)).foregroundStyle(Color.subdued)
     }
 
     /// 白话解读 + 配图 + 提示（中文为第一个标签页，其他语言直接显示）
@@ -296,12 +300,12 @@ struct ReadingView: View {
             ForEach(pair(a), id: \.0) { t, h in
                 VStack(alignment: .leading, spacing: 6) {
                     tag(t)
-                    Text(h.bh).font(.system(size: 15)).lineSpacing(3).foregroundStyle(Color.text)
+                    Text(h.bh).font(.scaled(15)).lineSpacing(3).foregroundStyle(Color.text)
                 }
             }
             GuaImage(n: a.ben.n)
             Text(L("本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。"))
-                .font(.system(size: 12)).foregroundStyle(Color.subdued)
+                .font(.scaled(12)).foregroundStyle(Color.subdued)
         }
     }
 
@@ -316,9 +320,9 @@ struct ReadingView: View {
                     let moving = i < 6 ? Zhouyi.isMoving(a.lines[i]) : a.moving.count == 6
                     HStack(alignment: .firstTextBaseline, spacing: 10) {
                         Text(i < 6 ? Zhouyi.lineName(i, yang: a.bits[i] == 1) : yong!.label)
-                            .font(.system(size: 14, weight: .heavy))
+                            .font(.scaled(14, .heavy))
                             .foregroundStyle(moving ? Color.accentText : Color.line)
-                            .frame(width: 44, alignment: .leading)
+                            .frame(minWidth: 44, alignment: .leading)
                         VStack(alignment: .leading, spacing: 6) {
                             Text(i < 6 ? a.ben.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
                             let k = "hex.\(a.ben.n).xiao.\(i)", xiao = L(k, table: "Commentary")
@@ -373,40 +377,42 @@ struct ReadingView: View {
                 Text(L("%1$@年 %2$@月 %3$@日 %4$@时 · 旬空 %5$@", pan.year, pan.month, pan.day, pan.hour, pan.xunKong.map { L($0) }.joined()))
                     .font(.serif(14)).foregroundStyle(Color.subdued)
             }
-            Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 10) {
-                GridRow {
-                    small(L("六神"))
-                    if hasFu { small(L("伏神")) }
-                    small(L("本卦"))
-                    Color.clear.gridCellUnsizedAxes([.horizontal, .vertical])
-                    Color.clear.gridCellUnsizedAxes([.horizontal, .vertical])
-                    if a.bian != nil { small(L("变卦")) }
-                }
-                ForEach((0..<6).reversed(), id: \.self) { i in
-                    let r = pan.rows[i], v = a.lines[i]
-                    GridRow(alignment: .center) {
-                        Text(L(r.liushen.rawValue)).font(.serif(14)).foregroundStyle(Color.subdued)
-                        if hasFu { small(r.fu.map(yao) ?? "") }
-                        Text(yao(.init(liuqin: r.liuqin, ganzhi: r.ganzhi)))
-                            .font(.serif(15, semibold: true))
-                            .foregroundStyle(Zhouyi.isMoving(v) ? Color.accentText : Color.text)
-                        HStack(spacing: 4) {
-                            YaoBar(yang: a.bits[i] == 1, color: Zhouyi.isMoving(v) ? .accentVisual : .line, split: 6, seed: i, halo: false)
-                                .frame(width: 36, height: 6)
-                            Text(v == 9 ? "○" : v == 6 ? "×" : "")
-                                .font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
-                                .frame(width: 12)
+            ScrollView(.horizontal, showsIndicators: false) {   // 大字号或有伏神列时放不下则横滑，不缩字
+                Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 10) {
+                    GridRow {
+                        small(L("六神"))
+                        if hasFu { small(L("伏神")) }
+                        small(L("本卦"))
+                        Color.clear.gridCellUnsizedAxes([.horizontal, .vertical])
+                        Color.clear.gridCellUnsizedAxes([.horizontal, .vertical])
+                        if a.bian != nil { small(L("变卦")) }
+                    }
+                    ForEach((0..<6).reversed(), id: \.self) { i in
+                        let r = pan.rows[i], v = a.lines[i]
+                        GridRow(alignment: .center) {
+                            Text(L(r.liushen.rawValue)).font(.serif(14)).foregroundStyle(Color.subdued)
+                            if hasFu { small(r.fu.map(yao) ?? "") }
+                            Text(yao(.init(liuqin: r.liuqin, ganzhi: r.ganzhi)))
+                                .font(.serif(15, semibold: true))
+                                .foregroundStyle(Zhouyi.isMoving(v) ? Color.accentText : Color.text)
+                            HStack(spacing: 4) {
+                                YaoBar(yang: a.bits[i] == 1, color: Zhouyi.isMoving(v) ? .accentVisual : .line, split: 6, seed: i, halo: false)
+                                    .frame(width: 36, height: 6)
+                                Text(v == 9 ? "○" : v == 6 ? "×" : "")
+                                    .font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                                    .frame(width: 12)
+                            }
+                            Text(i + 1 == pan.shi ? L("世") : i + 1 == pan.ying ? L("应") : "")
+                                .font(.serif(14, semibold: true)).foregroundStyle(Color.accentText)
+                            if a.bian != nil { Text(r.bian.map(yao) ?? "").font(.serif(14)).foregroundStyle(Color.text) }
                         }
-                        Text(i + 1 == pan.shi ? L("世") : i + 1 == pan.ying ? L("应") : "")
-                            .font(.serif(14, semibold: true)).foregroundStyle(Color.accentText)
-                        if a.bian != nil { Text(r.bian.map(yao) ?? "").font(.serif(14)).foregroundStyle(Color.text) }
                     }
                 }
+                .lineLimit(1)
             }
-            .lineLimit(1)
-            .minimumScaleFactor(0.8)
+            .scrollBounceBehavior(.basedOnSize)
             Text(([solar.note].compactMap { $0 } + [L("只排盘，不自动断用神旺衰。")]).joined(separator: "\n"))
-                .font(.system(size: 12)).foregroundStyle(Color.subdued)
+                .font(.scaled(12)).foregroundStyle(Color.subdued)
         }
         .card()
     }
@@ -416,7 +422,7 @@ struct ReadingView: View {
     private var feedback: some View {
         @Bindable var r = record
         return VStack(alignment: .leading, spacing: 12) {
-            Text(L("应验反馈")).font(.system(size: 16, weight: .heavy)).foregroundStyle(Color.text)
+            Text(L("应验反馈")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
             HStack(spacing: 8) {
                 ForEach(Record.verifyOptions, id: \.self) { v in
                     ChipButton(label: L(v), selected: record.verify == v) { record.verify = v; try? modelContext.save() }
@@ -426,7 +432,7 @@ struct ReadingView: View {
                 .onChange(of: record.note) { try? modelContext.save() }
             Button(role: .destructive) { confirmDelete = true } label: {
                 Label(L("删除此记录"), systemImage: "trash")
-                    .font(.system(size: 14, weight: .medium))
+                    .font(.scaled(14, .medium))
                     .foregroundStyle(Color.negativeText)
             }
             .buttonStyle(.plain)

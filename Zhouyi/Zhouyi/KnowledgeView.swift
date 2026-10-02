@@ -5,13 +5,7 @@ struct KnowledgeView: View {
     /// 专栏篇目，键 kb.<id>.title / .sub / .body（Knowledge 表），配图 kb-<id>
     static let ids = ["origins", "yinyang", "bagua", "sixtyfour", "yao", "change", "methods", "dayan", "rules", "tiyong", "najia", "tenwings"]
 
-    /// 今日一卦：按本地日历日序，每天依文王卦序走一卦
-    static func todayN(_ d: Date = .now) -> Int {
-        let cal = Calendar.current
-        let ref = cal.date(from: DateComponents(year: 2000, month: 1, day: 1))!
-        let days = cal.dateComponents([.day], from: ref, to: cal.startOfDay(for: d)).day ?? 0
-        return ((days % 64) + 64) % 64 + 1
-    }
+    static func todayN(_ d: Date = .now) -> Int { Zhouyi.todayN(d) }
 
     var body: some View {
         let zh = Localizer.shared.isChinese
@@ -19,7 +13,7 @@ struct KnowledgeView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
-                    Text(L("易学")).font(zh ? .serif(34, semibold: true) : .system(size: 34, weight: .bold, design: .serif))
+                    Text(L("易学")).font(zh ? .serif(34, semibold: true) : .scaled(34, .bold, design: .serif))
                     Spacer()
                     SettingsButton()
                 }
@@ -42,7 +36,7 @@ struct KnowledgeView: View {
                             VStack(spacing: 8) {
                                 HexGlyph(bits: h.bits)
                                 Text(h.name)
-                                    .font(zh ? .serif(15, semibold: true) : .system(size: 12, weight: .semibold))
+                                    .font(zh ? .serif(15, semibold: true) : .scaled(12, .semibold))
                                     .foregroundStyle(Color.text)
                                     .multilineTextAlignment(.center)
                                     .lineLimit(2)
@@ -67,27 +61,27 @@ struct KnowledgeView: View {
     }
 
     private func section(_ s: String) -> some View {
-        Text(s).font(.system(size: 16, weight: .heavy)).foregroundStyle(Color.text).padding(.bottom, -10)
+        Text(s).font(.scaled(16, .heavy)).foregroundStyle(Color.text).padding(.bottom, -10)
     }
 
     private func today(_ h: Hexagram) -> some View {
         NavigationLink(value: Route.hexagram(h.n)) {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text(L("今日一卦")).font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                    Text(L("今日一卦")).font(.scaled(12, .bold)).foregroundStyle(Color.accentText)
                     Spacer()
-                    Text(HomeView.dateText(.now)).font(.system(size: 12)).foregroundStyle(Color.subdued)
+                    Text(HomeView.dateText(.now)).font(.scaled(12)).foregroundStyle(Color.subdued)
                 }
                 GuaImage(n: h.n)
                 HStack(alignment: .top, spacing: 14) {
                     HexGlyph(bits: h.bits, width: 40, lineHeight: 5, gap: 4, split: 7)
                     VStack(alignment: .leading, spacing: 4) {
                         HexTitle(h: h)
-                        Text(h.bh).font(.system(size: 14)).lineSpacing(3).foregroundStyle(Color.subdued)
+                        Text(h.bh).font(.scaled(14)).lineSpacing(3).foregroundStyle(Color.subdued)
                     }
                     Spacer(minLength: 0)
                     Image(systemName: "chevron.forward").accessibilityHidden(true)
-                        .font(.system(size: 15)).foregroundStyle(Color.gray600)
+                        .font(.scaled(15)).foregroundStyle(Color.gray600)
                 }
             }
             .card(shadow: true)
@@ -104,12 +98,12 @@ struct KnowledgeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text(L("kb.\(id).title", table: "Knowledge")).font(Localizer.shared.isChinese ? .serif(16, semibold: true) : .system(size: 15, weight: .semibold, design: .serif)).foregroundStyle(Color.text)
-                Text(L("kb.\(id).sub", table: "Knowledge")).font(.system(size: 13)).foregroundStyle(Color.subdued).lineLimit(2)
+                Text(L("kb.\(id).title", table: "Knowledge")).font(Localizer.shared.isChinese ? .serif(16, semibold: true) : .scaled(15, .semibold, design: .serif)).foregroundStyle(Color.text)
+                Text(L("kb.\(id).sub", table: "Knowledge")).font(.scaled(13)).foregroundStyle(Color.subdued).lineLimit(2)
             }
             Spacer(minLength: 0)
             Image(systemName: "chevron.forward").accessibilityHidden(true)
-                .font(.system(size: 15)).foregroundStyle(Color.gray600)
+                .font(.scaled(15)).foregroundStyle(Color.gray600)
         }
         .padding(14)
         .contentShape(Rectangle())
@@ -124,10 +118,10 @@ private struct HexTitle: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(h.full)
-                .font(Localizer.shared.isChinese ? .serif(size, semibold: true) : .system(size: size, weight: .semibold, design: .serif))
+                .font(Localizer.shared.isChinese ? .serif(size, semibold: true) : .scaled(size, .semibold, design: .serif))
                 .foregroundStyle(Color.text)
             Text(L("第%1$d卦 · 上%2$@下%3$@", h.n, h.up.label, h.lo.label))
-                .font(.system(size: 12)).foregroundStyle(Color.subdued)
+                .font(.scaled(12)).foregroundStyle(Color.subdued)
         }
     }
 }
@@ -139,7 +133,7 @@ struct ArticleView: View {
     var body: some View {
         let zh = Localizer.shared.isChinese
         let font = { (size: CGFloat, bold: Bool) -> Font in
-            zh ? .serif(size, semibold: bold) : .system(size: size, weight: bold ? .semibold : .regular, design: .serif)
+            zh ? .serif(size, semibold: bold) : .scaled(size, bold ? .semibold : .regular, design: .serif)
         }
         let blocks = L("kb.\(id).body", table: "Knowledge").components(separatedBy: "\n\n")
         ScrollView {
@@ -152,7 +146,7 @@ struct ArticleView: View {
                 }
                 VStack(alignment: .leading, spacing: 6) {
                     Text(L("kb.\(id).title", table: "Knowledge")).font(font(28, true)).foregroundStyle(Color.text)
-                    Text(L("kb.\(id).sub", table: "Knowledge")).font(.system(size: 15)).foregroundStyle(Color.subdued)
+                    Text(L("kb.\(id).sub", table: "Knowledge")).font(.scaled(15)).foregroundStyle(Color.subdued)
                 }
                 ForEach(blocks.indices, id: \.self) { i in
                     let lines = blocks[i].components(separatedBy: "\n")
@@ -199,7 +193,7 @@ struct HexagramView: View {
                 .card(shadow: true)
 
                 block(L("白话解读")) {
-                    Text(h.bh).font(.system(size: 16)).lineSpacing(4).foregroundStyle(Color.text)
+                    Text(h.bh).font(.scaled(16)).lineSpacing(4).foregroundStyle(Color.text)
                 }
                 if zh {
                     block(L("卦辞")) {
@@ -211,8 +205,8 @@ struct HexagramView: View {
                             ForEach(0..<(yong == nil ? 6 : 7), id: \.self) { i in
                                 HStack(alignment: .firstTextBaseline, spacing: 10) {
                                     Text(i < 6 ? Zhouyi.lineName(i, yang: h.bits[i] == 1) : yong!.label)
-                                        .font(.system(size: 14, weight: .heavy)).foregroundStyle(Color.line)
-                                        .frame(width: 44, alignment: .leading)
+                                        .font(.scaled(14, .heavy)).foregroundStyle(Color.line)
+                                        .frame(minWidth: 44, alignment: .leading)
                                     VStack(alignment: .leading, spacing: 6) {
                                         Text(i < 6 ? h.yao[i] : yong!.text).font(.serif(16)).lineSpacing(2).foregroundStyle(Color.text)
                                         let k = "hex.\(n).xiao.\(i)", xiao = L(k, table: "Commentary")
@@ -248,7 +242,7 @@ struct HexagramView: View {
 
     private func block(_ title: String, @ViewBuilder _ content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title).font(.system(size: 13, weight: .bold)).foregroundStyle(Color.subdued)
+            Text(title).font(.scaled(13, .bold)).foregroundStyle(Color.subdued)
             content()
         }
     }
@@ -265,9 +259,9 @@ struct HexRelations: View {
                     HStack(spacing: 8) {
                         HexGlyph(bits: x.bits, width: 18, lineHeight: 2, gap: 2, split: 4)
                         VStack(alignment: .leading, spacing: 1) {
-                            Text(label).font(.system(size: 11, weight: .bold)).foregroundStyle(Color.subdued)
+                            Text(label).font(.scaled(11, .bold)).foregroundStyle(Color.subdued)
                             Text(x.name)
-                                .font(Localizer.shared.isChinese ? .serif(15, semibold: true) : .system(size: 12, weight: .semibold))
+                                .font(Localizer.shared.isChinese ? .serif(15, semibold: true) : .scaled(12, .semibold))
                                 .foregroundStyle(Color.text)
                                 .lineLimit(1).minimumScaleFactor(0.7)
                         }
@@ -296,7 +290,7 @@ struct ZhuanView: View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(parts, id: \.0) { label, text, _ in
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(label).font(.system(size: 12, weight: .bold)).foregroundStyle(Color.accentText)
+                    Text(label).font(.scaled(12, .bold)).foregroundStyle(Color.accentText)
                     Text(text).font(.serif(16)).lineSpacing(3).foregroundStyle(Color.text)
                         .fixedSize(horizontal: false, vertical: true)
                 }
