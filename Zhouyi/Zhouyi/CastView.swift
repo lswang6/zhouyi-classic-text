@@ -27,13 +27,13 @@ struct CastView: View {
     var body: some View {
         let q = app.q.trimmingCharacters(in: .whitespacesAndNewlines)
         VStack(spacing: 0) {
+            Spacer(minLength: 6)   // 所问与六爻居于导航栏与铜钱之间，上下留白均分
             Text(q.isEmpty ? L("心中默念所问之事") : q)
                 .font(.system(size: 14))
                 .foregroundStyle(Color.subdued)
                 .multilineTextAlignment(.center)
-                .padding(.top, 6)
 
-            Grid(horizontalSpacing: 12, verticalSpacing: 12) {   // 列对齐：标签、爻画、爻值各成一列
+            Grid(horizontalSpacing: 12, verticalSpacing: 16) {   // 列对齐：标签、爻画、爻值各成一列
                 ForEach((0..<6).reversed(), id: \.self) { slot($0) }
             }
             .frame(width: 300)
@@ -46,7 +46,7 @@ struct CastView: View {
             }
             .padding(.top, 20)
 
-            Spacer()
+            Spacer(minLength: 20)
 
             HStack(spacing: 22) {
                 ForEach(0..<3, id: \.self) { i in
@@ -123,7 +123,7 @@ struct CastView: View {
             if scheme == .light, UIImage(named: "cast-backdrop") != nil {
                 Color.clear.overlay { Image(decorative: "cast-backdrop").resizable().scaledToFill().opacity(0.6) }
                     .clipped()
-                    .mask(LinearGradient(stops: [.init(color: .black, location: 0.35), .init(color: .clear, location: 0.62)], startPoint: .top, endPoint: .bottom))   // 下方铜钱、按钮、提示处淡出，文字清楚
+                    .mask(LinearGradient(stops: [.init(color: .black, location: 0.3), .init(color: .clear, location: 0.5)], startPoint: .top, endPoint: .bottom))   // 上方山水，至爻位底部淡出；铜钱、按钮、提示处为素纸
                     .ignoresSafeArea()
             }
         }

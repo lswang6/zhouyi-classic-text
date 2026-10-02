@@ -30,7 +30,7 @@ struct KnowledgeView: View {
                     ForEach(Self.ids, id: \.self) { id in
                         NavigationLink(value: Route.article(id)) { articleRow(id) }
                             .buttonStyle(.plain)
-                        if id != Self.ids.last { Rectangle().fill(Color.divider).frame(height: 1).padding(.leading, 14) }
+                        if id != Self.ids.last { Rectangle().fill(Color.divider).frame(height: 1).padding(.leading, UIImage(named: "kb-\(id)") != nil ? 98 : 14) }   // 起于标题文字
                     }
                 }
                 .card(padding: 0)
@@ -104,7 +104,7 @@ struct KnowledgeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text(L("kb.\(id).title", table: "Knowledge")).font(.system(size: 15, weight: .bold)).foregroundStyle(Color.text)
+                Text(L("kb.\(id).title", table: "Knowledge")).font(Localizer.shared.isChinese ? .serif(16, semibold: true) : .system(size: 15, weight: .semibold, design: .serif)).foregroundStyle(Color.text)
                 Text(L("kb.\(id).sub", table: "Knowledge")).font(.system(size: 13)).foregroundStyle(Color.subdued).lineLimit(2)
             }
             Spacer(minLength: 0)

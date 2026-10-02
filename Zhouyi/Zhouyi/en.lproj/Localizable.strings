@@ -19,11 +19,11 @@
 "静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Calm your mind and ask about one matter at a time. Hold your question in mind, then begin casting.";
 "起卦方式" = "Casting method";
 "铜钱" = "Coins";
-"三钱六掷，逐爻成卦" = "Toss three coins six times, one line per toss";
+"三钱六掷，\n逐爻成卦" = "Toss three coins six times, one line per toss";
 "数字" = "Numbers";
-"三个数定卦与动爻" = "Three numbers set the hexagram and changing line";
+"三个数\n定卦与动爻" = "Three numbers set the hexagram and changing line";
 "时间" = "Time";
-"以此刻年月日时起卦" = "Cast from the current year, month, day and hour";
+"以此刻\n年月日时起卦" = "Cast from the current year, month, day and hour";
 "三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。" = "Toss three coins six times, building the hexagram from the bottom up. The plain side counts 3, the inscribed side 2. A total of 6 is Old Yin, 7 Young Yang, 8 Young Yin and 9 Old Yang; 6 and 9 are changing lines.";
 "上卦数" = "Upper trigram number";
 "下卦数" = "Lower trigram number";

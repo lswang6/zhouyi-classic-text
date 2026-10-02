@@ -19,11 +19,11 @@
 "静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Acalme a mente e concentre-se. Uma pergunta por consulta. Repita a pergunta mentalmente e então comece.";
 "起卦方式" = "Método";
 "铜钱" = "Moedas";
-"三钱六掷，逐爻成卦" = "Três moedas, seis lançamentos, uma linha por vez";
+"三钱六掷，\n逐爻成卦" = "Três moedas, seis lançamentos, uma linha por vez";
 "数字" = "Números";
-"三个数定卦与动爻" = "Três números definem o hexagrama e a linha móvel";
+"三个数\n定卦与动爻" = "Três números definem o hexagrama e a linha móvel";
 "时间" = "Hora";
-"以此刻年月日时起卦" = "Forma o hexagrama a partir do ano, mês, dia e hora atuais";
+"以此刻\n年月日时起卦" = "Forma o hexagrama a partir do ano, mês, dia e hora atuais";
 "三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。" = "Lance três moedas seis vezes; o hexagrama é formado de baixo para cima. Coroa vale 3 e cara vale 2: soma 6 é yin velho, 7 é yang jovem, 8 é yin jovem e 9 é yang velho. Os resultados 6 e 9 são linhas móveis.";
 "上卦数" = "Trigrama superior";
 "下卦数" = "Trigrama inferior";

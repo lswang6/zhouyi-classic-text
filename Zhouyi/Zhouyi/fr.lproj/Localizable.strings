@@ -19,11 +19,11 @@
 "静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Apaisez votre esprit et concentrez-vous : une seule question par consultation. Formulez-la intérieurement, puis lancez le tirage.";
 "起卦方式" = "Méthode de tirage";
 "铜钱" = "Pièces";
-"三钱六掷，逐爻成卦" = "Trois pièces lancées six fois, un trait à chaque lancer";
+"三钱六掷，\n逐爻成卦" = "Trois pièces lancées six fois, un trait à chaque lancer";
 "数字" = "Nombres";
-"三个数定卦与动爻" = "Trois nombres donnent l’hexagramme et le trait mutable";
+"三个数\n定卦与动爻" = "Trois nombres donnent l’hexagramme et le trait mutable";
 "时间" = "Heure";
-"以此刻年月日时起卦" = "Tirage d’après l’année, le mois, le jour et l’heure actuels";
+"以此刻\n年月日时起卦" = "Tirage d’après l’année, le mois, le jour et l’heure actuels";
 "三枚铜钱掷六次，自下而上成卦。背为三、字为二：三钱之和为六是老阴、七是少阳、八是少阴、九是老阳，六与九为动爻。" = "Lancez trois pièces six fois ; l’hexagramme se construit de bas en haut. Pile vaut 3, face vaut 2 : une somme de 6 donne un vieux yin, 7 un jeune yang, 8 un jeune yin, 9 un vieux yang. Les 6 et les 9 sont des traits mutables.";
 "上卦数" = "Trigramme du haut";
 "下卦数" = "Trigramme du bas";

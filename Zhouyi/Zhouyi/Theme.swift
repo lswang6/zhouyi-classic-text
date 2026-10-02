@@ -28,6 +28,7 @@ extension Color {
     static let gray600 = Color(0x7D7366, 0x968B7C)
     static let gray50 = Color(0xFFFCF6, 0x221E1A)
     static let notice = Color(0xC98A1A, 0xE0A43A)       // 收藏星标：藤黄
+    static let negativeText = Color(0x8E2F21, 0xF0927E) // 否定、删除：赭红
 }
 
 extension Animation {
@@ -40,6 +41,14 @@ extension Font {
     static func serif(_ size: CGFloat, semibold: Bool = false) -> Font {
         .custom(semibold ? "ZhouyiSerif-SemiBold" : "ZhouyiSerif-Regular", fixedSize: size)
     }
+}
+
+/// 页大标题 34pt：中文宋体，否则系统衬线粗体
+/// ponytail: 卜 左侧留白大（SemiBold LSB 378/1000，易 45/1000），以卜开头的中文标题左移补齐页边；他字再补
+func pageTitle(_ s: String) -> some View {
+    let zh = Localizer.shared.isChinese
+    return Text(s).font(zh ? .serif(34, semibold: true) : .system(size: 34, weight: .bold, design: .serif))
+        .padding(.leading, zh && s.first == "\u{535C}" ? -CGFloat(378 - 45) * 34 / 1000 : 0)
 }
 
 extension View {
@@ -105,6 +114,7 @@ struct HexGlyph: View {
             ForEach((0..<6).reversed(), id: \.self) { i in
                 let moving = lines.map { Zhouyi.isMoving($0[i]) } ?? false
                 HStack(spacing: 8) {
+                    if showMarks { Color.clear.frame(width: 12, height: 1) }   // 左侧等宽留白，卦画居中、标记外挂
                     YaoBar(yang: bits[i] == 1, color: moving ? .accentVisual : .line, split: split, seed: i, halo: lineHeight >= 8)
                         .frame(width: width, height: lineHeight)
                     if showMarks {
@@ -319,6 +329,12 @@ struct SpectrumField: View {
                     .lineLimit(1...3)
                     .keyboardType(keyboard)
                     .focused($focused)
+                    .submitLabel(.done)
+                    .onChange(of: text) {   // 竖向输入框回车会插入换行：去掉换行并收起键盘
+                        guard text.contains("\n") else { return }
+                        text.removeAll { $0 == "\n" }
+                        focused = false
+                    }
             }
             .font(.system(size: 15))
             .padding(.horizontal, 10)
@@ -343,7 +359,7 @@ struct Badge: View {
         let (solid, soft, ink): (Color, Color, Color) = switch variant {
         case .accent: (.accentVisual, .blue200, .accentText)
         case .positive: (Color(0x3F7A55, 0x5A9E74), Color(0xE2ECDB, 0x1E3225), Color(0x2F5E40, 0x8CC7A0))   // 松绿
-        case .negative: (Color(0x9E3B2C, 0xC9604B), Color(0xF3DED6, 0x40221B), Color(0x8E2F21, 0xF0927E))   // 赭红
+        case .negative: (Color(0x9E3B2C, 0xC9604B), Color(0xF3DED6, 0x40221B), .negativeText)   // 赭红
         case .neutral: (.gray600, .gray100, .subdued)
         }
         Text(text)

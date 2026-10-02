@@ -273,10 +273,10 @@ struct ReadingView: View {
             }
             SpectrumField(label: L("备注"), placeholder: L("记下后来的结果，便于日后印证"), text: $r.note)
                 .onChange(of: record.note) { try? modelContext.save() }
-            Button { confirmDelete = true } label: {
+            Button(role: .destructive) { confirmDelete = true } label: {
                 Label(L("删除此记录"), systemImage: "trash")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(Color.text)
+                    .foregroundStyle(Color.negativeText)
             }
             .buttonStyle(.plain)
             .confirmationDialog(L("删除此记录？"), isPresented: $confirmDelete, titleVisibility: .visible) {
@@ -304,10 +304,11 @@ struct GuaImage: View {
     var body: some View {
         let name = String(format: "gua-%02d", n)
         if UIImage(named: name) != nil {
-            Image(name).resizable().scaledToFit().nightDim()
+            Image(name).resizable().scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .padding(5)
                 .background(Color(0xF3EDE1, 0xF3EDE1), in: RoundedRectangle(cornerRadius: 16))   // 浅色 layer1
+                .nightDim()   // 画与纸框一并压暗，深色下框不刺眼
         }
     }
 }

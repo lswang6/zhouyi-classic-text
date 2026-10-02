@@ -312,7 +312,7 @@ private let sources: [(name: String, text: String)] = {
     var n = 0
     for (name, text) in sources {
         for m in re.matches(in: text, range: NSRange(text.startIndex..., in: text)) where m.range(at: 2).location == NSNotFound {
-            let key = (text as NSString).substring(with: m.range(at: 1))
+            let key = (text as NSString).substring(with: m.range(at: 1)).replacingOccurrences(of: "\\n", with: "\n")
             n += 1
             #expect(manifest[key] != nil, "\(name): \(key)")
         }

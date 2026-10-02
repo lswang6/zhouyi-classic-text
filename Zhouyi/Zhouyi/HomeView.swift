@@ -91,7 +91,7 @@ struct HomeView: View {
                 SettingsButton()
             }
             HomeBanner()
-            Text(L("卜一卦")).font(Localizer.shared.isChinese ? .serif(34, semibold: true) : .system(size: 34, weight: .bold, design: .serif))
+            pageTitle(L("卜一卦"))
             Text(L("静心凝神，一事一占。心中默念所问之事，再开始起卦。"))
                 .font(.system(size: 15))
                 .foregroundStyle(Color.subdued)
@@ -114,9 +114,9 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(L("起卦方式")).font(.system(size: 16, weight: .heavy))
             HStack(spacing: 8) {
-                methodCard(.coin, L("铜钱"), L("三钱六掷，逐爻成卦"))
-                methodCard(.number, L("数字"), L("三个数定卦与动爻"))
-                methodCard(.time, L("时间"), L("以此刻年月日时起卦"))
+                methodCard(.coin, L("铜钱"), L("三钱六掷，\n逐爻成卦"))
+                methodCard(.number, L("数字"), L("三个数\n定卦与动爻"))
+                methodCard(.time, L("时间"), L("以此刻\n年月日时起卦"))
             }
             .fixedSize(horizontal: false, vertical: true)
             Group {
@@ -216,7 +216,9 @@ struct HomeView: View {
             Text(k).font(.system(size: 13)).foregroundStyle(Color.subdued)
             Spacer(minLength: 12)
             v.font(.system(size: 13, weight: .bold)).multilineTextAlignment(.trailing)
+                .layoutPriority(1)   // 值列优先取宽，长标签折行，免值列参差折行
         }
+        .frame(minHeight: 21)   // 卦符 17pt 撑高其行，各行取同高
     }
 
     // MARK: - 动作

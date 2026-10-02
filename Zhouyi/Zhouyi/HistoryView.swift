@@ -38,7 +38,7 @@ struct HistoryView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(L("卜卦记录")).font(Localizer.shared.isChinese ? .serif(34, semibold: true) : .system(size: 34, weight: .bold, design: .serif))
+                    pageTitle(L("卜卦记录"))
                     Spacer()
                     Text(L("共 %d 卦", records.count)).font(.system(size: 13)).foregroundStyle(Color.subdued)
                     SettingsButton()
