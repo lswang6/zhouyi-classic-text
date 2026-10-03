@@ -1,8 +1,8 @@
-# 周易卜卦 · Zhouyi I Ching Oracle
+# 周易 · 经传白话 · Zhouyi: I Ching Classic Text
 
-一款免费、无广告、离线、开源的 iOS 周易应用。重"象与辞"的阅读与反思，不打分、不预测吉凶。
+一款免费、无广告、离线、开源的 iOS《周易》经传读本：六十四卦经文、十翼传文与逐句白话，附易学专栏与传统起卦法演示。不打分、不预测吉凶。
 
-A free, ad-free, offline, open-source I Ching app for iOS — a tool for reading and reflection, not fortune scoring.
+A free, ad-free, offline, open-source iOS reader for the I Ching (Book of Changes): the complete classic text with Legge's translation and the Ten Wings, study articles, and a walkthrough of the traditional methods. No fortune scoring or predictions.
 
 ## 功能
 
