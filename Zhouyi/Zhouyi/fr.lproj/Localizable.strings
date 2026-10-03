@@ -15,7 +15,7 @@
 "起卦" = "Obtenir l’hexagramme";
 "最近一卦" = "Dernier tirage";
 "起一卦" = "Nouveau tirage";
-"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Apaisez votre esprit et concentrez-vous : une seule question par consultation. Formulez-la intérieurement, puis lancez le tirage.";
+"依《系辞》与梅花易数的古法由数成卦，逐步查看成卦过程，再对照经传研读。" = "Formez un hexagramme selon les méthodes traditionnelles du Grand Commentaire et de la numérologie de la Fleur de prunier, suivez chaque étape, puis lisez le texte classique.";
 "起卦方式" = "Méthode de tirage";
 "铜钱" = "Pièces";
 "三钱六掷，\n逐爻成卦" = "Trois pièces lancées six fois, un trait à chaque lancer";
@@ -78,8 +78,8 @@
 "主" = "Principal";
 "卦辞" = "Jugement";
 "爻辞" = "Traits";
-"白话解读" = "Interprétation";
-"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "L’hexagramme initial reflète la situation présente, l’hexagramme dérivé son évolution. Cette lecture est donnée à titre indicatif ; pour toute décision importante, tenez compte de votre situation réelle.";
+"卦义" = "Sens";
+"本卦为所成之卦，变卦由动爻变化而来；两卦经传可对照研读。" = "L’hexagramme principal est celui qui est formé ; l’hexagramme résultant naît du changement de ses traits mobiles. Lisez les textes des deux en parallèle.";
 "动爻 · 老阳" = "Trait mutable · vieux yang";
 "动爻 · 老阴" = "Trait mutable · vieux yin";
 "心得" = "Réflexions";

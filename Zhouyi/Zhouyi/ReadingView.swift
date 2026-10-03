@@ -26,8 +26,12 @@ struct ReadingView: View {
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(L("所问")).font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
-                    Text(record.question).font(.scaled(22, .heavy)).foregroundStyle(Color.text)
+                    if let q = record.asked {
+                        Text(L("所问")).font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
+                        Text(q).font(.scaled(22, .heavy)).foregroundStyle(Color.text)
+                    } else {
+                        Text(record.title).font(.scaled(22, .heavy)).foregroundStyle(Color.text)
+                    }
                     Text(record.meta).font(.scaled(13)).foregroundStyle(Color.subdued)
                 }
 
@@ -109,7 +113,7 @@ struct ReadingView: View {
     }
 
     private func shareText(_ a: Analysis, _ f: Focus, zh: Bool) -> String {
-        let head = L("所问：%@", record.question) + "\n\(record.title)\n\(record.meta)\n\n"
+        let head = (record.asked.map { L("所问：%@", $0) + "\n" } ?? "") + "\(record.title)\n\(record.meta)\n\n"
         guard zh else { return head + pair(a).map { "\($0.0)\n\($0.1.bh)" }.joined(separator: "\n\n") }
         return head + L("断卦要点：%@", f.rule) + "\n"
             + f.items.map { "【\($0.tag)】\($0.text)" }.joined(separator: "\n")
@@ -135,9 +139,11 @@ struct ReadingView: View {
     private func shareCard(_ a: Analysis, _ f: Focus, zh: Bool) -> some View {
         let main = f.items.first { $0.main }
         return VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 6) {
-                Text(L("所问")).font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
-                Text(record.question).font(.scaled(20, .heavy)).foregroundStyle(Color.text)
+            if let q = record.asked {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(L("所问")).font(.scaled(12, .medium)).foregroundStyle(Color.subdued)
+                    Text(q).font(.scaled(20, .heavy)).foregroundStyle(Color.text)
+                }
             }
             guaPair(a).padding(.vertical, 16).card(padding: 0)
             if zh, let main {
@@ -264,7 +270,7 @@ struct ReadingView: View {
     /// 大字号放不下五个标签时横向滚动。非中文无纳甲，传仅在有译文时（英文）
     private func tabBar(_ a: Analysis) -> some View {
         let zh = Localizer.shared.isChinese
-        let tabs = [("bh", L("白话解读")), ("ci", L("卦辞")), ("yao", L("爻辞"))]
+        let tabs = [("bh", L("卦义")), ("ci", L("卦辞")), ("yao", L("爻辞"))]
             + (zh || Translation.lookup("hex.\(a.ben.n).tuan") != nil ? [("zhuan", L("传"))] : [])
             + (zh ? [("najia", L("纳甲"))] : [])
         return ScrollView(.horizontal, showsIndicators: false) {
@@ -312,7 +318,7 @@ struct ReadingView: View {
                 }
             }
             GuaImage(n: a.ben.n)
-            Text(L("本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。"))
+            Text(L("本卦为所成之卦，变卦由动爻变化而来；两卦经传可对照研读。"))
                 .font(.scaled(12)).foregroundStyle(Color.subdued)
         }
     }

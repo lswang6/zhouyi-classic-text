@@ -15,7 +15,7 @@
 "起卦" = "Formar hexagrama";
 "最近一卦" = "Última consulta";
 "起一卦" = "Nueva consulta";
-"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Calma la mente y concéntrate: una pregunta por consulta. Repite en silencio tu pregunta y luego forma el hexagrama.";
+"依《系辞》与梅花易数的古法由数成卦，逐步查看成卦过程，再对照经传研读。" = "Forma un hexagrama con los métodos tradicionales del Gran Comentario y la numerología de la Flor de Ciruelo, sigue cada paso y luego lee el texto clásico.";
 "起卦方式" = "Método";
 "铜钱" = "Monedas";
 "三钱六掷，\n逐爻成卦" = "Tres monedas, seis lanzamientos, línea a línea";
@@ -78,8 +78,8 @@
 "主" = "Principal";
 "卦辞" = "Dictamen";
 "爻辞" = "Texto de las líneas";
-"白话解读" = "Interpretación";
-"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "El hexagrama principal muestra la situación actual; el derivado, hacia dónde evoluciona. La interpretación es solo orientativa: para decisiones importantes, ten en cuenta tu situación real.";
+"卦义" = "Sentido";
+"本卦为所成之卦，变卦由动爻变化而来；两卦经传可对照研读。" = "El hexagrama primario es el que se forma; el resultante surge al cambiar sus líneas móviles. Lee los textos de ambos en paralelo.";
 "动爻 · 老阳" = "Mutante · yang viejo";
 "动爻 · 老阴" = "Mutante · yin viejo";
 "心得" = "Reflexiones";

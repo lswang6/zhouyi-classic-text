@@ -11,10 +11,6 @@ struct HomeView: View {
     @State private var nums = ["", "", ""]
     @AppStorage("solarTime") private var solarTime = false
     @AppStorage("longitude") private var longitude = 116.40
-    @AppStorage("timeCastClassic") private var timeCastClassic = false   // 传统：只按时间，不加字数
-
-    /// 时间起卦所加字数（以字数加时）；传统模式为 0
-    private var timeExtra: Int { timeCastClassic ? 0 : Zhouyi.charCount(app.q) }
 
     private var numberCast: TriCast? {
         // wholeNumberValue 兼认阿拉伯-印度数字（١٢）
@@ -26,29 +22,13 @@ struct HomeView: View {
     }
 
     var body: some View {
-        @Bindable var app = app
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 header
-                VStack(alignment: .leading, spacing: 14) {
-                    SpectrumField(label: L("所问之事"), placeholder: L("例如：这次换工作是否合适？"), text: $app.q)
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(L("类别"))
-                            .font(.scaled(12, .medium))
-                            .foregroundStyle(Color.subdued)
-                        FlowLayout(spacing: 8) {
-                            ForEach(Record.categories, id: \.self) { c in
-                                ChipButton(label: L(c), selected: app.cat == c) { app.cat = c }
-                            }
-                        }
-                    }
-                }
-                .card(shadow: true)
-
                 methodSection
 
                 PillButton(title: method == .coin ? L("开始摇卦") : method == .yarrow ? L("开始揲蓍") : L("起卦"),
-                           disabled: method == .number && numberCast == nil || method == .time && !timeCastClassic && timeExtra == 0, action: start)
+                           disabled: method == .number && numberCast == nil, action: start)
 
                 if let r = records.first {
                     VStack(alignment: .leading, spacing: 10) {
@@ -60,10 +40,12 @@ struct HomeView: View {
                                     Text(r.title)
                                         .font(.scaled(15, .bold))
                                         .foregroundStyle(Color.text)
-                                    Text(r.question)
-                                        .font(.scaled(13))
-                                        .foregroundStyle(Color.subdued)
-                                        .lineLimit(1)
+                                    if let q = r.asked {
+                                        Text(q)
+                                            .font(.scaled(13))
+                                            .foregroundStyle(Color.subdued)
+                                            .lineLimit(1)
+                                    }
                                 }
                                 Spacer()
                                 Image(systemName: "chevron.forward")
@@ -100,7 +82,7 @@ struct HomeView: View {
             }
             HomeBanner()
             pageTitle(L("起一卦"))
-            Text(L("静心凝神，一事一占。心中默念所问之事，再开始起卦。"))
+            Text(L("依《系辞》与梅花易数的古法由数成卦，逐步查看成卦过程，再对照经传研读。"))
                 .font(.scaled(15))
                 .foregroundStyle(Color.subdued)
                 .lineSpacing(4)
@@ -202,36 +184,23 @@ struct HomeView: View {
     }
 
     private var timePanel: some View {
-        let extra = timeExtra, classic = timeCastClassic
-        return TimelineView(.everyMinute) { context in
+        TimelineView(.everyMinute) { context in
             let solar = SettingsView.solar(context.date, on: solarTime, longitude: longitude)
-            let tv = Zhouyi.timeCast(solar.date, extra: extra)
+            let tv = Zhouyi.timeCast(solar.date, extra: 0)   // 传统纯时间，不再以所问字数加时（App Review 4.3）
             let T = Zhouyi.trigrams, B = Zhouyi.branches
             let y = tv.yearBranch, h = tv.hourBranch, c = tv.cast
             VStack(alignment: .leading, spacing: 8) {
-                ChipButton(label: L("传统：只按时间"), selected: classic) { withAnimation(.spectrum) { timeCastClassic.toggle() } }
-                if !classic && extra == 0 {
-                    Text(L("请先写下所问之事（字数参与起卦）"))
-                        .font(.scaled(12, .medium))
-                        .foregroundStyle(Color.accentText)
-                }
                 row(L("农历"), Text(tv.lunarText + " · " + L("%@时", L(B[h - 1]))))
                 row(L("年支 · 月 · 日 · 时支"), Text(verbatim: "\(L(B[y - 1]))(\(y)) · \(tv.month) · \(tv.day) · \(L(B[h - 1]))(\(h))"))
                 row(L("上卦：年+月+日 = %d", tv.s1), tri(tv.s1, T[c.up - 1]))
-                row(classic ? L("下卦：再加时 = %d", tv.s2) : L("下卦：再加时支 %1$d + 字数 %2$d = %3$d", h, tv.extra, tv.s2), tri(tv.s2, T[c.lo - 1]))
+                row(L("下卦：再加时 = %d", tv.s2), tri(tv.s2, T[c.lo - 1]))
                 row(L("动爻：%d ÷ 6", tv.s2), Text(L("余 %1$d → %2$@爻", tv.s2 % 6, L(Zhouyi.positions[c.mv - 1]))))
-                Text(L("年支按农历年（春节换年）· 闰月按本月数 · 23 点起为次日子时 · 按本机时区") + (classic ? "" : " · " + L("字数不计空格与标点")))
+                Text(L("年支按农历年（春节换年）· 闰月按本月数 · 23 点起为次日子时 · 按本机时区"))
                     .font(.scaled(11))
                     .foregroundStyle(Color.subdued)
                 if let note = solar.note {
                     Text(note).font(.scaled(11)).foregroundStyle(Color.subdued)
                 }
-                // 只取时辰：两小时内结果不变，属传统本意
-                let from = (2 * h + 21) % 24
-                let span = String(format: "%02d:00–%02d:00", from, (from + 2) % 24)
-                Text(classic ? L("同一时辰内（%@）起卦结果相同，一事不二占。", span) : L("同一时辰内（%@）所问字数相同则卦同，一事不二占。", span))
-                    .font(.scaled(11, .medium))
-                    .foregroundStyle(Color.subdued)
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 14)
@@ -271,7 +240,7 @@ struct HomeView: View {
             guard let c = numberCast else { return }
             cast = c
         case .time:
-            cast = Zhouyi.timeCast(SettingsView.solar(Date(), on: solarTime, longitude: longitude).date, extra: timeExtra).cast
+            cast = Zhouyi.timeCast(SettingsView.solar(Date(), on: solarTime, longitude: longitude).date, extra: 0).cast
         }
         let r = Record(q: app.q, cat: app.cat, method: method, lines: Zhouyi.lines(from: cast), solarLongitude: solarTime ? longitude : nil)
         withAnimation(.easeOut(duration: 0.2)) { app.forming = r }   // 过场结束后入库并打开
@@ -290,7 +259,7 @@ struct FormingOverlay: View {
     var body: some View {
         let lines = record.lines
         VStack(spacing: 22) {
-            Text(record.question)
+            Text(record.asked ?? CastMethod(rawValue: record.method)?.label ?? "")
                 .font(.scaled(14))
                 .foregroundStyle(Color.subdued)
                 .multilineTextAlignment(.center)

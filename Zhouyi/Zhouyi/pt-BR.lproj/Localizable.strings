@@ -15,7 +15,7 @@
 "起卦" = "Formar hexagrama";
 "最近一卦" = "Última consulta";
 "起一卦" = "Consultar o I Ching";
-"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Acalme a mente e concentre-se. Uma pergunta por consulta. Repita a pergunta mentalmente e então comece.";
+"依《系辞》与梅花易数的古法由数成卦，逐步查看成卦过程，再对照经传研读。" = "Forme um hexagrama com os métodos tradicionais do Grande Comentário e da numerologia da Flor de Ameixeira, acompanhe cada passo e depois leia o texto clássico.";
 "起卦方式" = "Método";
 "铜钱" = "Moedas";
 "三钱六掷，\n逐爻成卦" = "Três moedas, seis lançamentos, uma linha por vez";
@@ -78,8 +78,8 @@
 "主" = "Principal";
 "卦辞" = "Julgamento";
 "爻辞" = "Texto das linhas";
-"白话解读" = "Interpretação";
-"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "O hexagrama original mostra a situação atual; o resultante, a direção em que ela se desenvolve. A interpretação é apenas uma referência — para decisões importantes, considere sua situação real.";
+"卦义" = "Sentido";
+"本卦为所成之卦，变卦由动爻变化而来；两卦经传可对照研读。" = "O hexagrama primário é o que se forma; o resultante surge da mudança de suas linhas móveis. Leia os textos de ambos lado a lado.";
 "动爻 · 老阳" = "Linha móvel · yang velho";
 "动爻 · 老阴" = "Linha móvel · yin velho";
 "心得" = "Reflexões";

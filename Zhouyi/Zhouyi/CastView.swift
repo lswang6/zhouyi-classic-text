@@ -31,7 +31,7 @@ struct CastView: View {
         let q = app.q.trimmingCharacters(in: .whitespacesAndNewlines)
         VStack(spacing: 0) {
             Spacer(minLength: 6)   // 所问与六爻居于导航栏与铜钱之间，上下留白均分
-            Text(q.isEmpty ? L("心中默念所问之事") : q)
+            Text(q.isEmpty ? method.label : q)
                 .font(.scaled(14))
                 .foregroundStyle(Color.subdued)
                 .multilineTextAlignment(.center)

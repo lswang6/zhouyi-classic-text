@@ -29,9 +29,9 @@ final class Record {
         self.solarLongitude = solarLongitude
     }
 
-    /// 显示用所问之事
+    /// 旧记录的所问之事；新版不再询问（App Review 4.3），空则为 nil
     /// 旧版曾把占位语直接存进 q，一并视为空
-    var question: String { q.isEmpty || q == "未填写所问之事" || q == "未填寫所問之事" ? L("未填写所问之事") : q }
+    var asked: String? { q.isEmpty || q == "未填写所问之事" || q == "未填寫所問之事" ? nil : q }
 
     var analysis: Analysis { Zhouyi.analyze(lines) }
 
@@ -41,12 +41,17 @@ final class Record {
         return a.bian.map { L("%1$@ → %2$@", a.ben.full, $0.full) } ?? a.ben.full
     }
 
+    /// “铜钱摇卦 · 事业”；新版不再选类别，默认“其他”不显示
+    var metaTail: String {
+        (CastMethod(rawValue: method)?.label ?? method) + (cat == "其他" ? "" : " · " + L(cat))
+    }
+
     /// “9月28日 14:30 · 铜钱摇卦 · 事业”
     var meta: String {
         let f = DateFormatter()
         f.locale = Localizer.shared.locale
         f.calendar = Calendar(identifier: .gregorian)   // 公历；12/24 小时制随语言
         f.setLocalizedDateFormatFromTemplate("MMMd jmm")
-        return f.string(from: ts) + " · " + (CastMethod(rawValue: method)?.label ?? method) + " · " + L(cat)
+        return f.string(from: ts) + " · " + metaTail
     }
 }

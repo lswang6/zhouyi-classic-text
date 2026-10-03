@@ -31,7 +31,7 @@ struct HistoryView: View {
         return records.filter { r in
             if f == "fav" && !r.fav { return false }
             if f != "all" && f != "fav" && String(r.analysis.ben.n) != f { return false }
-            return qq.isEmpty || [r.question, r.title, r.note, r.analysis.ben.name].joined(separator: "\n").localizedStandardContains(qq)
+            return qq.isEmpty || [r.asked ?? "", r.title, r.note, r.analysis.ben.name].joined(separator: "\n").localizedStandardContains(qq)
         }
     }
 
@@ -132,7 +132,7 @@ struct HistoryView: View {
                             .accessibilityLabel(L("收藏"))
                     }
                 }
-                Text(r.question).font(.scaled(14)).lineSpacing(2)
+                if let q = r.asked { Text(q).font(.scaled(14)).lineSpacing(2) }
                 Text(r.meta).font(.scaled(12)).foregroundStyle(Color.subdued)
                     .padding(.top, 2)
                 if !r.note.isEmpty {
@@ -167,10 +167,10 @@ private struct RecordsExport: Transferable {
             f.calendar = Calendar(identifier: .gregorian)
             f.dateStyle = .medium
             f.timeStyle = .short
-            text = [f.string(from: r.ts) + " · " + (CastMethod(rawValue: r.method)?.label ?? r.method) + " · " + L(r.cat) + (r.fav ? " ★" : ""),
-                    r.question,
+            text = [f.string(from: r.ts) + " · " + r.metaTail + (r.fav ? " ★" : ""),
+                    r.asked,
                     r.title + " · " + r.lines.map(String.init).joined(separator: " ")]
-                .joined(separator: "\n") + (r.note.isEmpty ? "" : "\n" + L("备注：%@", r.note))
+                .compactMap { $0 }.joined(separator: "\n") + (r.note.isEmpty ? "" : "\n" + L("备注：%@", r.note))
         }
     }
 

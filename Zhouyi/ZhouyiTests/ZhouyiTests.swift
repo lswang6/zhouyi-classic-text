@@ -281,7 +281,9 @@ private func cast(_ y: Int, _ m: Int, _ d: Int, _ h: Int, _ mi: Int = 0) -> Time
     pinChinese()
     let r = Record(q: "  ", cat: "事业", method: .coin, lines: [7, 8, 9, 7, 8, 7])
     #expect(r.q == "")
-    #expect(r.question == "未填写所问之事")
+    #expect(r.asked == nil)
+    #expect(Record(q: "未填写所问之事", cat: "其他", method: .time, lines: [7, 7, 7, 7, 7, 7]).asked == nil)   // 旧版存入的占位语
+    #expect(Record(q: "x", cat: "其他", method: .time, lines: [7, 7, 7, 7, 7, 7]).metaTail == "时间起卦")   // 默认类别不显示
     #expect(r.verify == "待验")
     #expect(r.title == "离为火 → 火雷噬嗑")
 }

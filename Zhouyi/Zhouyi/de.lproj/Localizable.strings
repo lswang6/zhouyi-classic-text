@@ -15,7 +15,7 @@
 "起卦" = "Hexagramm bilden";
 "最近一卦" = "Letzte Befragung";
 "起一卦" = "Hexagramm werfen";
-"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Kommen Sie zur Ruhe und sammeln Sie sich – eine Frage pro Befragung. Denken Sie still an Ihre Frage und beginnen Sie dann.";
+"依《系辞》与梅花易数的古法由数成卦，逐步查看成卦过程，再对照经传研读。" = "Bilden Sie ein Hexagramm nach den überlieferten Methoden des Großen Kommentars und der Pflaumenblüten-Numerologie, verfolgen Sie jeden Schritt und lesen Sie dann den klassischen Text.";
 "起卦方式" = "Methode";
 "铜钱" = "Münzen";
 "三钱六掷，\n逐爻成卦" = "Drei Münzen, sechs Würfe – Linie für Linie";
@@ -78,8 +78,8 @@
 "主" = "Haupt";
 "卦辞" = "Urteil";
 "爻辞" = "Linientexte";
-"白话解读" = "Erläuterung";
-"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "Das Ausgangshexagramm zeigt die aktuelle Lage, das Zielhexagramm die weitere Entwicklung. Die Deutung dient nur als Anregung – treffen Sie wichtige Entscheidungen mit Blick auf Ihre tatsächliche Situation.";
+"卦义" = "Bedeutung";
+"本卦为所成之卦，变卦由动爻变化而来；两卦经传可对照研读。" = "Das Haupthexagramm ist das gebildete; das Folgehexagramm entsteht durch die Wandlung seiner bewegten Linien. Lesen Sie die Texte beider nebeneinander.";
 "动爻 · 老阳" = "Wandelnd · altes Yang";
 "动爻 · 老阴" = "Wandelnd · altes Yin";
 "心得" = "Gedanken";

@@ -15,7 +15,7 @@
 "起卦" = "Cast";
 "最近一卦" = "Latest reading";
 "起一卦" = "Cast a hexagram";
-"静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Calm your mind and ask about one matter at a time. Hold your question in mind, then begin casting.";
+"依《系辞》与梅花易数的古法由数成卦，逐步查看成卦过程，再对照经传研读。" = "Form a hexagram with the traditional methods of the Great Commentary and Plum Blossom numerology, see each step, then read the classic text.";
 "起卦方式" = "Casting method";
 "铜钱" = "Coins";
 "三钱六掷，\n逐爻成卦" = "Toss three coins six times, one line per toss";
@@ -78,8 +78,8 @@
 "主" = "Main";
 "卦辞" = "Judgment";
 "爻辞" = "Line texts";
-"白话解读" = "Interpretation";
-"本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "The primary hexagram shows the present situation; the resulting hexagram shows where it is heading. Readings are for reference only — weigh important decisions against your real circumstances.";
+"卦义" = "Overview";
+"本卦为所成之卦，变卦由动爻变化而来；两卦经传可对照研读。" = "The primary hexagram is the one formed; the resulting hexagram comes from changing its moving lines. Read the texts of both side by side.";
 "动爻 · 老阳" = "Changing · Old Yang";
 "动爻 · 老阴" = "Changing · Old Yin";
 "心得" = "Reflections";

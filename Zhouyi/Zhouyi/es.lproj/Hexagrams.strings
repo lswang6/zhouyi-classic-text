@@ -1,259 +1,259 @@
 /* Spanish — hexagram names (pinyin), Wilhelm-Vogelmann titles, plain-language interpretation */
 "hex.1.name" = "Qián";
 "hex.1.full" = "Lo Creativo";
-"hex.1.bh" = "El cielo se mueve con fuerza incesante. Conviene tomar la iniciativa y esforzarse sin descanso, pero avanzando paso a paso, sin arrogancia ni impaciencia.";
+"hex.1.bh" = "Cielo duplicado, las seis líneas firmes: la imagen de una fuerza creadora incansable. El Dictamen la llama «grande y originaria»; las líneas siguen a un dragón oculto en lo profundo, que aparece en el campo, vuela en el cielo y, al final, se excede.";
 
 "hex.2.name" = "Kūn";
 "hex.2.full" = "Lo Receptivo";
-"hex.2.bh" = "La tierra es dócil y todo lo sostiene. Conviene seguir el curso de las cosas y apoyar a otros; no es momento de adelantarse. Mantenerse recto y sereno trae buena fortuna.";
+"hex.2.bh" = "Tierra duplicada, las seis líneas flexibles: la imagen de la tierra que sostiene y soporta todas las cosas. El Dictamen compara su firmeza con la de una yegua; las líneas van desde la escarcha que anuncia el hielo duro hasta dragones que luchan en campo abierto.";
 
 "hex.3.name" = "Zhūn";
 "hex.3.full" = "La Dificultad Inicial";
-"hex.3.bh" = "Todo nace con dificultad. Los comienzos encuentran mucha resistencia: conviene afianzar las bases y buscar apoyo, sin precipitarse.";
+"hex.3.bh" = "Trueno abajo y nubes arriba: la imagen de un brote que se abre paso en la tierra en medio de una tormenta. El texto trata de la confusión de los primeros comienzos; las líneas muestran caballo y carro detenidos, un pretendiente rechazado al principio y un cazador que se pierde sin guía.";
 
 "hex.4.name" = "Méng";
 "hex.4.full" = "La Necedad Juvenil";
-"hex.4.bh" = "La ignorancia espera ser iluminada. Hay que pedir consejo con humildad y aprender con dedicación; no conviene consultar una y otra vez sobre la misma cuestión.";
+"hex.4.bh" = "Un manantial que brota al pie de una montaña: la imagen de la inexperiencia juvenil. El Dictamen describe a maestro y discípulo: el joven busca al maestro, y las preguntas repetidas una y otra vez quedan sin respuesta; las líneas tratan de la disciplina, la paciencia y el joven sin instrucción.";
 
 "hex.5.name" = "Xū";
 "hex.5.full" = "La Espera";
-"hex.5.bh" = "Esperar el momento oportuno. Las condiciones aún no están maduras; con sinceridad y paciencia, todo fluirá cuando llegue su hora.";
+"hex.5.bh" = "Nubes que suben al cielo antes de que caiga la lluvia: la imagen de la espera. El Dictamen vincula la espera con la sinceridad y con atravesar las grandes aguas; las líneas esperan en las afueras, en la arena, en el fango, ante el vino y la comida y, por último, en un foso.";
 
 "hex.6.name" = "Sòng";
 "hex.6.full" = "El Conflicto";
-"hex.6.bh" = "Imagen de litigio. Conviene reconciliarse pronto y saber detenerse a tiempo; llevar la disputa hasta el final resulta perjudicial. Puede recurrirse a un tercero imparcial.";
+"hex.6.bh" = "El cielo que se mueve hacia arriba y el agua que fluye hacia abajo, separándose: la imagen del conflicto y el pleito. El Dictamen contrapone detener una disputa a mitad de camino y llevarla hasta el final; las líneas muestran querellas abandonadas, un regreso a casa y un cinturón de cuero honorífico arrebatado tres veces en un día.";
 
 "hex.7.name" = "Shī";
 "hex.7.full" = "El Ejército";
-"hex.7.bh" = "Movilizar a muchos. Las grandes empresas exigen disciplina y acierto al elegir a las personas; solo triunfan bajo el mando de alguien respetado y virtuoso.";
+"hex.7.bh" = "Agua contenida en la tierra: la imagen de una fuerza reclutada entre el pueblo. El texto trata de la disciplina de un ejército y de la necesidad de un jefe experimentado; las líneas pasan de la salida en orden, por carros cargados de cadáveres, al soberano que reparte recompensas cuando termina la campaña.";
 
 "hex.8.name" = "Bǐ";
 "hex.8.full" = "La Solidaridad";
-"hex.8.bh" = "Acercarse y unirse. Conviene establecer vínculos sinceros y elegir bien a quién seguir; hay que sumarse a tiempo, pues quien duda pierde la ocasión.";
+"hex.8.bh" = "Agua que corre sobre la tierra: la imagen de cosas que se acercan y se unen. El Dictamen habla de quienes acuden a unirse y del que llega tarde; las líneas describen la unión fundada en la sinceridad, la unión desde dentro y desde fuera, y la unión sin cabeza.";
 
 "hex.9.name" = "Xiǎo Xù";
 "hex.9.full" = "La Fuerza Domesticadora de lo Pequeño";
-"hex.9.bh" = "Pequeña acumulación, fuerzas aún insuficientes. El asunto se está gestando y todavía no toma forma: conviene acumular recursos y cultivar el interior.";
+"hex.9.bh" = "Viento que recorre el cielo: la imagen de una fuerza suave que retiene por un tiempo. Las «nubes densas, sin lluvia» que llegan de la región occidental, en el Dictamen, marcan el tema; las líneas muestran un regreso al propio camino, un carro que pierde los rayos de sus ruedas y, por fin, la lluvia que cae.";
 
 "hex.10.name" = "Lǚ";
 "hex.10.full" = "El Porte";
-"hex.10.bh" = "Como pisar la cola del tigre: avanzar con cautela. La situación entraña riesgos, pero con cortesía y cuidado se puede pasar sin daño.";
+"hex.10.bh" = "El cielo sobre un lago: la imagen del orden justo entre lo alto y lo bajo. La figura del Dictamen es pisar la cola de un tigre que no muerde; las líneas recorren una conducta sencilla, un camino llano y tranquilo, un tuerto que intenta ver y un repaso final de los pasos dados.";
 
 "hex.11.name" = "Tài";
 "hex.11.full" = "La Paz";
-"hex.11.bh" = "Cielo y tierra se comunican; arriba y abajo hay entendimiento. Todo marcha bien: conviene aprovechar la ocasión sin olvidar la prudencia en los buenos tiempos.";
+"hex.11.bh" = "La tierra arriba y el cielo abajo, cuyos influjos se encuentran: la imagen del cielo y la tierra en armonía. El Dictamen habla de «lo pequeño se va, lo grande llega»; las líneas pasan de juncos arrancados juntos, por «no hay llanura sin pendiente», a una muralla que vuelve a caer en su foso.";
 
 "hex.12.name" = "Pǐ";
 "hex.12.full" = "El Estancamiento";
-"hex.12.bh" = "Cielo y tierra no se comunican; todo está bloqueado. Conviene mantener un perfil bajo, ser fiel a los propios principios y esperar el cambio.";
+"hex.12.bh" = "El cielo arriba y la tierra abajo, que se separan sin contacto: la imagen del estancamiento. El Dictamen habla de «lo grande se va, lo pequeño llega»; las líneas pasan de soportar un mal tiempo, por un destino atado a un macizo de moreras, al estancamiento finalmente derribado.";
 
 "hex.13.name" = "Tóng Rén";
 "hex.13.full" = "Comunidad con los Hombres";
-"hex.13.bh" = "Concordia con los demás. Conviene rodearse de personas afines y cooperar abiertamente, sin encerrarse en camarillas.";
+"hex.13.bh" = "El cielo sobre el fuego, ambos tendiendo hacia arriba: la imagen de personas unidas por una causa común. El Dictamen sitúa la comunidad en campo abierto; las líneas recorren la comunidad ante la puerta, dentro de un mismo clan, tropas escondidas en la maleza y aliados que primero lloran y después ríen.";
 
 "hex.14.name" = "Dà Yǒu";
 "hex.14.full" = "La Posesión de lo Grande";
-"hex.14.bh" = "Gran cosecha, como el sol en su cenit. Conviene fomentar el bien y frenar el mal, y conservar lo logrado con modestia para que la abundancia perdure.";
+"hex.14.bh" = "Fuego en lo alto del cielo, que ilumina todo lo de abajo: la imagen de la posesión de lo grande. El Dictamen habla de un gran progreso; las líneas tratan de las responsabilidades de la riqueza: un gran carro para cargar, una ofrenda al Hijo del Cielo y la abundancia mantenida sin exceso.";
 
 "hex.15.name" = "Qiān";
 "hex.15.full" = "La Modestia";
-"hex.15.bh" = "Humildad y moderación. Cuanto mayor es la modestia, más apoyo se recibe; las seis líneas son favorables: augura un buen principio y un buen final.";
+"hex.15.bh" = "Una montaña oculta dentro de la tierra: la imagen de la grandeza que se mantiene baja. El Dictamen dice que el noble lleva las cosas a término; las líneas describen la modestia en sus formas: modestia respecto de la propia modestia, modestia que se expresa y modestia unida al mérito.";
 
 "hex.16.name" = "Yù";
 "hex.16.full" = "El Entusiasmo";
-"hex.16.bh" = "Alegría y armonía; los demás responden. Conviene planificar con antelación y actuar a favor de la corriente, sin abandonarse a la comodidad.";
+"hex.16.bh" = "Trueno que brota de la tierra: la imagen de una energía liberada que pone en movimiento todas las cosas. La Gran Imagen la vincula con la música que compusieron los antiguos reyes; las líneas contraponen el entusiasmo jactancioso o ensimismado a un carácter firme como una roca.";
 
 "hex.17.name" = "Suí";
 "hex.17.full" = "El Seguimiento";
-"hex.17.bh" = "Actuar según el momento y seguir lo bueno. Conviene adaptarse a las circunstancias con flexibilidad, sin apartarse del camino recto.";
+"hex.17.bh" = "Trueno que reposa en medio del lago: la imagen de seguir la estación y adaptarse a ella. El Dictamen vincula el seguimiento con la firmeza y la rectitud; las líneas muestran el apego a lo pequeño o a lo grande, la sinceridad en el camino recto y a alguien atado firmemente por la lealtad.";
 
 "hex.18.name" = "Gǔ";
 "hex.18.full" = "El Trabajo en lo Echado a Perder";
-"hex.18.bh" = "Vicios acumulados que deben corregirse. Los viejos problemas requieren orden y renovación; planificando antes y revisando después, el peligro se convierte en seguridad.";
+"hex.18.bh" = "Viento que sopla al pie de una montaña, donde las cosas se estancan: la imagen de lo echado a perder que hay que enmendar. El Dictamen habla de tres días antes y tres días después de un nuevo comienzo; las líneas tratan de reparar lo que el padre y la madre dejaron echar a perder, mientras que la línea superior no sirve a rey ni a señor.";
 
 "hex.19.name" = "Lín";
 "hex.19.full" = "El Acercamiento";
-"hex.19.bh" = "Acercarse desde lo alto; las cosas mejoran poco a poco. La tendencia es favorable y conviene actuar, pero previendo que toda plenitud trae su declive.";
+"hex.19.bh" = "La tierra sobre un lago: la imagen del superior que se acerca a los de abajo. El Dictamen añade una advertencia sobre el octavo mes, cuando el ciclo cambia de signo; las líneas describen un acercamiento conjunto, fácil, completo, sabio y generoso.";
 
 "hex.20.name" = "Guān";
 "hex.20.full" = "La Contemplación";
-"hex.20.bh" = "Observar y dar ejemplo. Conviene contemplar el conjunto con calma, examinarse a uno mismo y ganarse a los demás con sinceridad, sin apresurarse a actuar.";
+"hex.20.bh" = "Viento que recorre la tierra: la imagen de contemplar y ser contemplado. La figura del Dictamen es un oficiante que se ha lavado las manos pero aún no ha hecho la ofrenda; las líneas se amplían desde la mirada de un muchacho y un vistazo a través de una puerta hasta la contemplación de la propia vida.";
 
 "hex.21.name" = "Shì Hé";
 "hex.21.full" = "La Mordedura Tajante";
-"hex.21.bh" = "Morder para eliminar el obstáculo. Algo se interpone: hay que resolverlo con decisión y distinguir lo justo de lo injusto; eliminado el obstáculo, todo fluye.";
+"hex.21.bh" = "Trueno y relámpago juntos: la imagen de un obstáculo entre las mandíbulas que hay que morder de parte a parte. El texto trata del uso de la ley y el castigo; las líneas pasan de los pies en el cepo, por morder carne tierna y carne seca, al cuello en la canga.";
 
 "hex.22.name" = "Bì";
 "hex.22.full" = "La Gracia";
-"hex.22.bh" = "La belleza del adorno. Un adorno moderado es beneficioso, pero no hay que sacrificar lo esencial por lo accesorio; lo pequeño sale bien, lo grande exige sustancia.";
+"hex.22.bh" = "Fuego al pie de una montaña, que la ilumina: la imagen de la gracia y el adorno. El Dictamen solo admite asuntos pequeños; las líneas pasan de pies y barba adornados, por un brillo húmedo y un caballo blanco, a una gracia que se ha vuelto simplemente blanca.";
 
 "hex.23.name" = "Bō";
 "hex.23.full" = "La Desintegración";
-"hex.23.bh" = "Desgaste y declive. La situación es desfavorable: conviene defenderse en lugar de atacar, preservar fuerzas y esperar el retorno.";
+"hex.23.bh" = "Cinco líneas flexibles bajo una firme: una montaña que reposa sobre la tierra y se va desgastando. Las líneas muestran una cama que se parte desde las patas, luego el armazón, hasta llegar a la piel; arriba queda un gran fruto sin comer.";
 
 "hex.24.name" = "Fù";
 "hex.24.full" = "El Retorno";
-"hex.24.bh" = "Vuelve la luz: un nuevo comienzo. Lo peor ya pasó; conviene regresar a tiempo al camino recto y recuperarse paso a paso.";
+"hex.24.bh" = "Trueno dentro de la tierra: la imagen de la luz que regresa en el solsticio de invierno. El Dictamen habla de un retorno en siete días; las líneas distinguen un retorno rápido, un retorno tranquilo, retornos repetidos, caminar solo y un retorno perdido por confusión.";
 
 "hex.25.name" = "Wú Wàng";
 "hex.25.full" = "La Inocencia";
-"hex.25.bh" = "Autenticidad sin engaño. Seguir el curso natural sin confiar en la suerte trae buena fortuna; actuar o desear sin fundamento trae desgracias.";
+"hex.25.bh" = "Trueno que retumba bajo el cielo: la imagen de cosas que actúan según su propia naturaleza, sin artificio. El Dictamen une la inocencia a la rectitud; las líneas incluyen un buey atado por un hombre y llevado por un transeúnte, y una enfermedad que pasa sin medicina.";
 
 "hex.26.name" = "Dà Xù";
 "hex.26.full" = "La Fuerza Domesticadora de lo Grande";
-"hex.26.bh" = "Gran acumulación. Conviene acumular saber y fuerza; cuando el momento madure, se podrán emprender grandes obras fuera de casa.";
+"hex.26.bh" = "El cielo contenido dentro de la montaña: la imagen de una gran energía retenida y acumulada. La Gran Imagen habla de acumular las palabras y los hechos de épocas pasadas; las líneas van de un carro al que se le ha quitado el eje y el cuerno protegido de un toro joven al camino del cielo que se abre en lo alto.";
 
 "hex.27.name" = "Yí";
 "hex.27.full" = "Las Comisuras de la Boca";
-"hex.27.bh" = "El arte de nutrirse. Cuidar la alimentación, los hábitos y las palabras, y obtener lo necesario mediante el propio esfuerzo legítimo.";
+"hex.27.bh" = "Trueno bajo una montaña, como mandíbulas que se cierran sobre el alimento: la imagen de la nutrición. El Dictamen dirige la atención a aquello con lo que cada uno busca llenarse la boca; las líneas contraponen a quien deja su tortuga mágica para mirar la comida ajena y el alimento obtenido de fuentes adecuadas.";
 
 "hex.28.name" = "Dà Guò";
 "hex.28.full" = "La Preponderancia de lo Grande";
-"hex.28.bh" = "Carga excesiva: la viga maestra se curva. Los tiempos extraordinarios exigen medidas extraordinarias; hay que asumir la responsabilidad solo y sin miedo.";
+"hex.28.bh" = "El lago que sube por encima de los árboles: la imagen de una viga maestra que se comba bajo un peso excesivo. El texto trata de tiempos extraordinarios; las líneas muestran una estera de juncos blancos, un sauce seco que echa brotes, una viga combada y un vado donde el agua cubre la cabeza.";
 
 "hex.29.name" = "Kǎn";
 "hex.29.full" = "Lo Abismal, el Agua";
-"hex.29.bh" = "Peligro tras peligro. En la adversidad hay que mantener la fe y la constancia; como el agua que sigue fluyendo, al final se sale del peligro.";
+"hex.29.bh" = "Agua duplicada, que fluye a través de un barranco tras otro: la imagen del peligro repetido. El Dictamen destaca la sinceridad y una mente despejada; las líneas hablan de un foso dentro de un foso, vino y arroz pasados por una ventana y un cautivo atado con cuerdas.";
 
 "hex.30.name" = "Lí";
 "hex.30.full" = "Lo Adherente, el Fuego";
-"hex.30.bh" = "Luz que se adhiere. Conviene apoyarse en lo recto y en personas sabias, y mantenerse dócil y humilde para que la claridad perdure.";
+"hex.30.bh" = "Fuego duplicado, claridad sobre claridad: la imagen de la luz que se adhiere a lo que ilumina. El Dictamen añade el cuidado de una vaca; las líneas pasan de pasos confusos, por la luz amarilla y el sol poniente, a una llama repentina y una expedición punitiva del rey.";
 
 "hex.31.name" = "Xián";
 "hex.31.full" = "El Influjo";
-"hex.31.bh" = "Influencia mutua. En las relaciones y los afectos, la sinceridad despierta respuesta; tratar a los demás con apertura hace que todo fluya.";
+"hex.31.bh" = "Un lago sobre una montaña: la imagen de la atracción mutua entre un joven y una muchacha. El Dictamen se refiere a tomar esposa; las líneas suben por el cuerpo: el dedo gordo del pie, las pantorrillas, los muslos, la espalda y, por último, las mandíbulas y la lengua.";
 
 "hex.32.name" = "Héng";
 "hex.32.full" = "La Duración";
-"hex.32.bh" = "El camino de la constancia. Conviene mantener el rumbo elegido y perseverar, sin cambiar a la ligera.";
+"hex.32.bh" = "Trueno y viento, siempre juntos: la imagen de lo que perdura. La Gran Imagen muestra a alguien que se mantiene firme sin cambiar de rumbo; las líneas contraponen buscar la duración con demasiada prisa, un carácter inconstante y un campo donde no hay caza.";
 
 "hex.33.name" = "Dùn";
 "hex.33.full" = "La Retirada";
-"hex.33.bh" = "Tiempo de retirarse. Las circunstancias son adversas: retirarse a tiempo permite protegerse; retroceder para después avanzar.";
+"hex.33.bh" = "Una montaña que se alza bajo el cielo, y el cielo que se retira ante ella: la imagen de la retirada. El Dictamen trata de retirarse a tiempo mientras avanzan las fuerzas menores; las líneas van desde la cola de una retirada y alguien sujeto con piel de buey amarilla hasta una retirada alegre y sin prisa.";
 
 "hex.34.name" = "Dà Zhuàng";
 "hex.34.full" = "El Poder de lo Grande";
-"hex.34.bh" = "Gran fuerza e ímpetu. Cuando sobra poder, más importa ser recto y respetuoso; hay que evitar abusar de la fuerza y actuar sin reflexión.";
+"hex.34.bh" = "Trueno en lo alto del cielo: la imagen de una gran fuerza en movimiento. La Gran Imagen une el poder al decoro; las líneas muestran un carnero que embiste un seto y enreda en él sus cuernos, y el seto que por fin se abre.";
 
 "hex.35.name" = "Jìn";
 "hex.35.full" = "El Progreso";
-"hex.35.bh" = "El sol se eleva: ascenso y progreso. Conviene mostrarse activo y dar a conocer el talento y la virtud; es fácil obtener reconocimiento.";
+"hex.35.bh" = "El sol que se eleva sobre la tierra: la imagen de un progreso rápido y fácil. El Dictamen presenta a un príncipe honrado con muchos caballos y recibido tres veces en un día; las líneas contraponen el progreso frenado o afligido al de un hámster y al de quien avanza con los cuernos.";
 
 "hex.36.name" = "Míng Yí";
 "hex.36.full" = "El Oscurecimiento de la Luz";
-"hex.36.bh" = "La luz está herida. En un entorno sombrío conviene ocultar el propio brillo: conservar la claridad por dentro y mostrarse dócil por fuera.";
+"hex.36.bh" = "El sol hundido bajo la tierra: la imagen de la claridad herida y oculta. El texto trata de ocultar la propia luz en tiempos oscuros, con el ejemplo del príncipe de Ji; las líneas incluyen un faisán que vuela con las alas caídas y una cacería en el sur.";
 
 "hex.37.name" = "Jiā Rén";
 "hex.37.full" = "El Clan";
-"hex.37.bh" = "El camino de la familia. Cada uno debe ocupar su lugar y hablar y obrar con fundamento; si reina la armonía interna, todo marcha bien.";
+"hex.37.bh" = "Viento que sale del fuego: la imagen de la familia, cuya influencia se extiende de dentro hacia fuera. El Dictamen subraya el papel de la mujer; las líneas tratan de reglas firmes en el hogar, la preparación de las comidas y la influencia del rey sobre su familia.";
 
 "hex.38.name" = "Kuí";
 "hex.38.full" = "El Antagonismo";
-"hex.38.bh" = "Divergencia y oposición. Ante los desacuerdos, buscar lo común respetando las diferencias; lo pequeño puede lograrse, lo grande requiere salvar las distancias poco a poco.";
+"hex.38.bh" = "Fuego sobre un lago, que se alejan el uno del otro: la imagen de la oposición y el distanciamiento. El Dictamen admite asuntos pequeños; las líneas incluyen un caballo perdido que vuelve por sí solo, el encuentro con el señor en un callejón estrecho y un cerdo cubierto de barro.";
 
 "hex.39.name" = "Jiǎn";
 "hex.39.full" = "El Impedimento";
-"hex.39.bh" = "Camino difícil. Hay obstáculos delante: conviene examinarse a uno mismo, buscar la ayuda de personas valiosas y detener el avance por un tiempo.";
+"hex.39.bh" = "Agua en la cima de una montaña: la imagen de un camino peligroso por delante. El Dictamen contrapone el suroeste y el noreste y habla de ver al gran hombre; las líneas alternan entre avanzar hacia el impedimento y volver atrás para encontrar apoyo.";
 
 "hex.40.name" = "Xiè";
 "hex.40.full" = "La Liberación";
-"hex.40.bh" = "Las dificultades se disuelven. Conviene ser indulgente, actuar pronto, dejar atrás viejos rencores y restablecer el orden.";
+"hex.40.bh" = "Trueno y lluvia que liberan la tensión de una tormenta: la imagen de la liberación. El Dictamen habla de regresar pronto una vez pasado el problema; las líneas incluyen la captura de tres zorros, un porteador que viaja en carruaje y un halcón abatido sobre una alta muralla.";
 
 "hex.41.name" = "Sǔn";
 "hex.41.full" = "La Merma";
-"hex.41.bh" = "El camino de la merma. Renunciar a pequeñas ventajas y a intereses egoístas y dar con sinceridad; así, paradójicamente, se gana.";
+"hex.41.bh" = "Un lago al pie de una montaña, cuya agua sube para nutrir la ladera: la imagen de la merma. El Dictamen señala que dos cuencos pequeños pueden bastar para el sacrificio; las líneas tratan de disminuir abajo para aumentar arriba, y de lo que se gana con lo que se da.";
 
 "hex.42.name" = "Yì";
 "hex.42.full" = "El Aumento";
-"hex.42.bh" = "Tiempo de aumento. Favorable para emprender y avanzar; aprender de lo bueno y corregir los errores: se pueden esperar beneficios.";
+"hex.42.bh" = "Viento y trueno que se refuerzan mutuamente: la imagen del aumento. El texto trata de lo alto que da a lo bajo, y la Gran Imagen lo vincula con el movimiento hacia el bien; las líneas incluyen un regalo de diez pares de caparazones de tortuga y un corazón sin constancia.";
 
 "hex.43.name" = "Guài";
 "hex.43.full" = "El Desbordamiento";
-"hex.43.bh" = "Tiempo de decidir. Hay que resolver cuando es necesario, pero exponiendo razones abiertamente y convenciendo con la virtud, sin choques frontales.";
+"hex.43.bh" = "Un lago elevado por encima del cielo: la imagen de un desbordamiento. El Dictamen habla de proclamar el asunto en la corte del rey; las líneas tratan de la acción resuelta contra el mal: avanzar con demasiada prisa, malas hierbas arrancadas y un viajero solitario empapado por la lluvia.";
 
 "hex.44.name" = "Gòu";
 "hex.44.full" = "Ir al Encuentro";
-"hex.44.bh" = "Encuentro inesperado. Surge un encuentro u oportunidad imprevista, pero hay que saber quién llega y cortar el mal desde su origen.";
+"hex.44.bh" = "Viento que sopla bajo el cielo: la imagen de una sola línea flexible que sale al encuentro de cinco firmes. El Dictamen desaconseja casarse con una mujer así; las líneas incluyen un pez en el estanque, un melón cubierto con hojas de sauce y un encuentro con los cuernos.";
 
 "hex.45.name" = "Cuì";
 "hex.45.full" = "La Reunión";
-"hex.45.bh" = "Reunión y concentración. Personas y recursos confluyen: conviene unir voluntades y, al mismo tiempo, estar prevenido.";
+"hex.45.bh" = "Un lago que se eleva sobre la tierra: la imagen de aguas reunidas y de gente que se congrega. El Dictamen se refiere al rey que se acerca a su templo y a grandes ofrendas; las líneas tratan de la reunión al principio, de ser atraído hacia los demás, de suspirar por la separación y del llanto.";
 
 "hex.46.name" = "Shēng";
 "hex.46.full" = "La Subida";
-"hex.46.bh" = "Ascenso paso a paso. Como un árbol que crece, lo pequeño se hace grande; siguiendo la corriente hacia arriba, se puede avanzar con audacia.";
+"hex.46.bh" = "Madera que crece dentro de la tierra: la imagen de un crecimiento constante hacia arriba. El Dictamen se refiere a ver al gran hombre y partir hacia el sur; las líneas recorren una subida hacia una ciudad vacía, la ofrenda del rey en el monte Qi y el ascenso por una escalera.";
 
 "hex.47.name" = "Kùn";
 "hex.47.full" = "La Desazón";
-"hex.47.bh" = "Situación de agotamiento. En la adversidad, hablar poco y hacer mucho, y mantenerse fiel a los propios ideales: la salida acabará abriéndose.";
+"hex.47.bh" = "Un lago del que se ha escurrido el agua: la imagen del agotamiento y la adversidad. El Dictamen señala que en un tiempo así no se cree en las palabras; las líneas incluyen la opresión bajo un árbol desnudo, ante el vino y la comida, entre rocas y espinos, y por enredaderas.";
 
 "hex.48.name" = "Jǐng";
 "hex.48.full" = "El Pozo de Agua";
-"hex.48.bh" = "El pozo nutre sin agotarse. Con bases firmes y entrega constante, lo esencial es cuidar y perseverar; flaquear justo antes de terminar resulta desfavorable.";
+"hex.48.bh" = "Madera que baja al agua para sacarla: la imagen de un pozo, una fuente de alimento que nunca se seca. El Dictamen señala que una ciudad puede trasladarse, pero su pozo no; las líneas pasan de un pozo fangoso y en desuso a uno que queda abierto para todos.";
 
 "hex.49.name" = "Gé";
 "hex.49.full" = "La Revolución";
-"hex.49.bh" = "Tiempo de cambio. La transformación requiere que el momento esté maduro y ganarse la confianza de los demás; en armonía con el cielo y con la gente, el cambio triunfa.";
+"hex.49.bh" = "Fuego dentro de un lago, cada uno intentando apagar al otro: la imagen del cambio radical. El Dictamen dice que el cambio solo se cree el día en que se ha consumado; las líneas recorren el cambio sujeto con piel de buey amarilla, el gran hombre que cambia como un tigre y el noble que cambia como una pantera.";
 
 "hex.50.name" = "Dǐng";
 "hex.50.full" = "El Caldero";
-"hex.50.bh" = "Renovación y asentamiento. Conviene consolidar la posición y confiar en personas capaces; la nueva situación ya está establecida.";
+"hex.50.bh" = "Madera bajo el fuego: la imagen del ding, el caldero de bronce en el que se cocinaban ofrendas y banquetes. El Dictamen habla de un gran progreso; las líneas pasan de un caldero volcado para vaciarlo, por patas rotas y asas alteradas, a anillas de oro y de jade para transportarlo.";
 
 "hex.51.name" = "Zhèn";
 "hex.51.full" = "Lo Suscitativo, el Trueno";
-"hex.51.bh" = "El trueno sacude. Ante un imprevisto, mantener la calma, estar alerta y examinarse; después, todo queda en paz.";
+"hex.51.bh" = "Trueno duplicado: la imagen de la conmoción y el temor. El Dictamen presenta el espanto seguido de la risa, y a quien no suelta el cucharón sacrificial ni el vino; las líneas siguen las respuestas a la conmoción, desde perder tesoros y subir las nueve colinas hasta quedar atascado en el barro.";
 
 "hex.52.name" = "Gèn";
 "hex.52.full" = "El Aquietamiento, la Montaña";
-"hex.52.bh" = "Detenerse y quedarse quieto. Saber parar cuando corresponde, dominar los deseos, cumplir con lo que toca y no excederse en las propias funciones.";
+"hex.52.bh" = "Montaña duplicada: la imagen de la quietud y el reposo. El Dictamen presenta la espalda mantenida quieta y un paseo por el patio sin ver a nadie; las líneas suben por el cuerpo, por los dedos del pie, las pantorrillas, las caderas, el tronco y las mandíbulas, hasta una quietud noble en lo alto.";
 
 "hex.53.name" = "Jiàn";
 "hex.53.full" = "La Evolución";
-"hex.53.bh" = "Avance gradual. Como el ganso salvaje que vuela por etapas: avanzar paso a paso, sin prisas por lograr resultados.";
+"hex.53.bh" = "Un árbol que crece en una montaña: la imagen del desarrollo gradual. El Dictamen recurre al casamiento de una muchacha; las líneas siguen a un ganso salvaje que avanza paso a paso desde la orilla hasta la roca, la meseta, el árbol, la cumbre y las alturas que hay más allá.";
 
 "hex.54.name" = "Guī Mèi";
 "hex.54.full" = "La Muchacha que se Casa";
-"hex.54.bh" = "Posición aún no legitimada. Hay que cuidar el propio papel y la mesura; avanzar a la ligera es desfavorable: conviene atenerse a lo habitual y esperar.";
+"hex.54.bh" = "Trueno sobre un lago: la imagen de una hermana menor casada como esposa secundaria. La Gran Imagen reflexiona sobre conocer el final desde el comienzo; las líneas incluyen a un cojo que camina, un tuerto que ve, un casamiento demorado y las mangas de una novia más sencillas que las de su dama de compañía.";
 
 "hex.55.name" = "Fēng";
 "hex.55.full" = "La Plenitud";
-"hex.55.bh" = "Abundancia y grandeza. Es el momento de apogeo: conviene aprovechar el presente, sabiendo que el sol, tras el mediodía, declina.";
+"hex.55.bh" = "Trueno y relámpago que llegan juntos: la imagen de la abundancia en su punto culminante. El Dictamen compara al rey con el sol de mediodía; las líneas describen el sol tapado de tal modo que se ven las estrellas a mediodía, y una gran casa que está vacía.";
 
 "hex.56.name" = "Lǚ";
 "hex.56.full" = "El Andariego";
-"hex.56.bh" = "De viaje, lejos de casa. En un entorno desconocido conviene ser afable y recto y actuar con cautela; lo pequeño puede salir bien.";
+"hex.56.bh" = "Fuego en una montaña, que arde y sigue adelante: la imagen del andariego. El Dictamen admite asuntos pequeños; las líneas describen a un viajero en posadas, con o sin sirvientes y bienes, y un nido de pájaro que arde mientras el caminante primero ríe y después llora.";
 
 "hex.57.name" = "Xùn";
 "hex.57.full" = "Lo Suave, el Viento";
-"hex.57.bh" = "Como el viento que penetra en todo: humildad que se infiltra. Conviene comunicar con suavidad, reiterar con claridad y entrar a favor de la corriente.";
+"hex.57.bh" = "Viento duplicado, que penetra en todas partes: la imagen de lo suave y penetrante. El Dictamen habla de un progreso en lo pequeño y de ver al gran hombre; las líneas incluyen adivinos y exorcistas bajo la cama, caza obtenida para tres usos, y tres días antes y después de un cambio.";
 
 "hex.58.name" = "Duì";
 "hex.58.full" = "Lo Sereno, el Lago";
-"hex.58.bh" = "Alegría y armonía. Tratar a los demás con sinceridad y aprender unos de otros; la alegría que nace de lo recto conduce al éxito.";
+"hex.58.bh" = "Lago duplicado, dos lagos que se alimentan mutuamente: la imagen de la alegría compartida. La Gran Imagen la vincula con amigos que conversan y practican juntos; las líneas contraponen la alegría armoniosa y sincera a la alegría buscada, calculada o seductora.";
 
 "hex.59.name" = "Huàn";
 "hex.59.full" = "La Disolución";
-"hex.59.bh" = "Dispersión y disolución. Cuando los ánimos se dispersan, conviene reunir consensos; lo que estaba enquistado puede aprovechar la ocasión para disolverse.";
+"hex.59.bh" = "Viento que sopla sobre el agua: la imagen de disolver lo rígido o dividido. El Dictamen se refiere al rey que se acerca a su templo y a atravesar las grandes aguas; las líneas incluyen disolver el propio yo, el propio grupo, y un gran grito que se esparce como el sudor.";
 
 "hex.60.name" = "Jié";
 "hex.60.full" = "La Restricción";
-"hex.60.bh" = "Moderación con medida. Saber detenerse a tiempo y gastar según lo que se tiene; pero la rigidez excesiva tampoco puede sostenerse.";
+"hex.60.bh" = "Agua sobre un lago, que solo puede contener una cantidad limitada: la imagen de los límites y la regulación. El Dictamen dice que los límites duros y amargos no pueden durar; las líneas contraponen no salir del patio, los límites aceptados con naturalidad y los límites amargos.";
 
 "hex.61.name" = "Zhōng Fú";
 "hex.61.full" = "La Verdad Interior";
-"hex.61.bh" = "Sinceridad interior. La autenticidad conmueve a los demás; donde llega la buena fe, hasta lo difícil puede lograrse.";
+"hex.61.bh" = "Viento sobre un lago: la imagen de una sinceridad que alcanza incluso a cerdos y peces. Las líneas incluyen una grulla que llama desde la sombra y sus crías que le responden, una copa de vino compartida, un caballo cuyo compañero de tiro se aparta y un gallo que intenta volar hasta el cielo.";
 
 "hex.62.name" = "Xiǎo Guò";
 "hex.62.full" = "La Preponderancia de lo Pequeño";
-"hex.62.bh" = "Pequeños excesos. Conviene ocuparse de asuntos menores y mantener un perfil bajo, sin ambiciones desmedidas.";
+"hex.62.bh" = "Trueno sobre una montaña: la imagen de lo pequeño que excede. El Dictamen presenta un pájaro en vuelo cuyo canto se oye, y contrapone los asuntos pequeños a los grandes; las líneas muestran un pájaro que vuela demasiado alto y el pasar de largo ante el antepasado para encontrarse con la antepasada.";
 
 "hex.63.name" = "Jì Jì";
 "hex.63.full" = "Después de la Consumación";
-"hex.63.bh" = "El asunto ya está logrado. Tras el éxito es fácil relajarse: conviene no bajar la guardia y prevenir los problemas antes de que surjan.";
+"hex.63.bh" = "Agua sobre fuego, cada línea en su lugar propio: la imagen de las cosas consumadas. El Dictamen señala orden al comienzo y desorden al final; las líneas incluyen frenos en una rueda, una cortina de carruaje perdida y un zorro que se moja la cabeza.";
 
 "hex.64.name" = "Wèi Jì";
 "hex.64.full" = "Antes de la Consumación";
-"hex.64.bh" = "El asunto aún no está concluido. Todavía en proceso: rematar con cuidado y elegir bien la dirección; llegará el momento de lograrlo.";
+"hex.64.bh" = "Fuego sobre agua, ninguna línea en su lugar propio: la imagen de una transición aún no terminada. El Dictamen presenta a un zorro joven que casi ha cruzado el río y se moja la cola; las líneas van de esa travesía inacabada al vino bebido con confianza al final.";
 
 "tri.1.k" = "Qián";
 "tri.1.nat" = "Cielo";

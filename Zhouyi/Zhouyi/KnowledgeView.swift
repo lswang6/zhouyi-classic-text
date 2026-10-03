@@ -192,7 +192,7 @@ struct HexagramView: View {
                 }
                 .card(shadow: true)
 
-                block(L("白话解读")) {
+                block(L("卦义")) {
                     Text(h.bh).font(.scaled(16)).lineSpacing(4).foregroundStyle(Color.text)
                 }
                 if zh || Translation.available {
