@@ -73,7 +73,7 @@ struct SettingsView: View {
                     credit(L("版本"), "\(info?["CFBundleShortVersionString"] as? String ?? "") (\(info?["CFBundleVersion"] as? String ?? ""))")
                     VStack(alignment: .leading, spacing: 2) {
                         credit(L("开源许可"), "MIT")
-                        Link("github.com/lswang6/zhouyi-Ching-Oracle", destination: URL(string: "https://github.com/lswang6/zhouyi-Ching-Oracle")!)
+                        Link("github.com/lswang6/zhouyi-classic-text", destination: URL(string: "https://github.com/lswang6/zhouyi-classic-text")!)
                             .font(.scaled(13))
                     }
                     .listRowBackground(Color.base)
