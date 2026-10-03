@@ -1,6 +1,5 @@
 /* 通用 / 标签栏 */
-"卜卦" = "Consult";
-"记录" = "History";
+"笔记" = "Journal";
 
 /* 设置 */
 "跟随系统" = "System default";
@@ -15,7 +14,7 @@
 "开始摇卦" = "Start casting";
 "起卦" = "Cast";
 "最近一卦" = "Latest reading";
-"卜一卦" = "Cast a hexagram";
+"起一卦" = "Cast a hexagram";
 "静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Calm your mind and ask about one matter at a time. Hold your question in mind, then begin casting.";
 "起卦方式" = "Casting method";
 "铜钱" = "Coins";
@@ -42,7 +41,7 @@
 "字数不计空格与标点" = "spaces and punctuation not counted";
 "动爻：%d ÷ 6" = "Changing line: %d ÷ 6";
 "余 %1$d → %2$@爻" = "Remainder %1$d → line %2$@";
-"已保存到卜卦记录" = "Saved to history";
+"已保存到笔记" = "Saved to your journal";
 
 /* 摇卦 */
 "心中默念所问之事" = "Hold your question in mind";
@@ -51,7 +50,7 @@
 "三钱之和 %1$d · %2$@" = "Coin total %1$d · %2$@";
 "（动爻）" = " (changing)";
 "查看解卦" = "View reading";
-"卦已成，已保存到卜卦记录" = "Hexagram complete and saved to history";
+"卦已成，已保存到笔记" = "Hexagram complete and saved to your journal";
 "掷钱" = "Toss coins";
 "摇一摇" = "Shake";
 "点按掷钱，或直接摇动手机" = "Tap to toss, or just shake your phone";
@@ -83,16 +82,16 @@
 "本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "The primary hexagram shows the present situation; the resulting hexagram shows where it is heading. Readings are for reference only — weigh important decisions against your real circumstances.";
 "动爻 · 老阳" = "Changing · Old Yang";
 "动爻 · 老阴" = "Changing · Old Yin";
-"应验反馈" = "Outcome";
+"心得" = "Reflections";
 "备注" = "Notes";
-"记下后来的结果，便于日后印证" = "Record what happened, so you can look back later";
+"记下读这一卦的体会" = "Write down your thoughts on this hexagram";
 "删除此记录" = "Delete reading";
 "删除此记录？" = "Delete this reading?";
 "删除" = "Delete";
 "记录已删除" = "Reading deleted";
 
 /* 卜卦记录 */
-"卜卦记录" = "History";
+"读易笔记" = "Journal";
 "共 %d 卦" = "Total: %d";
 "全部" = "All";
 "收藏" = "Favorites";
@@ -107,7 +106,7 @@
 "未填写所问之事" = "No question entered";
 "%1$@ → %2$@" = "%1$@ → %2$@";
 "事业" = "Career";
-"感情" = "Love";
+"感情" = "Relationships";
 "财运" = "Money";
 "健康" = "Health";
 "学业" = "Study";
@@ -174,7 +173,7 @@
 "冬月" = "11th Month";
 "腊月" = "12th Month";
 "分享" = "Share";
-"还没有卜卦记录" = "No readings yet";
+"还没有笔记" = "No entries yet";
 "同一时辰内（%@）起卦结果相同，一事不二占。" = "Within the same two-hour period (%@), casting gives the same hexagram. Ask about each matter only once.";
 "同一时辰内（%@）所问字数相同则卦同，一事不二占。" = "Within the same two-hour period (%@), questions with the same character count give the same hexagram. Ask about each matter only once.";
 

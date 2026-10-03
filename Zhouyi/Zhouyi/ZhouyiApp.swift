@@ -42,7 +42,7 @@ enum AppTab: Hashable { case home, history, learn }
 /// 跨页面共享的界面状态
 @Observable
 final class AppState {
-    var tab: AppTab = .home
+    var tab: AppTab = .learn   // 以经典研读为首页（App Review 4.3）
     var homePath: [Route] = []
     var historyPath: [Route] = []
     var learnPath: [Route] = []
@@ -78,26 +78,26 @@ struct RootView: View {
     var body: some View {
         let loc = Localizer.shared
         TabView(selection: $app.tab) {
-            NavigationStack(path: $app.homePath) {
-                HomeView()
-                    .navigationDestination(for: Route.self, destination: destination)
-            }
-            .tabItem { Label(L("卜卦"), systemImage: "house") }
-            .tag(AppTab.home)
-
-            NavigationStack(path: $app.historyPath) {
-                HistoryView()
-                    .navigationDestination(for: Route.self, destination: destination)
-            }
-            .tabItem { Label(L("记录"), systemImage: "clock") }
-            .tag(AppTab.history)
-
             NavigationStack(path: $app.learnPath) {
                 KnowledgeView()
                     .navigationDestination(for: Route.self, destination: destination)
             }
             .tabItem { Label(L("易学"), systemImage: "book") }
             .tag(AppTab.learn)
+
+            NavigationStack(path: $app.homePath) {
+                HomeView()
+                    .navigationDestination(for: Route.self, destination: destination)
+            }
+            .tabItem { Label(L("起卦"), systemImage: "circle.grid.3x3") }
+            .tag(AppTab.home)
+
+            NavigationStack(path: $app.historyPath) {
+                HistoryView()
+                    .navigationDestination(for: Route.self, destination: destination)
+            }
+            .tabItem { Label(L("笔记"), systemImage: "note.text") }
+            .tag(AppTab.history)
         }
         .tint(.accentText)
         .overlay { if let r = app.forming { FormingOverlay(record: r).transition(.opacity) } }

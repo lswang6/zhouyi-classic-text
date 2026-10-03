@@ -116,7 +116,7 @@ struct CastView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 8)   // 印比标题行高且微斜，下角距按钮仍留约 15
                     PillButton(title: L("查看解卦")) { if let record { app.open(record) } }
-                    Text(L("卦已成，已保存到卜卦记录"))
+                    Text(L("卦已成，已保存到笔记"))
                         .font(.scaled(13, .bold))
                         .foregroundStyle(Color.accentText)
                         .frame(maxWidth: .infinity)

@@ -39,7 +39,7 @@ struct HistoryView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
                 HStack(alignment: .firstTextBaseline) {
-                    pageTitle(L("卜卦记录"))
+                    pageTitle(L("读易笔记"))
                     Spacer()
                     Text(L("共 %d 卦", records.count)).font(.scaled(13)).foregroundStyle(Color.subdued)
                     exportMenu
@@ -73,7 +73,7 @@ struct HistoryView: View {
                                     .frame(maxWidth: 220)
                                     .clipShape(RoundedRectangle(cornerRadius: 12))
                             }
-                            Text(L("还没有卜卦记录")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
+                            Text(L("还没有笔记")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 48)
@@ -133,12 +133,8 @@ struct HistoryView: View {
                     }
                 }
                 Text(r.question).font(.scaled(14)).lineSpacing(2)
-                HStack(spacing: 8) {
-                    Text(r.meta).font(.scaled(12)).foregroundStyle(Color.subdued)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Badge(text: L(r.verify), variant: verifyVariant(r.verify), subtle: true)
-                }
-                .padding(.top, 2)
+                Text(r.meta).font(.scaled(12)).foregroundStyle(Color.subdued)
+                    .padding(.top, 2)
                 if !r.note.isEmpty {
                     Text(L("备注：%@", r.note)).font(.scaled(12)).lineSpacing(2).foregroundStyle(Color.subdued)
                 }
@@ -173,7 +169,7 @@ private struct RecordsExport: Transferable {
             f.timeStyle = .short
             text = [f.string(from: r.ts) + " · " + (CastMethod(rawValue: r.method)?.label ?? r.method) + " · " + L(r.cat) + (r.fav ? " ★" : ""),
                     r.question,
-                    r.title + " · " + r.lines.map(String.init).joined(separator: " ") + " · " + L(r.verify)]
+                    r.title + " · " + r.lines.map(String.init).joined(separator: " ")]
                 .joined(separator: "\n") + (r.note.isEmpty ? "" : "\n" + L("备注：%@", r.note))
         }
     }

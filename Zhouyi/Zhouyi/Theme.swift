@@ -412,10 +412,6 @@ struct Badge: View {
     }
 }
 
-func verifyVariant(_ v: String) -> BadgeVariant {
-    v == "应验" ? .positive : v == "未应验" ? .negative : .neutral
-}
-
 // MARK: - Toast
 
 @Observable

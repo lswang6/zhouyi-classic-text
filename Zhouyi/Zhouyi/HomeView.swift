@@ -99,7 +99,7 @@ struct HomeView: View {
                 SettingsButton()
             }
             HomeBanner()
-            pageTitle(L("卜一卦"))
+            pageTitle(L("起一卦"))
             Text(L("静心凝神，一事一占。心中默念所问之事，再开始起卦。"))
                 .font(.scaled(15))
                 .foregroundStyle(Color.subdued)

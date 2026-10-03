@@ -454,18 +454,13 @@ struct ReadingView: View {
         .card()
     }
 
-    // MARK: 应验反馈
+    // MARK: 心得（verify 字段保留不显示，App Review 4.3）
 
     private var feedback: some View {
         @Bindable var r = record
         return VStack(alignment: .leading, spacing: 12) {
-            Text(L("应验反馈")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
-            HStack(spacing: 8) {
-                ForEach(Record.verifyOptions, id: \.self) { v in
-                    ChipButton(label: L(v), selected: record.verify == v) { record.verify = v; try? modelContext.save() }
-                }
-            }
-            SpectrumField(label: L("备注"), placeholder: L("记下后来的结果，便于日后印证"), text: $r.note)
+            Text(L("心得")).font(.scaled(16, .heavy)).foregroundStyle(Color.text)
+            SpectrumField(label: L("备注"), placeholder: L("记下读这一卦的体会"), text: $r.note)
                 .onChange(of: record.note) { try? modelContext.save() }
             Button(role: .destructive) { confirmDelete = true } label: {
                 Label(L("删除此记录"), systemImage: "trash")

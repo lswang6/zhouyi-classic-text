@@ -621,7 +621,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = TX57ZT87FD;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -659,7 +659,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZhouyiWidget.entitlements;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZhouyiWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "周易卜卦";
+				INFOPLIST_KEY_CFBundleDisplayName = "周易经传";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -707,7 +707,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = TX57ZT87FD;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -757,7 +757,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Zhouyi/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "周易卜卦";
+				INFOPLIST_KEY_CFBundleDisplayName = "周易经传";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -779,7 +779,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Zhouyi/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "周易卜卦";
+				INFOPLIST_KEY_CFBundleDisplayName = "周易经传";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -799,7 +799,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZhouyiWidget.entitlements;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZhouyiWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "周易卜卦";
+				INFOPLIST_KEY_CFBundleDisplayName = "周易经传";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

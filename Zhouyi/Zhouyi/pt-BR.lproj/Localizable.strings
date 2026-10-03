@@ -1,6 +1,5 @@
 /* 通用 / 标签栏 */
-"卜卦" = "Consultar";
-"记录" = "Histórico";
+"笔记" = "Diário";
 
 /* 设置 */
 "跟随系统" = "Usar idioma do sistema";
@@ -15,7 +14,7 @@
 "开始摇卦" = "Lançar moedas";
 "起卦" = "Formar hexagrama";
 "最近一卦" = "Última consulta";
-"卜一卦" = "Consultar o I Ching";
+"起一卦" = "Consultar o I Ching";
 "静心凝神，一事一占。心中默念所问之事，再开始起卦。" = "Acalme a mente e concentre-se. Uma pergunta por consulta. Repita a pergunta mentalmente e então comece.";
 "起卦方式" = "Método";
 "铜钱" = "Moedas";
@@ -42,7 +41,7 @@
 "字数不计空格与标点" = "espaços e pontuação não contam";
 "动爻：%d ÷ 6" = "Linha móvel: %d ÷ 6";
 "余 %1$d → %2$@爻" = "resto %1$d → %2$@ linha";
-"已保存到卜卦记录" = "Salvo no histórico";
+"已保存到笔记" = "Salvo no diário";
 
 /* 摇卦 */
 "心中默念所问之事" = "Repita a pergunta mentalmente";
@@ -51,7 +50,7 @@
 "三钱之和 %1$d · %2$@" = "Soma %1$d · %2$@";
 "（动爻）" = " (linha móvel)";
 "查看解卦" = "Ver interpretação";
-"卦已成，已保存到卜卦记录" = "Hexagrama formado e salvo no histórico";
+"卦已成，已保存到笔记" = "Hexagrama formado e salvo no diário";
 "掷钱" = "Lançar";
 "摇一摇" = "Agite";
 "点按掷钱，或直接摇动手机" = "Toque para lançar ou agite o iPhone";
@@ -83,16 +82,16 @@
 "本卦看当下之势，变卦看发展之向。解读仅供参考，重要决定请结合实际。" = "O hexagrama original mostra a situação atual; o resultante, a direção em que ela se desenvolve. A interpretação é apenas uma referência — para decisões importantes, considere sua situação real.";
 "动爻 · 老阳" = "Linha móvel · yang velho";
 "动爻 · 老阴" = "Linha móvel · yin velho";
-"应验反馈" = "Resultado";
+"心得" = "Reflexões";
 "备注" = "Notas";
-"记下后来的结果，便于日后印证" = "Anote o que aconteceu depois para conferir mais tarde";
+"记下读这一卦的体会" = "Anote suas reflexões sobre este hexagrama";
 "删除此记录" = "Apagar consulta";
 "删除此记录？" = "Apagar esta consulta?";
 "删除" = "Apagar";
 "记录已删除" = "Consulta apagada";
 
 /* 卜卦记录 */
-"卜卦记录" = "Histórico";
+"读易笔记" = "Diário";
 "共 %d 卦" = "Total: %d";
 "全部" = "Todas";
 "收藏" = "Favoritas";
@@ -107,7 +106,7 @@
 "未填写所问之事" = "Sem pergunta";
 "%1$@ → %2$@" = "%1$@ → %2$@";
 "事业" = "Carreira";
-"感情" = "Amor";
+"感情" = "Relações";
 "财运" = "Finanças";
 "健康" = "Saúde";
 "学业" = "Estudos";
@@ -174,7 +173,7 @@
 "冬月" = "11º mês";
 "腊月" = "12º mês";
 "分享" = "Compartilhar";
-"还没有卜卦记录" = "Ainda não há consultas";
+"还没有笔记" = "Ainda não há entradas";
 "同一时辰内（%@）起卦结果相同，一事不二占。" = "No mesmo período de duas horas (%@), sai sempre o mesmo hexagrama. Consulte cada assunto uma só vez.";
 "同一时辰内（%@）所问字数相同则卦同，一事不二占。" = "No mesmo período de duas horas (%@), perguntas com o mesmo número de caracteres dão o mesmo hexagrama. Consulte cada assunto uma só vez.";
 
